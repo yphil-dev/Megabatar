@@ -1,0 +1,56 @@
+[gd_scene load_steps=11 format=3 uid="uid://bsynh2oqa7fos"]
+
+[ext_resource type="Shader" uid="uid://758nlgjvjkyt" path="res://materials/shaders/fire.tres" id="1_jhxvy"]
+[ext_resource type="Script" path="res://scripts/fire_burst.gd" id="1_pqhku"]
+[ext_resource type="Texture2D" uid="uid://knbu6dcax8de" path="res://assets/textures/fire/Voronoi01.png" id="2_5p2gs"]
+[ext_resource type="Texture2D" uid="uid://b04op1fgrg54u" path="res://assets/textures/fire/Flame02.png" id="3_tr0qv"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_b0yv8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8c6yg"]
+render_priority = 0
+shader = ExtResource("1_jhxvy")
+shader_parameter/DissolveTiling = Vector2(1, 1)
+shader_parameter/DissolveSpeed = Vector2(2, 2)
+shader_parameter/DissolveAmount = 0.453
+shader_parameter/MainTexture = ExtResource("3_tr0qv")
+shader_parameter/DissolveTexture = ExtResource("2_5p2gs")
+
+[sub_resource type="Curve" id="Curve_dey78"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.324675, 1), -0.0261698, -0.0261698, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_nayhp"]
+curve = SubResource("Curve_dey78")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8expf"]
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+particle_flag_damping_as_friction = true
+emission_shape = 1
+emission_sphere_radius = 0.2
+angle_min = -360.0
+angle_max = 360.0
+gravity = Vector3(0.001, 0.001, 0.001)
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_nayhp")
+color = Color(2.367, 0.592, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_dsvcy"]
+
+[node name="FireBurst" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_pqhku")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_b0yv8")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.139893, -0.392296, -0.0377197)
+material_override = SubResource("ShaderMaterial_8c6yg")
+amount = 20
+lifetime = 1.03
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8expf")
+draw_pass_1 = SubResource("QuadMesh_dsvcy")

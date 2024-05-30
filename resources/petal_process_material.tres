@@ -1,0 +1,64 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=13 format=3 uid="uid://bn2erd468xlg3"]
+
+[sub_resource type="Curve" id="Curve_joasu"]
+_data = [Vector2(0, 0.967033), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.22649, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_x835d"]
+curve = SubResource("Curve_joasu")
+
+[sub_resource type="Gradient" id="Gradient_5v8to"]
+colors = PackedColorArray(0, 1, 1, 1, 0.9, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wi8sm"]
+gradient = SubResource("Gradient_5v8to")
+
+[sub_resource type="Gradient" id="Gradient_bd7q2"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_grviq"]
+gradient = SubResource("Gradient_bd7q2")
+
+[sub_resource type="Curve" id="Curve_twlhi"]
+_data = [Vector2(0, 0.032967), 0.0, 3.90271, 0, 0, Vector2(1, 0), -3.21678, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_k4guf"]
+curve = SubResource("Curve_twlhi")
+
+[sub_resource type="Curve" id="Curve_2ulvv"]
+min_value = -1.0
+_data = [Vector2(0, 1.49012e-08), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_rtlke"]
+curve = SubResource("Curve_2ulvv")
+
+[sub_resource type="Curve" id="Curve_8xn22"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ojaw5"]
+curve = SubResource("Curve_8xn22")
+
+[resource]
+lifetime_randomness = 0.35
+particle_flag_align_y = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 0.2
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_curve = SubResource("CurveTexture_ojaw5")
+color_ramp = SubResource("GradientTexture1D_grviq")
+color_initial_ramp = SubResource("GradientTexture1D_wi8sm")
+alpha_curve = SubResource("CurveTexture_x835d")
+emission_curve = SubResource("CurveTexture_k4guf")
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("CurveTexture_rtlke")
+anim_speed_max = 0.02
+anim_offset_max = 0.1
+turbulence_enabled = true
+turbulence_noise_strength = 0.65
+turbulence_noise_scale = 0.6
+turbulence_influence_max = 0.2

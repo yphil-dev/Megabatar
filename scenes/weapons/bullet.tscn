@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://ju81r73ffi3v"]
+
+[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_7i4p4"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_g6prk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cnmmu"]
+emission_enabled = true
+emission = Color(0.505882, 0.662745, 1, 1)
+emission_energy_multiplier = 4.52
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7lgi6"]
+
+[node name="Bullet" type="RigidBody3D"]
+collision_layer = 4
+script = ExtResource("1_7i4p4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.427508, 0, 0, 0, 0.427508, 0, 0, 0, 0.427508, 0, 0, 0)
+mesh = SubResource("SphereMesh_g6prk")
+surface_material_override/0 = SubResource("StandardMaterial3D_cnmmu")
+
+[node name="Collision" type="Area3D" parent="."]
+transform = Transform3D(0.427508, 0, 0, 0, 0.427508, 0, 0, 0, 0.427508, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1.15337, 0, 0, 0, 1.15337, 0, 0, 0, 1.15337, 0, 0, 0)
+shape = SubResource("SphereShape3D_7lgi6")

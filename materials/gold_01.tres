@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://5oxa2k7njbwd"]
+
+[ext_resource type="Texture2D" uid="uid://di782as7o46bd" path="res://assets/textures/Metal034_1K-JPG/Metal034_1K-JPG_Color.jpg" id="1_a1cb1"]
+[ext_resource type="Texture2D" uid="uid://dhhg6fvi0qurj" path="res://assets/textures/Metal034_1K-JPG/Metal034_1K-JPG_Metalness.jpg" id="2_hksyf"]
+[ext_resource type="Texture2D" uid="uid://dtlskv1uehxrp" path="res://assets/textures/Metal034_1K-JPG/Metal034_1K-JPG_Roughness.jpg" id="3_51i5d"]
+
+[resource]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.513726)
+albedo_texture = ExtResource("1_a1cb1")
+metallic = 1.0
+metallic_texture = ExtResource("2_hksyf")
+roughness_texture = ExtResource("3_51i5d")
+emission_enabled = true
+emission = Color(0.619608, 0.768627, 0.0745098, 1)
+emission_energy_multiplier = 0.766255

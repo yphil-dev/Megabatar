@@ -1,0 +1,170 @@
+[gd_scene load_steps=15 format=3 uid="uid://cyn7vs84ebgcq"]
+
+[ext_resource type="Script" path="res://scripts/ship.gd" id="1_lmpvk"]
+[ext_resource type="Texture2D" uid="uid://c43l388cpxnes" path="res://assets/textures/fire/fire_01.png" id="4_mboij"]
+[ext_resource type="PackedScene" uid="uid://bxha38o0e28et" path="res://scenes/crosshair.tscn" id="5_d1qi8"]
+[ext_resource type="PackedScene" uid="uid://dwbrk0u0aulgj" path="res://scenes/starship.tscn" id="10_2bdv7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n5x3m"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.180392, 0.180392, 0.180392, 0.686275)
+albedo_texture = ExtResource("4_mboij")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="Curve" id="Curve_b2wp5"]
+_data = [Vector2(0, 0), 0.0, 4.86222, 0, 0, Vector2(0.460076, 0.938583), -0.103543, -0.103543, 0, 0, Vector2(1, 0), -6.95812, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_6d11w"]
+curve = SubResource("Curve_b2wp5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_56q2v"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_max = 302.9
+gravity = Vector3(-10, 2, 0)
+linear_accel_min = -4.14
+radial_accel_min = -1.38
+radial_accel_max = 2.76
+tangential_accel_max = 2.76
+damping_max = 2.069
+scale_min = 0.01
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_6d11w")
+
+[sub_resource type="QuadMesh" id="QuadMesh_4dbut"]
+lightmap_size_hint = Vector2i(7, 7)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_b2q87"]
+radius = 0.344147
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lgva4"]
+size = Vector3(0.838867, 1.15027, 1)
+
+[sub_resource type="Animation" id="Animation_y0vww"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Crosshair:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(44.3135, 0, -0.175008)]
+}
+
+[sub_resource type="Animation" id="Animation_5gqtt"]
+resource_name = "crosshair_zoom"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Crosshair:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-30.8325, 0, -0.175008), Vector3(44.3135, 0, -0.175008)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g3drv"]
+_data = {
+"RESET": SubResource("Animation_y0vww"),
+"crosshair_zoom": SubResource("Animation_5gqtt")
+}
+
+[node name="Ship" type="CharacterBody3D" groups=["Ship"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.12166, 0, 0)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_lmpvk")
+
+[node name="FireTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="RightRocketTimer" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
+[node name="LeftRocketTimer" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
+[node name="ShipHitBox" type="StaticBody3D" parent="." groups=["Ship"]]
+collision_mask = 6
+
+[node name="Starship" parent="ShipHitBox" instance=ExtResource("10_2bdv7")]
+
+[node name="DamageSmoke" type="GPUParticles3D" parent="ShipHitBox/Starship"]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0.619873)
+visible = false
+material_override = SubResource("StandardMaterial3D_n5x3m")
+lifetime = 0.47
+process_material = SubResource("ParticleProcessMaterial_56q2v")
+draw_pass_1 = SubResource("QuadMesh_4dbut")
+
+[node name="CollisionBox" type="Area3D" parent="ShipHitBox" groups=["Ship"]]
+transform = Transform3D(0.209041, 0, 0, 0, 0.209041, 0, 0, 0, 0.209041, -0.223097, -0.17613, 0)
+collision_mask = 14
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ShipHitBox/CollisionBox"]
+transform = Transform3D(22.5497, 0, 0, 0, 22.5497, 0, 0, 0, 22.5497, 0, 0, 0)
+shape = SubResource("SphereShape3D_b2q87")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ShipHitBox"]
+transform = Transform3D(5.58524, 0, 0, 0, 2.9564, 0, 0, 0, 5.58524, -3.20954, 0.755852, 0.0766373)
+visible = false
+shape = SubResource("BoxShape3D_lgva4")
+
+[node name="GunMuzzleLeft" type="Marker3D" parent="ShipHitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.62695, -0.636306, -1.26887)
+
+[node name="GunMuzzleCenter" type="Marker3D" parent="ShipHitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.62695, -0.636306, -0.0547411)
+
+[node name="GunMuzzleRight" type="Marker3D" parent="ShipHitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67675, -0.649466, 1.13058)
+
+[node name="MissileMuzzleRight" type="Marker3D" parent="ShipHitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.845201, -1.27823, 0.992526)
+
+[node name="MissileMuzzleLeft" type="Marker3D" parent="ShipHitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.845201, -1.27823, -1.09847)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.631596, 0, 0.775297, 0, 1, 0, -0.775297, 0, 0.631596, 2.23877, -0.536133, 1.49854)
+light_color = Color(0.286275, 0.831373, 1, 1)
+light_energy = 4.333
+spot_range = 3.631
+spot_angle = 31.15
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.731537, 0.198364, 0)
+omni_range = 3.264
+
+[node name="CameraRear" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -30.4909, 0, 0)
+fov = 24.0
+
+[node name="Crosshair" parent="." instance=ExtResource("5_d1qi8")]
+transform = Transform3D(-4.19221e-09, 0, 0.0959065, 0, 0.0959065, 0, -0.0959065, 0, -4.19221e-09, 44.3135, 0, -0.175008)
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_g3drv")
+}
+
+[connection signal="timeout" from="RightRocketTimer" to="." method="_on_right_rocket_timer_timeout"]
+[connection signal="timeout" from="LeftRocketTimer" to="." method="_on_left_rocket_timer_timeout"]
+[connection signal="body_entered" from="ShipHitBox/CollisionBox" to="." method="_on_area_3d_body_entered"]

@@ -1,0 +1,5 @@
+Process material / Velocity / Spread / 
+
+Virer les vieux bullet hits
+
+https://www.reddit.com/r/godot/comments/lmh08c/make_something_like_homing_missile_kind_of/

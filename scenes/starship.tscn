@@ -1,0 +1,90 @@
+[gd_scene load_steps=12 format=3 uid="uid://dwbrk0u0aulgj"]
+
+[ext_resource type="PackedScene" uid="uid://bsqbsj4cxfraw" path="res://assets/3dobjects/starship.glb" id="1_bg5ju"]
+[ext_resource type="PackedScene" uid="uid://buattkc22mcgh" path="res://scenes/fire.tscn" id="2_gepy1"]
+[ext_resource type="Material" uid="uid://d3bptdykbp58i" path="res://materials/metal_21.tres" id="2_iv4em"]
+[ext_resource type="Material" uid="uid://fvhtrjm4a810" path="res://materials/rust_01.tres" id="2_xtpu0"]
+[ext_resource type="Animation" uid="uid://hyfb3nhs51js" path="res://animations/rotate_life.res" id="3_5ym0v"]
+[ext_resource type="Texture2D" uid="uid://dsqbh47gol4ly" path="res://assets/textures/Marble012_1K-JPG/Marble012_1K-JPG_Color.jpg" id="3_6nuqj"]
+[ext_resource type="Texture2D" uid="uid://bcghlk8rm7uhq" path="res://assets/textures/Marble012_1K-JPG/Marble012_1K-JPG_Roughness.jpg" id="4_b83i3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6u8im"]
+transparency = 1
+albedo_texture = ExtResource("3_6nuqj")
+metallic = 1.0
+metallic_specular = 1.0
+roughness_texture = ExtResource("4_b83i3")
+emission_enabled = true
+emission = Color(0, 0.682353, 0.682353, 1)
+emission_energy_multiplier = 0.01
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gxmdg"]
+albedo_color = Color(0.72549, 0.819608, 1, 1)
+emission_enabled = true
+emission = Color(0.72549, 0.819608, 1, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="Animation" id="Animation_fosyi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rq06w"]
+_data = {
+"RESET": SubResource("Animation_fosyi"),
+"r": ExtResource("3_5ym0v")
+}
+
+[node name="Starship" instance=ExtResource("1_bg5ju")]
+
+[node name="ME_ship_IndexedFaceSet" parent="." index="0"]
+transform = Transform3D(0.00959548, 0, 0.00576555, 0, 0.0111944, 0, -0.00576555, 0, 0.00959548, 0.443235, -0.303797, -0.0557792)
+surface_material_override/0 = ExtResource("2_iv4em")
+surface_material_override/1 = SubResource("StandardMaterial3D_6u8im")
+surface_material_override/2 = ExtResource("2_iv4em")
+surface_material_override/3 = ExtResource("2_xtpu0")
+surface_material_override/4 = SubResource("StandardMaterial3D_gxmdg")
+
+[node name="Fire" parent="." index="1" instance=ExtResource("2_gepy1")]
+transform = Transform3D(-1.04433e-08, -0.238916, 0, 0.238916, -1.04433e-08, 0, 0, 0, 0.238916, -0.208195, -0.637172, 1.00738)
+
+[node name="Fire2" parent="." index="2" instance=ExtResource("2_gepy1")]
+transform = Transform3D(-1.04433e-08, -0.238916, 0, 0.238916, -1.04433e-08, 0, 0, 0, 0.238916, -0.208195, -0.637172, -1.10163)
+
+[node name="Fire3" parent="." index="3" instance=ExtResource("2_gepy1")]
+transform = Transform3D(-1.04433e-08, -0.238916, 0, 0.238916, -1.04433e-08, 0, 0, 0, 0.238916, -2.14804, 0.760103, 0.686604)
+visible = false
+
+[node name="Fire4" parent="." index="4" instance=ExtResource("2_gepy1")]
+transform = Transform3D(-1.04433e-08, -0.238916, 0, 0.238916, -1.04433e-08, 0, 0, 0, 0.238916, -2.12952, 0.760103, -0.660496)
+visible = false
+
+[node name="Rotate" type="AnimationPlayer" parent="." index="5"]
+libraries = {
+"": SubResource("AnimationLibrary_rq06w")
+}
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." index="6"]
+transform = Transform3D(-4.19465e-08, -0.281286, 0.959624, -1.22954e-08, 0.959624, 0.281286, -1, -8.88178e-16, -4.37114e-08, 3.20669, 1.74946, 0)
+visible = false
+light_color = Color(0.941176, 0.45098, 0, 1)
+light_energy = 4.636
+spot_range = 6.2
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.06302, 1.18493, 0)
+visible = false
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.30961, 0.163789, 0)
+visible = false

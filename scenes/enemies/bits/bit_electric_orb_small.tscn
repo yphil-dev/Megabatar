@@ -1,0 +1,160 @@
+[gd_scene load_steps=10 format=3 uid="uid://8xbtqij80iqu"]
+
+[ext_resource type="Script" path="res://scripts/bit.gd" id="1_w4qd1"]
+[ext_resource type="Shader" path="res://materials/shaders/electric_orb.gdshader" id="2_6i385"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_stly8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_11nx3"]
+render_priority = 0
+shader = ExtResource("2_6i385")
+shader_parameter/light_color = Color(1, 0.392157, 0, 0.52549)
+shader_parameter/arc_color = Color(1.2514e-06, 0.964881, 0.402088, 1)
+shader_parameter/seed = Vector2(0, 0)
+shader_parameter/speed = 5.1
+shader_parameter/random_scale = 4.6
+shader_parameter/electro_scale = 11.459
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qnjjc"]
+
+[sub_resource type="Animation" id="Animation_ijsvj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 6.28319)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-87.9006, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gvpgv"]
+resource_name = "r"
+length = 7.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.9, 2.5, 3.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -6.28319), Vector3(0, 0, -8.24668), Vector3(6.80678, 0, -5.25344)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2.5, 2.9, 3.9, 5.8, 6.4, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-5, 0, 0), Vector3(-22.9304, -11.6181, 0), Vector3(-50.9852, 12.3071, 0), Vector3(-56.9981, -9.68874, 0), Vector3(-64.6168, -9.93463, 0), Vector3(-74.9285, 9.22775, 0), Vector3(-87.7589, -5.83371, 0), Vector3(-96.6334, 0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_v6xks"]
+resource_name = "r_2"
+length = 7.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.9, 2.5, 3.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -6.28319), Vector3(0, 0, -8.24668), Vector3(6.80678, 0, -5.25344)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2.5, 2.9, 3.9, 5.8, 6.4, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-5, 0, 0), Vector3(-22.93, 5, 0), Vector3(-50.985, -5, 0), Vector3(-56.9981, -9.68874, 0), Vector3(-64.6168, -9.93463, 0), Vector3(-74.928, -6, 0), Vector3(-87.759, 6, 0), Vector3(-96.6334, 0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_degrj"]
+_data = {
+"RESET": SubResource("Animation_ijsvj"),
+"r": SubResource("Animation_gvpgv"),
+"r_2": SubResource("Animation_v6xks")
+}
+
+[node name="Bit" type="Node3D" groups=["Bits", "Enemies", "Shuttles"]]
+transform = Transform3D(1, -4.46638e-06, 0, 4.46638e-06, 1, 0, 0, 0, 1, -87.9006, 0, 0)
+script = ExtResource("1_w4qd1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_stly8")
+surface_material_override/0 = SubResource("ShaderMaterial_11nx3")
+
+[node name="HitBox" type="StaticBody3D" parent="." groups=["Enemies", "Shuttles"]]
+transform = Transform3D(1.75347, 0, 0, 0, 1.75347, 0, 0, 0, 1.75347, 0, 0, 0)
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
+transform = Transform3D(0.650659, 0, 0, 0, 0.650659, 0, 0, 0, 0.650659, 0, 0, 0)
+shape = SubResource("SphereShape3D_qnjjc")
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_degrj")
+}

@@ -1,0 +1,186 @@
+[gd_scene load_steps=13 format=3 uid="uid://qyb2cwwfpcq0"]
+
+[ext_resource type="Shader" uid="uid://cmx6fjvxvf4mw" path="res://shaders/shuttle_spawner.tres" id="1_1vxg4"]
+[ext_resource type="Material" uid="uid://baby3hg444ydu" path="res://materials/blue_glass.tres" id="2_0c3eq"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_siaij"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tc73q"]
+seamless = true
+noise = SubResource("FastNoiseLite_siaij")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kvw22"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1bvln"]
+noise = SubResource("FastNoiseLite_kvw22")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b708y"]
+render_priority = 0
+shader = ExtResource("1_1vxg4")
+shader_parameter/Displace = 0.045
+shader_parameter/BaseColor = Color(0.0470588, 0.247059, 0, 1)
+shader_parameter/Alpha = 0.0
+shader_parameter/EmmissionColor = Color(0.137255, 0.87451, 0.211765, 1)
+shader_parameter/EmStr = 15.0
+shader_parameter/tex_vtx_2 = SubResource("NoiseTexture2D_1bvln")
+shader_parameter/tex_frg_7 = SubResource("NoiseTexture2D_tc73q")
+
+[sub_resource type="SphereMesh" id="SphereMesh_mhs2w"]
+
+[sub_resource type="Animation" id="Animation_hdxpw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spawner:material_override:shader_parameter/EmStr")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [15.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spawner:material_override:shader_parameter/Alpha")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Spawner:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(3, 3, 3)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Bubble:surface_material_override/0:albedo_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.121569, 1, 1, 0.0588235)]
+}
+
+[sub_resource type="Animation" id="Animation_iyim4"]
+resource_name = "glow"
+length = 1.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spawner:material_override:shader_parameter/EmStr")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 1.0, 15.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spawner:material_override:shader_parameter/Alpha")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.7, 1.7, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Spawner:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.2726e-07, -4.82904e-09, 2.20858e-08), Vector3(1.2726e-07, -4.82904e-09, 2.20858e-08)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Spawner:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(4.5, 4.5, 4.5), Vector3(4.5, 4.5, 4.5), Vector3(6, 6, 6)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Bubble:surface_material_override/0:albedo_color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.2, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.121569, 1, 1, 0.0588235), Color(0.121569, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ek7wx"]
+_data = {
+"RESET": SubResource("Animation_hdxpw"),
+"glow": SubResource("Animation_iyim4")
+}
+
+[sub_resource type="SphereMesh" id="SphereMesh_0xca5"]
+
+[node name="Spawner" type="Node3D"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+
+[node name="Spawner" type="MeshInstance3D" parent="."]
+transform = Transform3D(3, -6.62574e-08, -1.44871e-08, 6.62574e-08, 3, -3.8178e-07, 1.44871e-08, 3.8178e-07, 3, 0, 0.966273, 0)
+material_override = SubResource("ShaderMaterial_b708y")
+transparency = 0.84
+mesh = SubResource("SphereMesh_mhs2w")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ek7wx")
+}
+autoplay = "glow"
+
+[node name="Bubble" type="MeshInstance3D" parent="."]
+transform = Transform3D(4.48852, 0, 0, 0, 4.48852, 0, 0, 0, 4.48852, 0, 0.955292, 0)
+mesh = SubResource("SphereMesh_0xca5")
+surface_material_override/0 = ExtResource("2_0c3eq")

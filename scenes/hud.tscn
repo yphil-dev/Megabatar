@@ -1,0 +1,280 @@
+[gd_scene load_steps=23 format=3 uid="uid://cvw5pk20m8ct4"]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_lnqbu"]
+[ext_resource type="Script" path="res://scripts/health_bar.gd" id="2_7hp3g"]
+[ext_resource type="FontFile" uid="uid://cpfcewpxrsg2o" path="res://assets/fonts/Big Pixel demo.otf" id="4_3vbtr"]
+[ext_resource type="FontFile" uid="uid://cqjrherqggcm3" path="res://assets/fonts/supercomputer/supercomputer.ttf" id="4_vej44"]
+[ext_resource type="Texture2D" uid="uid://dhbujatkhc7wu" path="res://assets/img/weapon_laser.png" id="5_o7c5v"]
+[ext_resource type="Texture2D" uid="uid://bu4resslxl4po" path="res://assets/img/weapon_missile.png" id="5_pyger"]
+[ext_resource type="Texture2D" uid="uid://b1nb3i2de5ajp" path="res://assets/img/weapon_blast.png" id="6_ei4be"]
+[ext_resource type="AudioStream" uid="uid://ds3j72ehonbof" path="res://assets/audio/sfx/VOICES/new_weapon.ogg" id="8_1l33t"]
+[ext_resource type="AudioStream" uid="uid://bx1pyvsvsxl1t" path="res://assets/audio/sfx/VOICES/missiles.ogg" id="9_akfdf"]
+[ext_resource type="AudioStream" uid="uid://cua4jmx6vdd6m" path="res://assets/audio/sfx/VOICES/blast_wave.ogg" id="10_wt2wg"]
+
+[sub_resource type="Theme" id="Theme_kcpkc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_epg5n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4gmtg"]
+bg_color = Color(0.27451, 0.678431, 0.619608, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y2iff"]
+bg_color = Color(0.612428, 0, 0.000893162, 1)
+expand_margin_left = 6.0
+expand_margin_top = 6.0
+expand_margin_right = 6.0
+expand_margin_bottom = 6.0
+shadow_color = Color(0, 0, 0, 0.27451)
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f56cp"]
+bg_color = Color(0.956863, 0.407843, 0.0745098, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xufe0"]
+font = ExtResource("4_vej44")
+font_size = 48
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2fqur"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3bguu"]
+bg_color = Color(0.505882, 0.662745, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d0bsi"]
+bg_color = Color(0.505882, 0.662745, 1, 1)
+
+[sub_resource type="Animation" id="Animation_mf63r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BottomText/HBoxContainer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 1, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2xncn"]
+resource_name = "blink"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BottomText/HBoxContainer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 1, 0, 1), Color(0, 1, 0, 0), Color(0, 1, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lhvu4"]
+_data = {
+"RESET": SubResource("Animation_mf63r"),
+"blink": SubResource("Animation_2xncn")
+}
+
+[node name="Hud" type="Control"]
+process_mode = 3
+process_priority = -1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lnqbu")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 13.0
+offset_top = 15.0
+offset_right = -1610.0
+offset_bottom = 51.0
+grow_horizontal = 2
+theme = SubResource("Theme_kcpkc")
+theme_override_styles/background = SubResource("StyleBoxEmpty_epg5n")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4gmtg")
+value = 50.0
+show_percentage = false
+script = ExtResource("2_7hp3g")
+
+[node name="DamageBar" type="ProgressBar" parent="HealthBar"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_y2iff")
+theme_override_styles/fill = SubResource("StyleBoxFlat_f56cp")
+value = 80.0
+show_percentage = false
+
+[node name="HitTimer" type="Timer" parent="HealthBar"]
+one_shot = true
+
+[node name="ScoreLabel" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 321.0
+offset_top = 1.0
+offset_right = 361.0
+offset_bottom = 64.0
+text = "0"
+label_settings = SubResource("LabelSettings_xufe0")
+
+[node name="WeaponsControls" type="VBoxContainer" parent="."]
+material = SubResource("ShaderMaterial_2fqur")
+layout_mode = 0
+offset_left = 4.0
+offset_top = 64.0
+offset_right = 320.0
+offset_bottom = 146.0
+
+[node name="Lasers" type="VBoxContainer" parent="WeaponsControls"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WeaponsControls/Lasers"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="WeaponsControls/Lasers/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_3vbtr")
+text = "Lasers"
+
+[node name="TextureRect" type="TextureRect" parent="WeaponsControls/Lasers/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+texture = ExtResource("5_o7c5v")
+expand_mode = 2
+
+[node name="LaserChargeBar" type="ProgressBar" parent="WeaponsControls/Lasers"]
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_3bguu")
+show_percentage = false
+
+[node name="Blast" type="VBoxContainer" parent="WeaponsControls"]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WeaponsControls/Blast"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="WeaponsControls/Blast/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_3vbtr")
+text = "Blast"
+
+[node name="BoxContainer" type="BoxContainer" parent="WeaponsControls/Blast/HBoxContainer"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="WeaponsControls/Blast/HBoxContainer/BoxContainer"]
+custom_minimum_size = Vector2(112, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="WeaponsControls/Blast/HBoxContainer/BoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_ei4be")
+expand_mode = 3
+
+[node name="LaserChargeBar" type="ProgressBar" parent="WeaponsControls/Blast"]
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_3bguu")
+show_percentage = false
+
+[node name="Missiles" type="VBoxContainer" parent="WeaponsControls"]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WeaponsControls/Missiles"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="WeaponsControls/Missiles/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_3vbtr")
+text = "Missiles"
+
+[node name="TextureRect" type="TextureRect" parent="WeaponsControls/Missiles/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+texture = ExtResource("5_pyger")
+expand_mode = 2
+
+[node name="RChargeBar" type="ProgressBar" parent="WeaponsControls/Missiles"]
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_d0bsi")
+show_percentage = false
+
+[node name="LChargeBar" type="ProgressBar" parent="WeaponsControls/Missiles"]
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_d0bsi")
+show_percentage = false
+
+[node name="BottomText" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomText"]
+clip_contents = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="BottomText/HBoxContainer"]
+custom_minimum_size = Vector2(20, 10)
+layout_mode = 2
+color = Color(0, 1, 0, 1)
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="BottomText"]
+layout_mode = 2
+
+[node name="BottomTextLabel" type="Label" parent="BottomText/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("4_vej44")
+theme_override_font_sizes/font_size = 18
+text = "Placeholder text"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lhvu4")
+}
+autoplay = "blink"
+
+[node name="NewWeapon" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_1l33t")
+volume_db = -5.0
+pitch_scale = 0.85
+bus = &"SFX_Left"
+
+[node name="Missiles" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_akfdf")
+volume_db = -5.0
+pitch_scale = 0.85
+bus = &"SFX_Left"
+
+[node name="BlastWave" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_wt2wg")
+volume_db = -5.0
+pitch_scale = 0.85
+bus = &"SFX_Left"
+
+[connection signal="timeout" from="HealthBar/HitTimer" to="HealthBar" method="_on_timer_timeout"]

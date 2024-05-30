@@ -1,0 +1,46 @@
+[gd_scene load_steps=10 format=3 uid="uid://cu3yfqr05spib"]
+
+[ext_resource type="Script" path="res://scripts/sound_manager.gd" id="1_nngii"]
+[ext_resource type="AudioStream" uid="uid://cp8s67k6gly5r" path="res://assets/audio/sfx/EXPLOSIONS/665092__tgerginov__explosion.ogg" id="1_rq8oa"]
+[ext_resource type="AudioStream" uid="uid://chmrv51r3bjm4" path="res://assets/audio/sfx/490253__anomaex__sci-fi_explosion.ogg" id="2_1sfef"]
+[ext_resource type="AudioStream" uid="uid://r7w1pf6vonjr" path="res://assets/audio/sfx/EXPLOSIONS/impact_01.ogg" id="3_o83wr"]
+[ext_resource type="AudioStream" uid="uid://bbjvas0hfbg55" path="res://assets/audio/music/batarCruising02.wav" id="14_fjmde"]
+[ext_resource type="AudioStream" uid="uid://cbqdh85mah35g" path="res://assets/audio/music/mothership_1.ogg" id="15_0b2n8"]
+[ext_resource type="AudioStream" uid="uid://cppiainih81j1" path="res://assets/audio/sfx/MOTHERSHIP/motor_start.ogg" id="15_hgkeu"]
+[ext_resource type="AudioStream" uid="uid://b8axbuwugdk67" path="res://assets/audio/sfx/MOTHERSHIP/motor_stop.ogg" id="16_4l72e"]
+[ext_resource type="AudioStream" uid="uid://0jiugp2vm7r1" path="res://assets/audio/sfx/MOTHERSHIP/motor_loop.ogg" id="17_o48yx"]
+
+[node name="SoundManager" type="Node3D"]
+script = ExtResource("1_nngii")
+
+[node name="Explosion1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_rq8oa")
+bus = &"SFX"
+
+[node name="Explosion2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_1sfef")
+bus = &"SFX"
+
+[node name="Explosion3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_o83wr")
+bus = &"SFX"
+
+[node name="MusicCruising02" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_fjmde")
+bus = &"Music"
+
+[node name="MotorStart" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_hgkeu")
+bus = &"SFX"
+
+[node name="MotorStop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_4l72e")
+bus = &"SFX"
+
+[node name="MotorLoop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_o48yx")
+bus = &"SFX"
+
+[node name="MothershipMusicLoop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_0b2n8")
+bus = &"Music"

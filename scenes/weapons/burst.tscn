@@ -1,0 +1,168 @@
+[gd_scene load_steps=11 format=3 uid="uid://bpqprh8a6xhea"]
+
+[ext_resource type="Material" uid="uid://cunhl5hcq1a8u" path="res://materials/rock_01.tres" id="1_xj3l6"]
+[ext_resource type="Material" uid="uid://baby3hg444ydu" path="res://materials/blue_glass.tres" id="2_dcspo"]
+[ext_resource type="AudioStream" uid="uid://b7nciom0ybgiu" path="res://assets/audio/sfx/burst_open.ogg" id="4_uqkhl"]
+
+[sub_resource type="GDScript" id="GDScript_vuwu6"]
+script/source = "extends Node3D
+
+const Shatter = preload(\"res://scenes/explosions/shatter.tscn\")
+
+@export var health = 5000
+
+func _process(_delta):
+	if health <= 0:
+		var shatter = Shatter.instantiate()
+		get_parent().add_child(shatter)
+		# Globals.explode(Vector3(global_transform.origin), 2, 2)
+		# shatter.global_transform.origin = global_transform.origin
+		shatter.global_transform.origin = Vector3(global_transform.origin.x - 6.4, global_transform.origin.y + 5.6, global_transform.origin.z)
+		queue_free()
+
+func _on_visible_on_screen_notifier_3d_screen_entered():
+	$Anim.play(\"m\")
+"
+
+[sub_resource type="BoxMesh" id="BoxMesh_txv5v"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_witoo"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="QuadMesh" id="QuadMesh_coibw"]
+
+[sub_resource type="Animation" id="Animation_2y1dw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wall:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.502153, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wall:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5708, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Wall:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.027881, 0.0168948, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_v3dba"]
+resource_name = "m"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wall:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.502153, 0), Vector3(0, 0.60925, 0), Vector3(0, 0.60925, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wall:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1.5708, 0, 0), Vector3(1.5708, 0, 0), Vector3(4.94354e-15, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Wall:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.027881, 0.0168948, 1), Vector3(0.027881, 0.0168948, 1), Vector3(0.028, 1, 1)]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ActivateDoor")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_uqkhl")
+}],
+"times": PackedFloat32Array(0.6)
+}
+tracks/3/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qu7cr"]
+_data = {
+"RESET": SubResource("Animation_2y1dw"),
+"m": SubResource("Animation_v3dba")
+}
+
+[node name="Burst" type="Node3D" groups=["Enemies"]]
+transform = Transform3D(10.6343, 0, 0, 0, 10.6343, 0, 0, 0, 10.6343, 0, 0, 0)
+script = SubResource("GDScript_vuwu6")
+health = 50
+
+[node name="Wall" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.027881, 0, 0, 0, -6.1159e-08, -1, 0, 0.0168948, -3.61999e-06, 0, -0.502153, 0)
+mesh = SubResource("BoxMesh_txv5v")
+surface_material_override/0 = ExtResource("2_dcspo")
+
+[node name="WallBurst" type="StaticBody3D" parent="Wall" groups=["Enemies", "Walls"]]
+collision_layer = 10
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall/WallBurst"]
+shape = SubResource("ConvexPolygonShape3D_witoo")
+
+[node name="Base" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.352407, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_coibw")
+surface_material_override/0 = ExtResource("1_xj3l6")
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qu7cr")
+}
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.941993, 1.03861, 0)
+
+[node name="ActivateDoor" type="AudioStreamPlayer" parent="."]
+volume_db = -5.0
+bus = &"SFX"
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]

@@ -1,0 +1,19 @@
+[gd_resource type="CurveXYZTexture" load_steps=4 format=3 uid="uid://dehi4x8alanm5"]
+
+[sub_resource type="Curve" id="Curve_qhdth"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_62bdg"]
+max_value = 5.0
+_data = [Vector2(0, 5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_opekk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[resource]
+curve_x = SubResource("Curve_qhdth")
+curve_y = SubResource("Curve_62bdg")
+curve_z = SubResource("Curve_opekk")

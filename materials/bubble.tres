@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ct5kl3snu0tsx"]
+
+[ext_resource type="Texture2D" uid="uid://c43l388cpxnes" path="res://assets/textures/fire/fire_01.png" id="1_007tf"]
+
+[resource]
+transparency = 1
+albedo_color = Color(0.741176, 0, 0, 0.941176)
+albedo_texture = ExtResource("1_007tf")
+metallic = 1.0
+roughness = 0.25
+emission_enabled = true
+emission = Color(0.741176, 0, 0, 0.941176)
+emission_energy_multiplier = 0.56

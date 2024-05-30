@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://luub3k7dxfpf"]
+
+[ext_resource type="Script" path="res://scripts/blob_rigid.gd" id="1_phivo"]
+[ext_resource type="Shader" uid="uid://bqo0rpq8chy7y" path="res://materials/shaders/dissolve.tres" id="2_fmcmr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wggen"]
+render_priority = 0
+shader = ExtResource("2_fmcmr")
+
+[sub_resource type="SphereMesh" id="SphereMesh_pmc3y"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ijkl6"]
+radius = 0.893749
+
+[node name="Blob" type="RigidBody3D" groups=["Shuttles"]]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -5, 0, 0)
+mass = 0.5
+script = ExtResource("1_phivo")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.00077, 0, 0, 0, 3.00077, 0, 0, 0, 3.00077, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_wggen")
+mesh = SubResource("SphereMesh_pmc3y")
+
+[node name="HitBox" type="StaticBody3D" parent="." groups=["Enemies"]]
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
+transform = Transform3D(3.00077, 0, 0, 0, 3.00077, 0, 0, 0, 3.00077, 0, 0, 0)
+shape = SubResource("SphereShape3D_ijkl6")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(-1.93957e-07, 2.30456, 4.43723, 1.00736e-07, 4.43723, -2.30456, -5, 0, -2.18557e-07, 2.33027, -1.22581, 0)
+spot_range = 0.98

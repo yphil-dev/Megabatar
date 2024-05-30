@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://c7yj6aqayuiku"]
+
+[ext_resource type="Script" path="res://scripts/laser.gd" id="1_dian7"]
+[ext_resource type="AudioStream" uid="uid://bova0iff2epot" path="res://assets/audio/sfx/laser_01.ogg" id="2_ladfr"]
+[ext_resource type="AudioStream" uid="uid://ce47sv52im2qj" path="res://assets/audio/sfx/laser_02.ogg" id="3_gkywn"]
+[ext_resource type="AudioStream" uid="uid://hiaa2pcr4q4q" path="res://assets/audio/sfx/MOTHERSHIP/laser_shot_01.ogg" id="4_yc3le"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_emsjh"]
+albedo_color = Color(0.533333, 0.85098, 0.878431, 1)
+emission_enabled = true
+emission = Color(0.780392, 0.835294, 0.952941, 1)
+emission_energy_multiplier = 10.41
+
+[sub_resource type="BoxMesh" id="BoxMesh_mtv5f"]
+material = SubResource("StandardMaterial3D_emsjh")
+size = Vector3(0.03, 0.03, 0.03)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7m4qg"]
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
+rim_enabled = true
+disable_receive_shadows = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7iq71"]
+radius = 0.269098
+
+[node name="Laser" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 2
+mass = 0.3
+gravity_scale = 0.0
+max_contacts_reported = 8
+contact_monitor = true
+script = ExtResource("1_dian7")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 18.902, 0, 0, 0, 18.902, 0, 0, 0)
+mesh = SubResource("BoxMesh_mtv5f")
+surface_material_override/0 = SubResource("StandardMaterial3D_7m4qg")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(0.0549435, 0, 0, 0, 0.0549435, 0, 0, 0, 0.0549435, 0, 0, 0)
+aabb = AABB(-2.20513, -0.316162, -1, 4.41025, 0.632323, 2)
+
+[node name="Collision" type="Area3D" parent="."]
+transform = Transform3D(2.35766, 0, 0, 0, 2.35766, 0, 0, 0, 2.35766, 0, 0, 0)
+collision_layer = 4
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision"]
+shape = SubResource("SphereShape3D_7iq71")
+
+[node name="LaserSound1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ladfr")
+bus = &"SFX"
+
+[node name="LaserSound2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_gkywn")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="LaserSound3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_yc3le")
+bus = &"SFX"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Collision" to="." method="_on_area_3d_body_entered"]

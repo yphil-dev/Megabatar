@@ -1,0 +1,58 @@
+[gd_scene load_steps=11 format=3 uid="uid://ffakt3v3bb0k"]
+
+[ext_resource type="Script" path="res://scripts/enemies.gd" id="1_53nad"]
+[ext_resource type="AudioStream" uid="uid://dm8jhfwxkx3e4" path="res://assets/audio/music/wave_02.ogg" id="2_hi2y5"]
+[ext_resource type="AudioStream" uid="uid://bqiw8h6vridwc" path="res://assets/audio/music/wave_00.ogg" id="3_540ow"]
+[ext_resource type="AudioStream" uid="uid://bj3ilguduw3si" path="res://assets/audio/music/wave_01.ogg" id="3_d3hu4"]
+[ext_resource type="AudioStream" uid="uid://vwxbodc5632y" path="res://assets/audio/music/wave_03.ogg" id="5_6og4f"]
+[ext_resource type="AudioStream" uid="uid://dic21ux5yvodw" path="res://assets/audio/music/wave_04.ogg" id="6_x33f0"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_di6db"]
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_u1iaf"]
+noise = SubResource("FastNoiseLite_di6db")
+
+[sub_resource type="FogMaterial" id="FogMaterial_aeeam"]
+density = 5.0
+albedo = Color(0.568627, 0.568627, 0.568627, 1)
+emission = Color(0, 0.752941, 0.823529, 1)
+density_texture = SubResource("NoiseTexture3D_u1iaf")
+
+[sub_resource type="BoxMesh" id="BoxMesh_bylve"]
+
+[node name="Enemies" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 0)
+script = ExtResource("1_53nad")
+
+[node name="MusicLoops" type="Node3D" parent="."]
+
+[node name="Wave00" type="AudioStreamPlayer" parent="MusicLoops"]
+stream = ExtResource("3_540ow")
+bus = &"Music"
+
+[node name="Wave01" type="AudioStreamPlayer" parent="MusicLoops"]
+stream = ExtResource("3_d3hu4")
+bus = &"Music"
+
+[node name="Wave02" type="AudioStreamPlayer" parent="MusicLoops"]
+stream = ExtResource("2_hi2y5")
+bus = &"Music"
+
+[node name="Wave03" type="AudioStreamPlayer" parent="MusicLoops"]
+stream = ExtResource("5_6og4f")
+bus = &"Music"
+
+[node name="Wave04" type="AudioStreamPlayer" parent="MusicLoops"]
+stream = ExtResource("6_x33f0")
+bus = &"Music"
+
+[node name="FogVolume" type="FogVolume" parent="."]
+transform = Transform3D(10.454, 0, 0, 0, 5.63869, 0, 0, 0, 5.63869, 12.1164, 0, 0)
+size = Vector3(6.95674, 12.1492, 12.2742)
+shape = 0
+material = SubResource("FogMaterial_aeeam")
+
+[node name="FogMock" type="MeshInstance3D" parent="."]
+transform = Transform3D(71.703, 0, 0, 0, 67.6757, 0, 0, 0, 67.6757, 11.7284, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_bylve")

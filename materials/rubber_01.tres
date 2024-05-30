@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://b0tq27hvxss4m"]
+
+[ext_resource type="Texture2D" uid="uid://bvnbdte710x17" path="res://assets/textures/Rubber004_1K-JPG/Rubber004_1K-JPG_Color.jpg" id="1_erhjd"]
+[ext_resource type="Texture2D" uid="uid://bbvawm80kf400" path="res://assets/textures/Rubber004_1K-JPG/Rubber004_1K-JPG_Roughness.jpg" id="2_ip4mi"]
+
+[resource]
+albedo_texture = ExtResource("1_erhjd")
+roughness_texture = ExtResource("2_ip4mi")
+uv1_triplanar = true

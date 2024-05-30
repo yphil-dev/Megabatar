@@ -1,0 +1,20 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://cuhci3cpfi3l6"]
+
+[ext_resource type="Texture2D" uid="uid://banr1gpwwailv" path="res://assets/textures/rocks/Rock029_1K-JPG/Rock029_1K-JPG_Color.jpg" id="1_gnbyf"]
+[ext_resource type="Texture2D" uid="uid://bkyidhgifv4hi" path="res://assets/textures/rocks/Rock029_1K-JPG/Rock029_1K-JPG_Displacement.jpg" id="2_40uvd"]
+[ext_resource type="Texture2D" uid="uid://m8v27tf7x7qj" path="res://assets/textures/rocks/Rock029_1K-JPG/Rock029_1K-JPG_NormalGL.jpg" id="3_sbv7t"]
+[ext_resource type="Texture2D" uid="uid://c878wc6s44lpd" path="res://assets/textures/rocks/Rock029_1K-JPG/Rock029_1K-JPG_Roughness.jpg" id="4_f0cxh"]
+
+[resource]
+albedo_texture = ExtResource("1_gnbyf")
+roughness_texture = ExtResource("4_f0cxh")
+normal_enabled = true
+normal_scale = -1.0
+normal_texture = ExtResource("3_sbv7t")
+heightmap_texture = ExtResource("2_40uvd")
+subsurf_scatter_strength = 0.45
+uv1_scale = Vector3(0.015, 0.015, 0.015)
+uv1_offset = Vector3(-0.015, 0.05, 0.165)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 0.594604
+uv2_triplanar = true

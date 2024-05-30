@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://1nt5ea536i0"]
+
+[ext_resource type="Shader" uid="uid://bhuelh0lhes86" path="res://shaders/shader_explosion.tres" id="1_lgd0w"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ckclf"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1oa1l"]
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_q01o8"]
+noise = SubResource("FastNoiseLite_1oa1l")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r8ncy"]
+render_priority = 0
+shader = ExtResource("1_lgd0w")
+shader_parameter/tex3d_frg_4 = SubResource("NoiseTexture3D_q01o8")
+
+[node name="ShaderExplosion" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_ckclf")
+surface_material_override/0 = SubResource("ShaderMaterial_r8ncy")

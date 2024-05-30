@@ -1,0 +1,263 @@
+[gd_scene load_steps=14 format=3 uid="uid://bu5lpj2evg0pe"]
+
+[ext_resource type="Script" path="res://scripts/bit.gd" id="1_pm2ui"]
+[ext_resource type="Material" uid="uid://e1ji1x6u03wo" path="res://materials/glass_window_01.tres" id="2_0ajts"]
+[ext_resource type="Material" uid="uid://c8lm6m5b1tbbn" path="res://materials/pyramid.tres" id="3_gc05n"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_2jupe"]
+
+[sub_resource type="Animation" id="Animation_ijsvj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 6.28319)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-87.9006, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pyramid:material_override:emission_energy_multiplier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.24]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pyramid:material_override:albedo_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_p1fxx"]
+resource_name = "glow"
+length = 3.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pyramid:material_override:emission_energy_multiplier")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 2.7, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.95, 0.0, 0.0, 0.95]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pyramid:material_override:albedo_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.0941176), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gvpgv"]
+resource_name = "r"
+length = 7.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.9, 2.5, 3.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -6.28319), Vector3(0, 0, -8.24668), Vector3(6.80678, 0, -5.25344)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2.5, 2.9, 3.9, 5.8, 6.4, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-5, 0, 0), Vector3(-22.9304, -11.6181, 0), Vector3(-50.9852, 12.3071, 0), Vector3(-56.9981, -9.68874, 0), Vector3(-64.6168, -9.93463, 0), Vector3(-74.9285, 9.22775, 0), Vector3(-87.7589, -5.83371, 0), Vector3(-96.6334, 0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_v6xks"]
+resource_name = "r_2"
+length = 7.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.9, 2.5, 3.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -6.28319), Vector3(0, 0, -8.24668), Vector3(6.80678, 0, -5.25344)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2.5, 2.9, 3.9, 5.8, 6.4, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-5, 0, 0), Vector3(-22.93, 5, 0), Vector3(-50.985, -5, 0), Vector3(-56.9981, -9.68874, 0), Vector3(-64.6168, -9.93463, 0), Vector3(-74.928, -6, 0), Vector3(-87.759, 6, 0), Vector3(-96.6334, 0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_degrj"]
+_data = {
+"RESET": SubResource("Animation_ijsvj"),
+"glow": SubResource("Animation_p1fxx"),
+"r": SubResource("Animation_gvpgv"),
+"r_2": SubResource("Animation_v6xks")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_aer04"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l6f33"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_8u2am"]
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"format": 34896613377,
+"index_count": 18,
+"index_data": PackedByteArray(0, 0, 1, 0, 4, 0, 1, 0, 2, 0, 4, 0, 0, 0, 2, 0, 1, 0, 0, 0, 3, 0, 2, 0, 2, 0, 3, 0, 4, 0, 3, 0, 0, 0, 4, 0),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 5,
+"vertex_data": PackedByteArray(255, 127, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 255, 127, 0, 0, 255, 127, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 255, 127, 0, 0, 255, 127, 255, 255, 255, 127, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_gulrg"]
+resource_name = "pyramid_Cone_001"
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"attribute_data": PackedByteArray(255, 191, 142, 130, 255, 63, 142, 130, 255, 63, 142, 130, 111, 253, 255, 191, 112, 125, 255, 191, 112, 125, 255, 191, 255, 191, 111, 253, 255, 63, 111, 253, 255, 63, 111, 253, 142, 130, 255, 191, 143, 2, 255, 191, 143, 2, 255, 191, 255, 63, 255, 191, 255, 63, 255, 191, 255, 63, 255, 191, 255, 63, 255, 191),
+"format": 34896613399,
+"index_count": 18,
+"index_data": PackedByteArray(1, 0, 5, 0, 13, 0, 4, 0, 7, 0, 12, 0, 0, 0, 6, 0, 3, 0, 0, 0, 9, 0, 6, 0, 8, 0, 10, 0, 14, 0, 11, 0, 2, 0, 15, 0),
+"material": SubResource("StandardMaterial3D_l6f33"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray(255, 127, 0, 0, 0, 0, 255, 63, 255, 127, 0, 0, 0, 0, 24, 227, 255, 127, 0, 0, 0, 0, 24, 227, 255, 255, 0, 0, 255, 127, 255, 63, 255, 255, 0, 0, 255, 127, 139, 183, 255, 255, 0, 0, 255, 127, 24, 227, 255, 127, 0, 0, 255, 255, 255, 63, 255, 127, 0, 0, 255, 255, 139, 183, 255, 127, 0, 0, 255, 255, 139, 183, 0, 0, 0, 0, 255, 127, 255, 63, 0, 0, 0, 0, 255, 127, 139, 183, 0, 0, 0, 0, 255, 127, 24, 227, 255, 127, 255, 255, 255, 127, 139, 183, 255, 127, 255, 255, 255, 127, 24, 227, 255, 127, 255, 255, 255, 127, 139, 183, 255, 127, 255, 255, 255, 127, 24, 227, 0, 0, 255, 127, 143, 195, 61, 86, 60, 214, 110, 188, 0, 0, 255, 127, 169, 170, 160, 101, 143, 195, 61, 86, 0, 0, 255, 127, 169, 170, 160, 101, 160, 229, 85, 213, 0, 0, 255, 127, 160, 229, 85, 213, 60, 214, 110, 188, 169, 170, 160, 101, 143, 195, 61, 86, 160, 229, 85, 213, 60, 214, 110, 188)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_8u2am")
+
+[node name="Byte" type="Node3D" groups=["Bits", "Enemies", "Shuttles"]]
+transform = Transform3D(0.67375, -3.00922e-06, 0, 3.00922e-06, 0.67375, 0, 0, 0, 0.67375, -87.9006, 0, 0)
+script = ExtResource("1_pm2ui")
+
+[node name="Sphere" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.56644, 0, 0, 0, 1.56644, 0, 0, 0, 1.56644, 0, 0, 0)
+material_override = ExtResource("2_0ajts")
+mesh = SubResource("SphereMesh_2jupe")
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_degrj")
+}
+autoplay = "glow"
+
+[node name="ByteHitBox" type="StaticBody3D" parent="." groups=["Enemies", "Shuttles"]]
+transform = Transform3D(1.75347, 0, 0, 0, 1.75347, 0, 0, 0, 1.75347, 0, 0, 0)
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ByteHitBox"]
+transform = Transform3D(0.956543, 0, 0, 0, 0.956543, 0, 0, 0, 0.956543, 0, 0, 0)
+shape = SubResource("SphereShape3D_aer04")
+
+[node name="Pyramid" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.62939e-06, 2.11615, 0)
+mesh = SubResource("ArrayMesh_gulrg")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("3_gc05n")
+
+[node name="Pyramid2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, -8.74229e-08, 0, 8.74229e-08, -1, 0, 0, 0, 1, -7.62939e-06, -2.1693, 0)
+mesh = SubResource("ArrayMesh_gulrg")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("3_gc05n")
+
+[node name="Pyramid3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37117e-08, 1, 0, -1, -4.37117e-08, 0, 0, 0, 1, 2.15457, 0.00892988, 0)
+mesh = SubResource("ArrayMesh_gulrg")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("3_gc05n")
+
+[node name="Pyramid4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.31135e-07, -1, 0, 1, 1.31135e-07, 0, 0, 0, 1, -2.20191, 0.00894934, 0)
+mesh = SubResource("ArrayMesh_gulrg")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("3_gc05n")

@@ -1,0 +1,25 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://veki6re5p0w2"]
+
+[ext_resource type="Texture2D" uid="uid://g0cexpv4f78k" path="res://assets/textures/METAL/MetalPlates013_1K-JPG/MetalPlates013_1K-JPG_Color.jpg" id="1_p1lti"]
+[ext_resource type="Texture2D" uid="uid://2qfpx8d01opj" path="res://assets/textures/METAL/MetalPlates013_1K-JPG/MetalPlates013_1K-JPG_Displacement.jpg" id="2_kbspi"]
+[ext_resource type="Texture2D" uid="uid://drxr8bgdpk1dt" path="res://assets/textures/METAL/MetalPlates013_1K-JPG/MetalPlates013_1K-JPG_Metalness.jpg" id="3_16vte"]
+[ext_resource type="Texture2D" uid="uid://fjpa0ykv4oha" path="res://assets/textures/METAL/MetalPlates013_1K-JPG/MetalPlates013_1K-JPG_NormalGL.jpg" id="4_b6da6"]
+[ext_resource type="Texture2D" uid="uid://bdf51g8j6k7nd" path="res://assets/textures/METAL/MetalPlates013_1K-JPG/MetalPlates013_1K-JPG_Roughness.jpg" id="5_8qgf4"]
+
+[resource]
+albedo_color = Color(0.356863, 0.462745, 1, 1)
+albedo_texture = ExtResource("1_p1lti")
+albedo_texture_force_srgb = true
+metallic = 0.53
+metallic_specular = 0.79
+metallic_texture = ExtResource("3_16vte")
+roughness_texture = ExtResource("5_8qgf4")
+emission = Color(0.223529, 0.223529, 0.223529, 1)
+emission_energy_multiplier = 0.0
+normal_scale = -1.0
+normal_texture = ExtResource("4_b6da6")
+heightmap_scale = -1.0
+heightmap_texture = ExtResource("2_kbspi")
+uv1_scale = Vector3(-0.035, -0.035, -0.035)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 1.27456

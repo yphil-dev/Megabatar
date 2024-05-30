@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://bcjht7llyubdu"]
+
+[ext_resource type="Texture2D" uid="uid://btgay3mrf3sse" path="res://assets/textures/rust/Metal046B_1K-JPG_Color.jpg" id="1_351gy"]
+[ext_resource type="Texture2D" uid="uid://b7tqtswobkyti" path="res://assets/textures/rust/Metal046B_1K-JPG_NormalGL.jpg" id="2_tgwep"]
+[ext_resource type="Texture2D" uid="uid://cwgtqryvhpc0k" path="res://assets/textures/rust/Metal046B_1K-JPG_Roughness.jpg" id="3_kcos7"]
+
+[resource]
+transparency = 1
+albedo_texture = ExtResource("1_351gy")
+roughness_texture = ExtResource("3_kcos7")
+normal_texture = ExtResource("2_tgwep")

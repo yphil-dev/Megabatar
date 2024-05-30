@@ -1,0 +1,120 @@
+[gd_scene load_steps=17 format=3 uid="uid://caservmx55wjs"]
+
+[ext_resource type="Shader" uid="uid://758nlgjvjkyt" path="res://materials/shaders/fire.tres" id="1_5evuq"]
+[ext_resource type="Script" path="res://scripts/fire_ball.gd" id="1_22rhm"]
+[ext_resource type="Texture2D" uid="uid://knbu6dcax8de" path="res://assets/textures/fire/Voronoi01.png" id="2_u0yrv"]
+[ext_resource type="Texture2D" uid="uid://b04op1fgrg54u" path="res://assets/textures/fire/Flame02.png" id="3_h8f5k"]
+[ext_resource type="Material" uid="uid://bus5wdjrj8xs2" path="res://materials/metal_003_shiny_bk.tres" id="5_og5ei"]
+[ext_resource type="PackedScene" uid="uid://bxha38o0e28et" path="res://scenes/crosshair.tscn" id="5_xkpty"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2vvb1"]
+render_priority = 0
+shader = ExtResource("1_5evuq")
+shader_parameter/DissolveTiling = Vector2(1, 1)
+shader_parameter/DissolveSpeed = Vector2(2, 2)
+shader_parameter/DissolveAmount = 0.453
+shader_parameter/MainTexture = ExtResource("3_h8f5k")
+shader_parameter/DissolveTexture = ExtResource("2_u0yrv")
+
+[sub_resource type="Curve" id="Curve_1ru05"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.324675, 1), -0.0261698, -0.0261698, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_l1txm"]
+curve = SubResource("Curve_1ru05")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_enp5w"]
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+particle_flag_damping_as_friction = true
+emission_shape = 1
+emission_sphere_radius = 0.2
+angle_min = -360.0
+angle_max = 360.0
+gravity = Vector3(0, 0, 0)
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_l1txm")
+color = Color(2.367, 0.592, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_qeuaf"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2awc2"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_0ym1x"]
+
+[sub_resource type="Animation" id="Animation_s6k1l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ball:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_e68dp"]
+resource_name = "r"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ball:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(6.28319, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iskq8"]
+_data = {
+"RESET": SubResource("Animation_s6k1l"),
+"r": SubResource("Animation_e68dp")
+}
+
+[node name="FireBall" type="RigidBody3D" groups=["Enemies"]]
+collision_layer = 4
+collision_mask = 9
+max_contacts_reported = 2
+contact_monitor = true
+script = ExtResource("1_22rhm")
+
+[node name="Fire" type="GPUParticles3D" parent="."]
+transform = Transform3D(1.69594, 0, 0, 0, 1.69594, 0, 0, 0, 1.69594, 0.0201416, 0.0828447, -0.0377197)
+visible = false
+material_override = SubResource("ShaderMaterial_2vvb1")
+amount = 5
+lifetime = 1.4
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_enp5w")
+draw_pass_1 = SubResource("QuadMesh_qeuaf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_2awc2")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+
+[node name="Ball" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_0ym1x")
+surface_material_override/0 = ExtResource("5_og5ei")
+
+[node name="Crosshair" parent="Ball" instance=ExtResource("5_xkpty")]
+transform = Transform3D(0.0470815, 0, 0, 0, 0.0470815, 0, 0, 0, 0.0470815, 0, 0, 0)
+
+[node name="Crosshair2" parent="Ball" instance=ExtResource("5_xkpty")]
+transform = Transform3D(-1.45522e-09, 0.0332916, 0.0332916, 1.45522e-09, 0.0332916, -0.0332916, -0.0470815, 0, -2.058e-09, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_iskq8")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]

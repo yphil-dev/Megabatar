@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://b2evlr5w7amuh"]
+
+[ext_resource type="Script" path="res://scenes/explosions/bubbles.gd" id="1_ykdd7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uhyv2"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.376471)
+metallic = 1.0
+roughness = 0.04
+emission_enabled = true
+emission = Color(0.721569, 0.815686, 1, 1)
+backlight = Color(0.988235, 0.988235, 0.988235, 1)
+
+[sub_resource type="Curve" id="Curve_qlqkr"]
+_data = [Vector2(0.0138249, 0.120879), 0.0, 3.77564, 0, 0, Vector2(1, 0), -2.83173, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_x37ua"]
+curve = SubResource("Curve_qlqkr")
+
+[sub_resource type="Curve" id="Curve_na5t2"]
+max_value = 3.0
+_data = [Vector2(0, 1), 0.0, 5.75113, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_o7cqi"]
+curve = SubResource("Curve_na5t2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_50ui8"]
+emission_shape = 1
+emission_sphere_radius = 6.0
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 0.5, 0)
+linear_accel_min = 1.0
+linear_accel_max = 2.0
+radial_accel_min = 0.1
+radial_accel_max = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_x37ua")
+scale_over_velocity_min = 0.1
+scale_over_velocity_max = 0.5
+scale_over_velocity_curve = SubResource("CurveTexture_o7cqi")
+
+[sub_resource type="SphereMesh" id="SphereMesh_24ewf"]
+
+[node name="Bubbles" type="Node3D"]
+script = ExtResource("1_ykdd7")
+
+[node name="Bubbles" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_uhyv2")
+emitting = false
+amount = 6
+lifetime = 1.61
+one_shot = true
+explosiveness = 0.67
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_50ui8")
+draw_pass_1 = SubResource("SphereMesh_24ewf")
+
+[node name="Timer" type="Timer" parent="."]
