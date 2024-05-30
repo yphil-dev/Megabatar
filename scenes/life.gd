@@ -9,7 +9,6 @@ var tween
 var life_type
 
 func _ready():
-    $LifePopSound.play()
 
     $LifeBox/Blast.visible = false
     $LifeBox/Missile.visible = false
@@ -30,7 +29,7 @@ func _ready():
     tween = get_tree().create_tween()
     tween.set_trans(Tween.TRANS_BACK)
     tween.set_ease(Tween.EASE_IN)
-    tween.tween_property(self, "position:x", - 15, 3.0).as_relative()
+    tween.tween_property(self, "position:x", - 25, 6.0).as_relative()
     tween.parallel().tween_property(self, "position:y", global_transform.origin.y + 30, 6.0)
 
 func pop():
@@ -53,7 +52,7 @@ func pop():
     elif life_type == "blast":
         Globals.say("You have BLAST now!")
         Globals.has_blast = true
-
+        
     queue_free()
 
 func _on_visible_on_screen_notifier_3d_screen_exited():

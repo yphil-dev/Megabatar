@@ -31,8 +31,11 @@ func _process(_delta):
         is_dead.emit()
         Globals.explode(Vector3(global_transform.origin), 6, 1)
         Globals.score += PRICE
-        if is_rewarded:
-            spawn_life("health")
+        spawn_life("blast")
+
+        # if is_rewarded:
+        #     spawn_life("health")
+
         queue_free()
 
 func spawn_life(life_type):

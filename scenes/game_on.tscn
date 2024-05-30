@@ -543,6 +543,7 @@ layout_mode = 2
 
 [node name="Play" type="Button" parent="Control/VBoxContainer/Buttons"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.917647, 0.811765, 1)
 theme_override_fonts/font = ExtResource("7_xacfw")
 theme_override_font_sizes/font_size = 82
 text = "Play"
@@ -551,6 +552,7 @@ text = "Play"
 layout_mode = 2
 focus_neighbor_top = NodePath("../Play")
 focus_neighbor_bottom = NodePath("../Quit")
+theme_override_colors/font_color = Color(1, 0.439216, 0, 1)
 theme_override_fonts/font = ExtResource("7_xacfw")
 theme_override_font_sizes/font_size = 28
 text = "Controls"
@@ -559,6 +561,7 @@ text = "Controls"
 layout_mode = 2
 focus_neighbor_top = NodePath("../Controls")
 focus_neighbor_bottom = NodePath("../../MusicSlider")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_xacfw")
 theme_override_font_sizes/font_size = 28
 text = "Quit"

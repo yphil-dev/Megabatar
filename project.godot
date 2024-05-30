@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="batar"
+config/name="megabatar"
 run/main_scene="res://scenes/splash.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/show_image=false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://1p4wilttobtl"]
+[gd_scene load_steps=22 format=3 uid="uid://1p4wilttobtl"]
 
 [ext_resource type="Script" path="res://scripts/game_over.gd" id="1_0lryl"]
 [ext_resource type="Environment" uid="uid://cb3w0m807nfnp" path="res://resources/world.tres" id="1_nndym"]
@@ -6,8 +6,9 @@
 [ext_resource type="FontFile" uid="uid://cpfcewpxrsg2o" path="res://assets/fonts/Big Pixel demo.otf" id="4_8vbtq"]
 [ext_resource type="Texture2D" uid="uid://6d3geedsvn8f" path="res://assets/img/ManyRecords.png" id="4_oxchq"]
 [ext_resource type="Material" uid="uid://dk2b1xx474xub" path="res://materials/cracktro_logo.tres" id="6_6mwg6"]
-[ext_resource type="AudioStream" uid="uid://bpq5pqlkq8u82" path="res://assets/audio/music/megabatar=intro.ogg" id="7_youh6"]
-[ext_resource type="AudioStream" uid="uid://j12tfgxsr6o1" path="res://assets/audio/music/megabatar=loop.ogg" id="8_8q33b"]
+[ext_resource type="AudioStream" uid="uid://bpq5pqlkq8u82" path="res://assets/audio/music/megabatar_intro.ogg" id="7_youh6"]
+[ext_resource type="AudioStream" uid="uid://j12tfgxsr6o1" path="res://assets/audio/music/megabatar_loop.ogg" id="8_8q33b"]
+[ext_resource type="AudioStream" uid="uid://dhqd3t832bhb1" path="res://assets/audio/music/yPhil-(2015)-Off_The_Grid.ogg" id="9_nllef"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_m8u0o"]
 font = ExtResource("2_aayay")
@@ -294,6 +295,9 @@ stream = ExtResource("7_youh6")
 
 [node name="MusicLoop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_8q33b")
+
+[node name="yPhilOffTheGrid" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_nllef")
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer4/VBoxContainer2/yPhilButton" to="." method="_on_y_phil_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer4/VBoxContainer2/PatreonButton" to="." method="_on_patreon_button_pressed"]

@@ -1,16 +1,15 @@
-[gd_scene load_steps=23 format=3 uid="uid://c5plqquwiya48"]
+[gd_scene load_steps=22 format=3 uid="uid://c5plqquwiya48"]
 
 [ext_resource type="Script" path="res://scenes/life.gd" id="1_rioc4"]
 [ext_resource type="Material" uid="uid://db62qcrmacn5v" path="res://materials/metal_03.tres" id="2_7qgn6"]
 [ext_resource type="Material" uid="uid://b8rwjema34r2i" path="res://materials/metal_01.tres" id="3_o5n1p"]
 [ext_resource type="PackedScene" uid="uid://b6bfbr2j8g00p" path="res://scenes/weapons/blast_button.tscn" id="4_6neyl"]
-[ext_resource type="AudioStream" uid="uid://d0xn1oeaii3t2" path="res://assets/audio/sfx/heal-up-39285.ogg" id="5_an0fr"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_nanqo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l424d"]
 transparency = 1
-albedo_color = Color(0.901961, 0.976471, 1, 0.0980392)
+albedo_color = Color(0.901961, 0.976471, 1, 0.0392157)
 metallic = 1.0
 roughness = 0.25
 emission_enabled = true
@@ -279,11 +278,6 @@ shape = SubResource("SphereShape3D_k2o76")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LifeBox"]
 transform = Transform3D(2.8942, 0, 0, 0, 2.8942, 0, 0, 0, 2.8942, 0, 0, 0)
 shape = SubResource("SphereShape3D_mvlcn")
-
-[node name="LifePopSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_an0fr")
-pitch_scale = 0.3
-bus = &"SFX_Left"
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 

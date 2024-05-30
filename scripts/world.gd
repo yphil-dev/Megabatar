@@ -30,11 +30,10 @@ var is_debug = false
 signal switched_cams
     
 func _ready():
-    _play_music_intro() # Disable for debug
-    # $MusicIntro.finished.disconnect($MusicLoop.play)
+    _play_music_intro()
 
-    Globals.level_num = 4
-    is_debug = true
+    # Globals.level_num = 4
+    # is_debug = true
     
     var game_on = GameOn.instantiate()
     add_child(game_on)
@@ -52,9 +51,7 @@ func _ready():
 func before():
     fade_music_out()
     $AnimShipGo.animation_finished.connect(phase_one.unbind(1))
-    print("AnimShipGo.play")
     $AnimShipGo.play("go")
-    # $MusicIntro.finished.disconnect($MusicLoop.play)
     
 func phase_one():
 

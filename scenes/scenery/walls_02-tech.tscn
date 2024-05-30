@@ -111,7 +111,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -545.156, 0, 0)
 [node name="Up" type="Node3D" parent="Scroller"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -687.737, 0, 0)
 
-[node name="Cannon" parent="Scroller/Up" groups=["Up"] instance=ExtResource("4_spujt")]
+[node name="Cannon" parent="Scroller/Up" groups=["RewardBlast", "Up"] instance=ExtResource("4_spujt")]
 transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 139.452, 14.8896, 0)
 
 [node name="Cannon3" parent="Scroller/Up" groups=["Up"] instance=ExtResource("4_spujt")]
@@ -182,7 +182,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 152.804, 0.30941, 0)
 [node name="Cannon11" parent="Scroller/Down" groups=["Down"] instance=ExtResource("4_spujt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.6095, -0.300417, 0)
 
-[node name="Minos" parent="Scroller/Down" groups=["RewardBlast"] instance=ExtResource("6_8oqq1")]
+[node name="Minos" parent="Scroller/Down" groups=["RewardHealth"] instance=ExtResource("6_8oqq1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.4988, 0)
 
 [node name="Minos2" parent="Scroller/Down" instance=ExtResource("6_8oqq1")]

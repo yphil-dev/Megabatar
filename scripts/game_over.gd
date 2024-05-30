@@ -4,7 +4,7 @@ extends Node3D
 @onready var high_score_value = $VBoxContainer/HBoxContainer3/HighScoreValue
 
 func _ready():
-    _play_music_intro()
+    $yPhilOffTheGrid.play()
     var score = Globals.score
     var high_score = Globals.high_score
     high_score_value.text = str(high_score)
@@ -12,10 +12,6 @@ func _ready():
     $VBoxContainer/HBoxContainer4/VBoxContainer2/PatreonButton.grab_focus()
     $VBoxContainer/HBoxContainer/VBoxContainer/Title.text = Globals.game_over_title
     $VBoxContainer/HBoxContainer/VBoxContainer/Chapo.text = Globals.game_over_chapo
-
-func _play_music_intro():
-    $MusicIntro.play()
-    $MusicIntro.finished.connect($MusicLoop.play)
     
 func _process(_delta):
     if Input.is_action_just_pressed("quit"):

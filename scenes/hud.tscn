@@ -263,7 +263,7 @@ autoplay = "blink"
 stream = ExtResource("8_1l33t")
 volume_db = -5.0
 pitch_scale = 0.85
-bus = &"SFX_Left"
+bus = &"SFX"
 
 [node name="Missiles" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_akfdf")

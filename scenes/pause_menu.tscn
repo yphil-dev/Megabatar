@@ -58,10 +58,24 @@ layout_mode = 2
 size_flags_vertical = 3
 tooltip_text = "plop"
 focus_neighbor_top = NodePath("../QuitButton")
-focus_neighbor_bottom = NodePath("../QuitButton")
+focus_neighbor_bottom = NodePath("../ControlsButton")
+theme_override_colors/font_color = Color(0, 0.917647, 0.811765, 1)
 theme_override_fonts/font = ExtResource("3_pl1xt")
 theme_override_font_sizes/font_size = 62
 text = "Resume"
+
+[node name="ControlsButton" type="Button" parent="Buttons"]
+process_mode = 3
+z_index = 2
+layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "plop"
+focus_neighbor_top = NodePath("../ResumeButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+theme_override_colors/font_color = Color(1, 0.439216, 0, 1)
+theme_override_fonts/font = ExtResource("3_pl1xt")
+theme_override_font_sizes/font_size = 32
+text = "Controls"
 
 [node name="QuitButton" type="Button" parent="Buttons"]
 process_mode = 3
@@ -70,9 +84,11 @@ layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../ResumeButton")
 focus_neighbor_bottom = NodePath("../ResumeButton")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_pl1xt")
 theme_override_font_sizes/font_size = 62
 text = "Quit"
 
 [connection signal="pressed" from="Buttons/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Buttons/ControlsButton" to="." method="_on_controls_button_pressed"]
 [connection signal="pressed" from="Buttons/QuitButton" to="." method="_on_quit_button_pressed"]

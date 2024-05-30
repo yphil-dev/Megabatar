@@ -4,10 +4,12 @@ extends Node3D
 @onready var lives_container = $LivesContainer
 
 var previous_lives = 0
+var previous_health = 0
 
 func _ready():
     init_nodes(Globals.lives)
     previous_lives = Globals.lives
+    previous_health = Globals.health
 
 func init_nodes(count):
     for i in range(count):
@@ -61,3 +63,7 @@ func _process(_delta):
     elif previous_lives > Globals.lives:
         sub_life()
     previous_lives = Globals.lives
+
+    if previous_health < Globals.health:
+        $Heal.play()
+    previous_health = Globals.health

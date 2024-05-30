@@ -1,6 +1,6 @@
 extends Node
 
-const SAVE_PATH = "user://batar.cfg"
+const SAVE_PATH = "user://megabatar.cfg"
 const Explosion = preload("res://scenes/explosions/explosion.tscn")
 # @onready var LIVES = get_node("/root/World/Lives")
 
@@ -11,10 +11,6 @@ signal wave_over
 signal first_wave_over
 signal second_wave_over
 signal third_wave_over
-
-func add_life():
-    # LIVES.add_life()
-    pass
 
 @onready var lives = 3
 var health = 100
@@ -37,7 +33,7 @@ var score : int = 0:
 var high_score : int = 0
 
 var game_over_title = "Game Over"
-var game_over_chapo = "Oh, well"
+var game_over_chapo = "You failed, and now we're all gonna die."
 
 var h : int = 100:
     set(n):
