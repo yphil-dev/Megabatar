@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dellk5hhyvr7c"]
+[gd_scene load_steps=17 format=3 uid="uid://dellk5hhyvr7c"]
 
 [ext_resource type="Script" path="res://scripts/wall.gd" id="1_g6ihj"]
 [ext_resource type="Material" uid="uid://cunhl5hcq1a8u" path="res://materials/rock_01.tres" id="2_mqqa7"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://ceyj6on632fgc" path="res://scenes/enemies/shuttles/golgot.tscn" id="5_2cras"]
 [ext_resource type="PackedScene" uid="uid://b2kowryoxfe5o" path="res://scenes/enemies/shuttles/flatter.tscn" id="5_vrwy5"]
 [ext_resource type="PackedScene" uid="uid://b6akau1olnaop" path="res://scenes/weapons/laser_tower.tscn" id="6_dc38y"]
+[ext_resource type="PackedScene" uid="uid://boes1sklt1euk" path="res://scenes/weapons/nenuphar.tscn" id="7_m7oll"]
+[ext_resource type="PackedScene" uid="uid://cp07hudq8ital" path="res://scenes/scenery/magnetic_storm.tscn" id="8_lncho"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w84bo"]
 resource_name = "Bumpy"
@@ -175,6 +177,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 435.419, -7.41732, 0)
 [node name="Flatter10" parent="Scroller/Down" groups=["RewardBlast", "RewardLife"] instance=ExtResource("5_vrwy5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 585.019, -7.06294, 0)
 
+[node name="Flatter11" parent="Scroller/Down" groups=["RewardBlast", "RewardLife"] instance=ExtResource("5_vrwy5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 564.559, -7.06294, 0)
+
 [node name="Golgot" parent="Scroller/Down" instance=ExtResource("5_2cras")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96.2334, -7.20068, 0)
 
@@ -193,6 +198,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 258.156, 4.27992, 0)
 [node name="Golgot7" parent="Scroller/Down" instance=ExtResource("5_2cras")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 252.853, 4.27992, 0)
 
+[node name="Golgot8" parent="Scroller/Down" instance=ExtResource("5_2cras")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 209.193, -4.33492, 0)
+
+[node name="Golgot9" parent="Scroller/Down" instance=ExtResource("5_2cras")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 203.89, -4.33492, 0)
+
 [node name="Golgot2" parent="Scroller/Down" instance=ExtResource("5_2cras")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 113.471, -2.37881, 0)
 
@@ -201,9 +212,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.0739, -12.857, 0)
 
 [node name="LaserTower3" parent="Scroller/Down" instance=ExtResource("6_dc38y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 161.333, -3.14652, 0)
-
-[node name="LaserTower2" parent="Scroller/Down" instance=ExtResource("6_dc38y")]
-transform = Transform3D(-0.03244, 0, 0.999474, 0, 1, 0, -0.999474, 0, -0.03244, 183.123, -9.10923, 0)
 
 [node name="LaserTower4" parent="Scroller/Down" instance=ExtResource("6_dc38y")]
 transform = Transform3D(-0.03244, 0, 0.999474, 0, 1, 0, -0.999474, 0, -0.03244, 222.297, -5.64601, 0)
@@ -216,6 +224,36 @@ transform = Transform3D(-0.03244, 0, 0.999474, 0, 1, 0, -0.999474, 0, -0.03244, 
 
 [node name="LaserTower7" parent="Scroller/Down" instance=ExtResource("6_dc38y")]
 transform = Transform3D(-0.03244, 0, 0.999474, 0, 1, 0, -0.999474, 0, -0.03244, 544.547, 8.31562, 0)
+
+[node name="nenuphar5" parent="Scroller/Down" instance=ExtResource("7_m7oll")]
+transform = Transform3D(1.43212, -1.4397e-07, 0.813063, 1.9628e-07, 1.64683, -5.41199e-08, -0.813063, 1.4397e-07, 1.43212, 314.642, -2.09351, 1.50769e-05)
+
+[node name="nenuphar10" parent="Scroller/Down" instance=ExtResource("7_m7oll")]
+transform = Transform3D(1.43212, -1.4397e-07, 0.813063, 1.9628e-07, 1.64683, -5.41199e-08, -0.813063, 1.4397e-07, 1.43212, 181.624, -9.59609, 1.50769e-05)
+
+[node name="nenuphar9" parent="Scroller/Down" instance=ExtResource("7_m7oll")]
+transform = Transform3D(1.43212, -1.4397e-07, 0.813063, 1.9628e-07, 1.64683, -5.41199e-08, -0.813063, 1.4397e-07, 1.43212, 579.633, -8.26539, 1.50769e-05)
+
+[node name="nenuphar6" parent="Scroller/Down" instance=ExtResource("7_m7oll")]
+transform = Transform3D(-1.43212, 2.8794e-07, -0.813063, -3.2148e-07, -1.64683, -1.69603e-08, -0.813063, 1.4397e-07, 1.43212, 378.875, 20.4983, 1.50769e-05)
+
+[node name="nenuphar7" parent="Scroller/Down" instance=ExtResource("7_m7oll")]
+transform = Transform3D(-1.43212, 2.8794e-07, -0.813063, -3.2148e-07, -1.64683, -1.69603e-08, -0.813063, 1.4397e-07, 1.43212, 471.761, 18.0671, 1.50769e-05)
+
+[node name="nenuphar8" parent="Scroller/Down" instance=ExtResource("7_m7oll")]
+transform = Transform3D(-1.43212, 2.8794e-07, -0.813063, -3.2148e-07, -1.64683, -1.69603e-08, -0.813063, 1.4397e-07, 1.43212, 526.506, 24.571, 1.50769e-05)
+
+[node name="MagneticStorm" parent="." instance=ExtResource("8_lncho")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1098.98, 5.62982, 126.334)
+
+[node name="MagneticStorm2" parent="." instance=ExtResource("8_lncho")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -587.42, 5.62982, 93.3238)
+
+[node name="MagneticStorm3" parent="." instance=ExtResource("8_lncho")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -653.252, 5.62982, -90.2113)
+
+[node name="MagneticStorm4" parent="." instance=ExtResource("8_lncho")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -947.067, 5.62982, -90.2113)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

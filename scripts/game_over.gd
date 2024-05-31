@@ -14,7 +14,7 @@ func _ready():
     $VBoxContainer/HBoxContainer/VBoxContainer/Chapo.text = Globals.game_over_chapo
     
 func _process(_delta):
-    if Input.is_action_just_pressed("quit"):
+    if Input.is_action_just_pressed("quit") or Input.is_action_just_pressed("back"):
         get_tree().quit()
 
 func _on_y_phil_button_pressed():

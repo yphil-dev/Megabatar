@@ -32,7 +32,7 @@ signal switched_cams
 func _ready():
     _play_music_intro()
 
-    Globals.level_num = 0
+    Globals.level_num = 3
     is_debug = true
     
     var game_on = GameOn.instantiate()
@@ -193,6 +193,8 @@ func _process(_delta):
         
     if  Globals.health <= 0:
         $Cameras/CameraMain.shake()
+        $Cameras/CameraRear.shake()
+        Input.start_joy_vibration(0, 0, 0.8, .5)
         Globals.lives -= 1
         spawn(false)
         
@@ -255,7 +257,9 @@ func to_2D(vector3):
 var shock_wave_material
 
 func shock_wave(enemy):
+    Input.start_joy_vibration(0, 0, 0.8, .5)
     $Cameras/CameraMain.shake()
+    $Cameras/CameraRear.shake()
     var projection = to_2D(enemy.position) / (get_window().size as Vector2)
     print("projection", projection)
     shock_wave_material = shock_wave_color_rect.get_material()
