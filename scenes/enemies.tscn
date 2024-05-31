@@ -44,6 +44,7 @@ bus = &"Music"
 
 [node name="Wave04" type="AudioStreamPlayer" parent="MusicLoops"]
 stream = ExtResource("6_x33f0")
+pitch_scale = 0.9
 bus = &"Music"
 
 [node name="FogVolume" type="FogVolume" parent="."]

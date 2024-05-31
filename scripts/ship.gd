@@ -83,19 +83,19 @@ func _prep_left_rocket():
             rocket_left.global_transform = $ShipHitBox/MissileMuzzleLeft.global_transform
     left_rocket_ready = true
 
-func _fire_right_rocket(target):
+func _fire_right_rocket():
     right_rocket_timer.start()
     if $ShipHitBox/MissileMuzzleRight:
-        _fire_rocket(rocket_right, $ShipHitBox/MissileMuzzleRight.global_transform, target)
+        _fire_rocket(rocket_right, $ShipHitBox/MissileMuzzleRight.global_transform)
     right_rocket_ready = false
 
-func _fire_left_rocket(target):
+func _fire_left_rocket():
     left_rocket_timer.start()
     if $ShipHitBox/MissileMuzzleLeft:
-        _fire_rocket(rocket_left, $ShipHitBox/MissileMuzzleLeft.global_transform, target)
+        _fire_rocket(rocket_left, $ShipHitBox/MissileMuzzleLeft.global_transform)
     left_rocket_ready = false
 
-func _fire_rocket(rocket, muzzle_transform, _target):
+func _fire_rocket(rocket, muzzle_transform):
     if rocket and muzzle_transform and world:
         rocket.reparent(world)
         rocket.global_transform = muzzle_transform
@@ -104,11 +104,11 @@ func _fire_rocket(rocket, muzzle_transform, _target):
 func _fire_rockets():
     if Globals.has_missiles:
         if left_rocket_ready and right_rocket_ready:
-            _fire_right_rocket(current_enemy)
+            _fire_right_rocket()
         elif left_rocket_ready:
-            _fire_left_rocket(current_enemy)
+            _fire_left_rocket()
         elif right_rocket_ready:
-            _fire_right_rocket(current_enemy)
+            _fire_right_rocket()
 
 func _physics_process(delta):
     Globals.spos = global_transform.origin

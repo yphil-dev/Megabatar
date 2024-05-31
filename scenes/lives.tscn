@@ -4,7 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://5vcg6682b81c" path="res://assets/audio/sfx/plane_service_beep.ogg" id="2_m4hh8"]
 [ext_resource type="AudioStream" uid="uid://dcunb2u2ff5ns" path="res://assets/audio/sfx/minus_ship.ogg" id="3_04ijm"]
 [ext_resource type="AudioStream" uid="uid://c7v18ciswfd4b" path="res://assets/audio/sfx/VOICES/new_ship.ogg" id="4_h4few"]
-[ext_resource type="AudioStream" uid="uid://d0xn1oeaii3t2" path="res://assets/audio/sfx/heal-up-39285.ogg" id="6_wppvf"]
+[ext_resource type="AudioStream" uid="uid://bc5aowniemnmq" path="res://assets/audio/sfx/heal.ogg" id="5_fx6ld"]
 
 [node name="Lives" type="Node3D"]
 script = ExtResource("1_stmee")
@@ -32,9 +32,9 @@ pitch_scale = 0.85
 bus = &"SFX_Right"
 
 [node name="Heal" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_wppvf")
+stream = ExtResource("5_fx6ld")
 volume_db = -10.0
-pitch_scale = 0.12
+pitch_scale = 1.37
 bus = &"SFX"
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]

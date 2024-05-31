@@ -198,5 +198,9 @@ surface_material_override/4 = ExtResource("2_ku1ri")
 stream = ExtResource("5_iyf7s")
 bus = &"SFX"
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
