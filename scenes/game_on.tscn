@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cgcelw2tw8oe5"]
+[gd_scene load_steps=35 format=3 uid="uid://cgcelw2tw8oe5"]
 
 [ext_resource type="Script" path="res://scripts/game_on.gd" id="1_l1dbf"]
 [ext_resource type="Material" uid="uid://dk2b1xx474xub" path="res://materials/cracktro_logo.tres" id="1_r8eug"]
@@ -6,7 +6,6 @@
 [ext_resource type="Environment" uid="uid://cb3w0m807nfnp" path="res://resources/world.tres" id="4_jdemj"]
 [ext_resource type="Material" uid="uid://b8rwjema34r2i" path="res://materials/metal_01.tres" id="4_p3s3e"]
 [ext_resource type="FontFile" uid="uid://cqjrherqggcm3" path="res://assets/fonts/supercomputer/supercomputer.ttf" id="6_imgrx"]
-[ext_resource type="PackedScene" uid="uid://cu3yfqr05spib" path="res://scenes/sound_manager.tscn" id="6_sw6nc"]
 [ext_resource type="FontFile" uid="uid://cpfcewpxrsg2o" path="res://assets/fonts/Big Pixel demo.otf" id="7_xacfw"]
 [ext_resource type="AudioStream" uid="uid://dqnkye4nblv5v" path="res://assets/audio/sfx/EXPLOSIONS/intro_metal_clang.ogg" id="9_6qct8"]
 
@@ -632,8 +631,6 @@ layout_mode = 2
 min_value = -48.0
 max_value = 0.0
 step = 0.1
-
-[node name="SoundManager" parent="." instance=ExtResource("6_sw6nc")]
 
 [node name="Clang" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_6qct8")

@@ -34,6 +34,8 @@ func glow_last_life():
 func add_life(type):
     var new_life = Starship.instantiate()
     lives_container.add_child(new_life)
+
+    # new_life.get_node("LifeLight").visible = true
     
     var marker_position = $LivesContainer/Marker3D.global_transform.origin
     var new_position = Vector3(marker_position.x - (0.08 * marker_position.x * lives_container.get_child_count()), marker_position.y, marker_position.z - 5.0)

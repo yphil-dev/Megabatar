@@ -41,7 +41,7 @@ func _ready():
         # $LaserSound2.play()
         $LaserSound3.play()
         $Mesh.scale = Vector3(260.0, 10.0, 25.0)
-        color = Color.DARK_GREEN
+        color = Color.RED
         # damage += 50
         # mass = 50.0
 

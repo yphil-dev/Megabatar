@@ -32,11 +32,10 @@ func _process(_delta):
         Globals.explode(Vector3(global_transform.origin), 6, 1)
         Globals.score += PRICE
 
-        spawn_life("health")
-
+        # spawn_life("health")
         
-        # if is_rewarded:
-        #     spawn_life("health")
+        if is_rewarded:
+            spawn_life("health")
 
         queue_free()
 

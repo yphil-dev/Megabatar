@@ -75,15 +75,17 @@ libraries = {
 }
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." index="6"]
-transform = Transform3D(-4.19465e-08, -0.281286, 0.959624, -1.22954e-08, 0.959624, 0.281286, -1, -8.88178e-16, -4.37114e-08, 3.20669, 1.74946, 0)
+transform = Transform3D(-0.565053, -0.232076, 0.791742, -1.22954e-08, 0.959624, 0.281286, -0.825054, 0.158942, -0.542239, 2.73745, 0.465982, 0.326141)
 visible = false
-light_color = Color(0.941176, 0.45098, 0, 1)
-light_energy = 4.636
-spot_range = 6.2
+light_color = Color(1, 0.839216, 0.752941, 1)
+light_energy = 6.194
+spot_range = 4.619
+spot_angle = 35.44
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.06302, 1.18493, 0)
+[node name="LifeLight" type="DirectionalLight3D" parent="." index="7"]
+transform = Transform3D(-0.342867, -0.779778, 0.523821, -0.177372, 0.601331, 0.779064, -0.922487, 0.174204, -0.344487, 1.82509, 0.241754, -1.342)
 visible = false
+light_energy = 1.425
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." index="8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.30961, 0.163789, 0)

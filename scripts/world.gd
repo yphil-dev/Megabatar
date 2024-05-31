@@ -32,8 +32,8 @@ signal switched_cams
 func _ready():
     _play_music_intro()
 
-    # Globals.level_num = 4
-    # is_debug = true
+    Globals.level_num = 0
+    is_debug = true
     
     var game_on = GameOn.instantiate()
     add_child(game_on)

@@ -199,12 +199,17 @@ mesh = SubResource("BoxMesh_rqjpd")
 surface_material_override/0 = SubResource("StandardMaterial3D_2c53h")
 
 [node name="Muzzle5" type="MeshInstance3D" parent="Guns"]
-transform = Transform3D(0.0568955, -1.34364e-09, 0, -5.69258e-11, 0.895819, 0, 0, 0, 0.918161, 2.55838, 0.749692, 2.02282)
+transform = Transform3D(0.0568955, -3.78617e-10, 0, -5.69258e-11, 0.252428, 0, 0, 0, 0.918161, 2.55838, 0.749692, 2.02282)
 mesh = SubResource("BoxMesh_rqjpd")
 surface_material_override/0 = SubResource("StandardMaterial3D_2c53h")
 
 [node name="Muzzle6" type="MeshInstance3D" parent="Guns"]
-transform = Transform3D(0.0568955, -1.34364e-09, 0, -5.69258e-11, 0.895819, 0, 0, 0, 0.918161, 2.55838, 0.749692, -2.03225)
+transform = Transform3D(0.0568955, -3.78617e-10, 0, -5.69258e-11, 0.252428, 0, 0, 0, 0.918161, 2.55838, 0.749692, -2.03225)
+mesh = SubResource("BoxMesh_rqjpd")
+surface_material_override/0 = SubResource("StandardMaterial3D_2c53h")
+
+[node name="Muzzle7" type="MeshInstance3D" parent="Guns"]
+transform = Transform3D(0.0568955, -3.78617e-10, 0, -5.69258e-11, 0.252428, 0, 0, 0, 0.918161, -0.131114, 0.749692, 0.061144)
 mesh = SubResource("BoxMesh_rqjpd")
 surface_material_override/0 = SubResource("StandardMaterial3D_2c53h")
 

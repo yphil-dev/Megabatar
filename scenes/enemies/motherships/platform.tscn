@@ -195,7 +195,7 @@ script = ExtResource("1_4svu7")
 transform = Transform3D(1, -9.31323e-10, 0, 9.31323e-10, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Muzzle" type="MeshInstance3D" parent="Guns"]
-transform = Transform3D(0.0581767, -9.31323e-10, 0, -5.82077e-11, 0.620924, 0, 0, 0, 1.09232, -3.00856, -2.2255, 0.0120211)
+transform = Transform3D(0.0581767, -9.31323e-10, 0, -5.82077e-11, 0.620924, 0, 0, 0, 1.14554, -2.95172, -2.22042, 0.0120849)
 mesh = SubResource("BoxMesh_tmmcx")
 surface_material_override/0 = SubResource("StandardMaterial3D_bbf6t")
 

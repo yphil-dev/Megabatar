@@ -13,19 +13,18 @@ func _ready():
             $Fire.visible = false
             $Ball.visible = true
         1:
-            fire_color = Color.GREEN
+            fire_color = Color(0.471,0.784,0.902)
             $Fire.visible = false
             $Ball.visible = true
         2:
-            fire_color = Color.ORANGE
+            fire_color = Color(0.801,0.643,0.901)
             $Fire.visible = true
             $Ball.visible = false
         3:
-            fire_color = Color.BLUE
+            fire_color = Color(1,0.439,0)
             $Fire.visible = true
             $Ball.visible = false
         4:
-            fire_color = Color.CYAN
             $Fire.visible = true
             $Ball.visible = false
 

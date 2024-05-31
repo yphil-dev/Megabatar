@@ -314,7 +314,7 @@ bus = &"SFX"
 
 [node name="ExplosionSound4" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_r831l")
-volume_db = -20.0
+volume_db = -10.0
 bus = &"SFX"
 
 [node name="ExplosionSound5" type="AudioStreamPlayer" parent="."]

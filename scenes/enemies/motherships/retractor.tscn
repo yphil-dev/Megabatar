@@ -226,12 +226,17 @@ transform = Transform3D(7.51375, 0, 0, 0, 7.51375, 0, 0, 0, 7.51375, 0, 0, 0)
 [node name="Guns" type="Node3D" parent="."]
 
 [node name="Muzzle3" type="MeshInstance3D" parent="Guns"]
-transform = Transform3D(0.0581767, -1.78286e-09, 0, -5.82077e-11, 1.18865, 0, 0, 0, 0.931817, -8.06081, 0.0400804, -5.89325)
+transform = Transform3D(0.0581767, -4.70347e-10, 0, -5.82077e-11, 0.313585, 0, 0, 0, 0.785422, -8.06081, 0.0400804, -5.96911)
+mesh = SubResource("BoxMesh_pxiva")
+surface_material_override/0 = SubResource("StandardMaterial3D_hxl0c")
+
+[node name="Muzzle5" type="MeshInstance3D" parent="Guns"]
+transform = Transform3D(0.0602107, -6.82673e-10, 0, -6.02428e-11, 0.455145, 0, 0, 0, 1.82, -6.04242, 0.0292435, 0.0071799)
 mesh = SubResource("BoxMesh_pxiva")
 surface_material_override/0 = SubResource("StandardMaterial3D_hxl0c")
 
 [node name="Muzzle4" type="MeshInstance3D" parent="Guns"]
-transform = Transform3D(0.0581767, -1.78286e-09, 0, -5.82077e-11, 1.18865, 0, 0, 0, 0.931817, -8.06081, 0.0400804, 5.96924)
+transform = Transform3D(0.0581767, -4.70347e-10, 0, -5.82077e-11, 0.313585, 0, 0, 0, 0.779001, -8.06081, 0.0400804, 5.98253)
 mesh = SubResource("BoxMesh_pxiva")
 surface_material_override/0 = SubResource("StandardMaterial3D_hxl0c")
 

@@ -33,7 +33,7 @@ var score : int = 0:
 var high_score : int = 0
 
 var game_over_title = "Game Over"
-var game_over_chapo = "You failed, and now we're all gonna die."
+var game_over_chapo = "You failed, and now we're all gonna die"
 
 var h : int = 100:
     set(n):

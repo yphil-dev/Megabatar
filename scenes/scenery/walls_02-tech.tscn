@@ -164,7 +164,7 @@ shape = SubResource("ConcavePolygonShape3D_nmctd")
 [node name="Cannon" parent="Scroller/Down" groups=["Down"] instance=ExtResource("4_spujt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 382.514, -1.23728, 0)
 
-[node name="Cannon6" parent="Scroller/Down" groups=["Down", "RewardLife"] instance=ExtResource("4_spujt")]
+[node name="Cannon6" parent="Scroller/Down" groups=["Down", "RewardBlast", "RewardLife"] instance=ExtResource("4_spujt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 447.682, -0.287047, 0)
 
 [node name="Cannon7" parent="Scroller/Down" groups=["Down"] instance=ExtResource("4_spujt")]
@@ -244,7 +244,7 @@ autoplay = "scroll"
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_cgtp2")
-volume_db = -15.0
+volume_db = -10.0
 bus = &"Music"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
