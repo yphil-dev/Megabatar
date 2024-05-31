@@ -42,7 +42,6 @@ func _process(_delta):
         queue_free()
         
 func _on_body_entered(body):
-    print("ball entered ", body.name)
     if body.name != "ShipHitBox":
         Globals.health -= damage
     if body.name != "CannonHitBox":

@@ -44,7 +44,9 @@ func _ready():
     add_child(enemies)
 
     $AnimShipParade.play("parade")
-    
+    $EnterSpace.play()
+    $AnimShipParade.animation_finished.connect($EnterSpace.stop.unbind(1))
+
     $Cameras/CameraMain.current = true
     $Cameras/CameraRear.current = false
     
@@ -52,6 +54,7 @@ func before():
     fade_music_out()
     $AnimShipGo.animation_finished.connect(phase_one.unbind(1))
     $AnimShipGo.play("go")
+    $EnterSpace.play()
     
 func phase_one():
 

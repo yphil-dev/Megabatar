@@ -410,12 +410,6 @@ transform = Transform3D(1, 5.37318e-16, 0, 5.37318e-16, 1, 0, 0, 0, 1, 328.141, 
 [node name="LaserTower6" parent="Scroller/Down" groups=["RewardBlast", "RewardHealth"] instance=ExtResource("7_nes2b")]
 transform = Transform3D(0.0250454, -5.30151e-08, 0.605904, 5.51593e-08, 0.606421, 5.07803e-08, -0.605904, 5.30149e-08, 0.0250454, 118.506, -3.15676, 0.360515)
 
-[node name="MagneticStorm" parent="Scroller/Down" instance=ExtResource("8_oshia")]
-transform = Transform3D(27.6292, -1.6211e-14, 4.54747e-13, -1.62109e-14, 27.6292, 0, -4.54747e-13, 0, 27.6292, -606.067, 1.05387, -83.9194)
-
-[node name="MagneticStorm5" parent="Scroller/Down" instance=ExtResource("8_oshia")]
-transform = Transform3D(27.6292, -1.6211e-14, 4.54747e-13, -1.62109e-14, 27.6292, 0, -4.54747e-13, 0, 27.6292, -606.067, 1.05386, 49.4013)
-
 [node name="MagneticStorm2" parent="Scroller/Down" instance=ExtResource("8_oshia")]
 transform = Transform3D(1, 5.37318e-16, 0, 5.37318e-16, 1, 0, 0, 0, 1, -466.164, -4.13508, -121.332)
 

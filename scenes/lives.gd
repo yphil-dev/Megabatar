@@ -45,8 +45,6 @@ func add_life(type):
     $PlaneBell.play()
     if type == "new":
         $NewShip.play()
-        $NewShip.finished.connect($GoodLuck.play)
-        $NewShip.finished.disconnect($GoodLuck.play)
 
 func sub_life():
     if lives_container.get_child_count() > 0:

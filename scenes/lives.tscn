@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://brfqjknn55yfb"]
+[gd_scene load_steps=6 format=3 uid="uid://brfqjknn55yfb"]
 
 [ext_resource type="Script" path="res://scenes/lives.gd" id="1_stmee"]
 [ext_resource type="AudioStream" uid="uid://5vcg6682b81c" path="res://assets/audio/sfx/plane_service_beep.ogg" id="2_m4hh8"]
 [ext_resource type="AudioStream" uid="uid://dcunb2u2ff5ns" path="res://assets/audio/sfx/minus_ship.ogg" id="3_04ijm"]
 [ext_resource type="AudioStream" uid="uid://c7v18ciswfd4b" path="res://assets/audio/sfx/VOICES/new_ship.ogg" id="4_h4few"]
-[ext_resource type="AudioStream" uid="uid://bomcgdyijh7ku" path="res://assets/audio/sfx/VOICES/good_luck.ogg" id="5_2qiiu"]
 [ext_resource type="AudioStream" uid="uid://d0xn1oeaii3t2" path="res://assets/audio/sfx/heal-up-39285.ogg" id="6_wppvf"]
 
 [node name="Lives" type="Node3D"]
@@ -32,13 +31,15 @@ volume_db = -10.0
 pitch_scale = 0.85
 bus = &"SFX_Right"
 
-[node name="GoodLuck" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_2qiiu")
-volume_db = -10.0
-pitch_scale = 0.85
-bus = &"SFX_Right"
-
 [node name="Heal" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_wppvf")
-pitch_scale = 0.36
+volume_db = -10.0
+pitch_scale = 0.12
 bus = &"SFX"
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.35486, -3.12158, 15.9843)
+light_energy = 6.947
+spot_range = 8.746
+spot_attenuation = 0.420448
+spot_angle = 27.48

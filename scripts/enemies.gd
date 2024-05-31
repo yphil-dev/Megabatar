@@ -96,7 +96,7 @@ func _on_death():
     dead_bits_count += 1
     
 func set_reward_flag(bit):
-    if dead_bits_count >= 2 and !was_rewarded:
+    if dead_bits_count >= 6 and !was_rewarded:
         bit.is_rewarded = true
         was_rewarded = true
     

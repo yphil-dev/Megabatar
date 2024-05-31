@@ -81,7 +81,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_5q2gk"]
 resource_name = "scroll"
-length = 28.0
+length = 26.0
 step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -90,10 +90,10 @@ tracks/0/path = NodePath("Scroller:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 28),
+"times": PackedFloat32Array(0, 26),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(687.737, 0, 0), Vector3(0, 0, 0)]
+"values": [Vector3(687.737, 0, 0), Vector3(60, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_awguc"]
