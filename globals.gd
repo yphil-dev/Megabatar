@@ -12,7 +12,7 @@ signal first_wave_over
 signal second_wave_over
 signal third_wave_over
 
-@onready var lives = 3
+@onready var lives = 6
 var health = 100
 
 var spos
@@ -49,7 +49,7 @@ var laser_charge : float = 0.0
 var music_volume
 var sfx_volume
 var config
-var has_missiles = false
+var has_missiles = true
 var has_blast = false
 
 func _ready():
