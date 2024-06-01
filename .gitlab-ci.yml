@@ -62,7 +62,7 @@ itchio:
     - butler push ./build/linux $ITCHIO_NAME:linux-beta
     - butler push ./build/windows $ITCHIO_NAME:windows-beta
     - butler push ./build/macosx $ITCHIO_NAME:mac-beta
-    - butler push ./build/web $ITCHIO_NAME:web-beta
+    - butler push ./build/web $ITCHIO_NAME:linux-beta
   dependencies:
     - linux
     - windows
