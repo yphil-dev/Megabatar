@@ -4,7 +4,7 @@ const SAVE_PATH = "user://megabatar.cfg"
 const Explosion = preload("res://scenes/explosions/explosion.tscn")
 # @onready var LIVES = get_node("/root/World/Lives")
 
-const VERSION = "v0.2b"
+const VERSION = "v0.3b"
 
 signal wave_over
 
@@ -34,10 +34,6 @@ var high_score : int = 0
 
 var game_over_title = "Game Over"
 var game_over_chapo = "You failed, and now we're all gonna die"
-
-var h : int = 100:
-    set(n):
-        print("h:", h)
         
 var rocket_charge : float = 0.0
 
@@ -49,7 +45,7 @@ var laser_charge : float = 0.0
 var music_volume
 var sfx_volume
 var config
-var has_missiles = true
+var has_missiles = false
 var has_blast = false
 
 func _ready():

@@ -1,10 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://8eob36f5406p"]
+[gd_scene load_steps=18 format=3 uid="uid://8eob36f5406p"]
 
 [ext_resource type="Script" path="res://scripts/cannon.gd" id="1_sb4vq"]
 [ext_resource type="Material" uid="uid://veki6re5p0w2" path="res://materials/metal_02.tres" id="2_7ig20"]
-[ext_resource type="Material" uid="uid://bcjht7llyubdu" path="res://materials/rust_02.tres" id="2_83rul"]
-[ext_resource type="Material" uid="uid://b8rwjema34r2i" path="res://materials/metal_01.tres" id="3_y0c37"]
-[ext_resource type="Material" uid="uid://fvhtrjm4a810" path="res://materials/rust_01.tres" id="4_oxwn1"]
 [ext_resource type="Material" uid="uid://bre3cc77122ug" path="res://materials/lights_shuttle.tres" id="5_24v88"]
 [ext_resource type="Material" uid="uid://cj44rwx0s6eb2" path="res://materials/enemy_lights.tres" id="8_jd0qi"]
 
@@ -282,10 +279,10 @@ shape = SubResource("BoxShape3D_rdr53")
 transform = Transform3D(0.000454248, 0, 0, 0, 0.000454248, 0, 0, 0, 0.000454248, 0, 0, 0)
 mesh = SubResource("ArrayMesh_fpm0j")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("2_83rul")
+surface_material_override/0 = ExtResource("2_7ig20")
 surface_material_override/1 = ExtResource("2_7ig20")
-surface_material_override/2 = ExtResource("2_83rul")
-surface_material_override/3 = ExtResource("3_y0c37")
+surface_material_override/2 = ExtResource("2_7ig20")
+surface_material_override/3 = ExtResource("2_7ig20")
 surface_material_override/4 = ExtResource("8_jd0qi")
 surface_material_override/5 = ExtResource("8_jd0qi")
 
@@ -293,7 +290,7 @@ surface_material_override/5 = ExtResource("8_jd0qi")
 transform = Transform3D(0.00140376, 0, 0, 0, 0.00140376, 0, 0, 0, 0.00140376, -0.000460011, 0.0020616, -2.68667e-05)
 mesh = SubResource("ArrayMesh_v8oue")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("4_oxwn1")
+surface_material_override/0 = ExtResource("2_7ig20")
 surface_material_override/1 = ExtResource("5_24v88")
 
 [node name="Muzzle" type="Marker3D" parent="."]

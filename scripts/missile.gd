@@ -12,10 +12,8 @@ func _on_timer_timeout():
         queue_free()
     
 func _on_area_3d_body_entered(body):
-    print("Missile hit ", body.owner.name)
 
     if body.owner.is_in_group("Walls"):
-        print("It is!: ", body.owner.name)
         Globals.explode(global_transform.origin, 2, 30)
         queue_free()
 

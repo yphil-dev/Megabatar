@@ -118,5 +118,4 @@ func set_shoot_type(type):
     shoot_type = type
 
 func _on_visible_on_screen_notifier_3d_screen_exited():
-    print("exited!")
     queue_free()

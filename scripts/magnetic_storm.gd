@@ -7,7 +7,6 @@ func _ready():
 
 func plop():
     Globals.say("plop!")
-    print("storm dead")
     queue_free()
 
 func move():

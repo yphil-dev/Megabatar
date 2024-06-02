@@ -261,7 +261,6 @@ func shock_wave(enemy):
     $Cameras/CameraMain.shake()
     $Cameras/CameraRear.shake()
     var projection = to_2D(enemy.position) / (get_window().size as Vector2)
-    print("projection", projection)
     shock_wave_material = shock_wave_color_rect.get_material()
     shock_wave_material.set_shader_parameter("center", projection)
     shock_wave_color_rect.visible = true

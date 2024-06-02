@@ -10,8 +10,6 @@ var pos_own := Vector3.ZERO
 var rotated = false
 var life_spawned = false
 
-@onready var world = get_node("/root/World")
-
 func _process(_delta):
     if health <= 0:
         Globals.explode(Vector3(global_transform.origin), 2, 2)
@@ -31,7 +29,7 @@ func spawn_life(life_type):
     if not life_spawned:
         var life = LIFE.instantiate()
         life.life_type = life_type
-        world.add_child(life)
+        get_parent().get_parent().add_child(life)
         life.global_transform.origin = global_transform.origin
         life_spawned = true
 

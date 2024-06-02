@@ -40,7 +40,6 @@ func weapons_check():
 @onready var Missiles = $Missiles
 
 func on_blast_activated():
-    print("Blast activated")
     Globals.say("Blast activated")
     flash_weapons(BlastWave)
     

@@ -1,10 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bxha38o0e28et"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nwtxr"]
-albedo_color = Color(0, 0.290196, 0.2, 1)
-emission_enabled = true
-emission = Color(0, 0.309804, 0.117647, 1)
-emission_energy_multiplier = 3.03
+[ext_resource type="Material" uid="uid://bre3cc77122ug" path="res://materials/lights_shuttle.tres" id="1_bvfqk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p5m35"]
 
@@ -82,9 +78,9 @@ _data = {
 
 [node name="Cylinder" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.55079e-10, 4.28397e-05, 11.8342, 11.8342, -4.28397e-05, 0, 4.28397e-05, 11.8342, -4.28397e-05, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_nwtxr")
 mesh = SubResource("ArrayMesh_s2nb7")
 skeleton = NodePath("")
+surface_material_override/0 = ExtResource("1_bvfqk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

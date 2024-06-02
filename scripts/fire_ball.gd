@@ -29,12 +29,6 @@ func _ready():
             $Ball.visible = false
 
     $Fire.process_material.set("color", fire_color)
-   
-    for child in $Ball.get_children():
-        for spike in child.get_children():
-            if spike.name != "AnimationPlayer":
-                spike.material_override.albedo_color = Color.ORANGE
-                spike.material_override.emission_energy_multiplier = 10
     
 func _process(_delta):
     if health <= 0:
