@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dellk5hhyvr7c"]
+[gd_scene load_steps=16 format=3 uid="uid://dellk5hhyvr7c"]
 
 [ext_resource type="Script" path="res://scripts/wall.gd" id="1_g6ihj"]
 [ext_resource type="Material" uid="uid://cunhl5hcq1a8u" path="res://materials/rock_01.tres" id="2_mqqa7"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://b2kowryoxfe5o" path="res://scenes/enemies/shuttles/flatter.tscn" id="5_vrwy5"]
 [ext_resource type="PackedScene" uid="uid://b6akau1olnaop" path="res://scenes/weapons/laser_tower.tscn" id="6_dc38y"]
 [ext_resource type="PackedScene" uid="uid://boes1sklt1euk" path="res://scenes/weapons/nenuphar.tscn" id="7_m7oll"]
-[ext_resource type="PackedScene" uid="uid://cp07hudq8ital" path="res://scenes/scenery/magnetic_storm.tscn" id="8_lncho"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w84bo"]
 resource_name = "Bumpy"
@@ -242,18 +241,6 @@ transform = Transform3D(-1.43212, 2.8794e-07, -0.813063, -3.2148e-07, -1.64683, 
 
 [node name="nenuphar8" parent="Scroller/Down" instance=ExtResource("7_m7oll")]
 transform = Transform3D(-1.43212, 2.8794e-07, -0.813063, -3.2148e-07, -1.64683, -1.69603e-08, -0.813063, 1.4397e-07, 1.43212, 526.506, 24.571, 1.50769e-05)
-
-[node name="MagneticStorm" parent="." instance=ExtResource("8_lncho")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1098.98, 5.62982, 126.334)
-
-[node name="MagneticStorm2" parent="." instance=ExtResource("8_lncho")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -587.42, 5.62982, 93.3238)
-
-[node name="MagneticStorm3" parent="." instance=ExtResource("8_lncho")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -653.252, 5.62982, -90.2113)
-
-[node name="MagneticStorm4" parent="." instance=ExtResource("8_lncho")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -947.067, 5.62982, -90.2113)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -29,11 +29,12 @@ var Shuttles = [
 ]
 
 var Motherships = [
-    preload("res://scenes/enemies/motherships/platform.tscn"),  #1
     preload("res://scenes/enemies/motherships/hammer.tscn"),    #2
     preload("res://scenes/enemies/motherships/retractor.tscn"), #3
     preload("res://scenes/enemies/motherships/pince.tscn"),     #4
-    preload("res://scenes/enemies/motherships/mother.tscn"),    #5
+    preload("res://scenes/enemies/motherships/platform.tscn"),  #1
+    preload("res://scenes/enemies/motherships/retractor.tscn"), #5
+    # preload("res://scenes/enemies/motherships/mother.tscn"),    #5
 ]
 
 var shuttle_count = 0

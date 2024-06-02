@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ccpqyyntqrypc"]
+[gd_scene load_steps=22 format=3 uid="uid://ccpqyyntqrypc"]
 
 [ext_resource type="Script" path="res://scripts/wall.gd" id="1_l00ed"]
 [ext_resource type="Material" uid="uid://cuhci3cpfi3l6" path="res://materials/rock_02.tres" id="2_jx0no"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://ceyj6on632fgc" path="res://scenes/enemies/shuttles/golgot.tscn" id="7_oh14a"]
 [ext_resource type="PackedScene" uid="uid://bednx5ef1g2ok" path="res://scenes/enemies/shuttles/minos.tscn" id="8_bav4t"]
 [ext_resource type="AudioStream" uid="uid://bbjvas0hfbg55" path="res://assets/audio/music/batarCruising02.wav" id="8_bfqeg"]
-[ext_resource type="PackedScene" uid="uid://cp07hudq8ital" path="res://scenes/scenery/magnetic_storm.tscn" id="8_qy7qs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w84bo"]
 resource_name = "Bumpy"
@@ -305,15 +304,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 268.756, -10.9558, 0)
 
 [node name="Golgot3" parent="Scroller/Down" instance=ExtResource("7_oh14a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 137.144, -10.8931, 0)
-
-[node name="MagneticStorm3" parent="Scroller/Down" instance=ExtResource("8_qy7qs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 352.644, 2.69706, 77.982)
-
-[node name="MagneticStorm4" parent="Scroller/Down" instance=ExtResource("8_qy7qs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 172.449, 2.69706, -113.615)
-
-[node name="MagneticStorm5" parent="Scroller/Down" instance=ExtResource("8_qy7qs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 547.556, 2.69706, -113.615)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

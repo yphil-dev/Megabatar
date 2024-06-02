@@ -1,11 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://cuyqo2opr8v4e"]
+[gd_scene load_steps=19 format=3 uid="uid://cuyqo2opr8v4e"]
 
 [ext_resource type="Material" uid="uid://baofcf6d57uwu" path="res://materials/potato.tres" id="1_aqygr"]
 [ext_resource type="Script" path="res://scripts/splash.gd" id="1_qmlb4"]
 [ext_resource type="Material" uid="uid://w53k15jjoekt" path="res://materials/rock_04.tres" id="2_bipk4"]
 [ext_resource type="PackedScene" uid="uid://cqyrrponglmt4" path="res://scenes/sprout.tscn" id="2_imbmx"]
 [ext_resource type="FontFile" uid="uid://dru2uhynwbme8" path="res://assets/fonts/KOMIKAX_.ttf" id="5_qy0mf"]
-[ext_resource type="FontFile" uid="uid://bewdwbtv8d6hp" path="res://assets/fonts/pixelart.ttf" id="6_ajv5b"]
 [ext_resource type="FontFile" uid="uid://bdih1pitb554l" path="res://assets/fonts/Freshman.ttf" id="6_mqkp8"]
 
 [sub_resource type="Environment" id="Environment_7xao2"]
@@ -89,30 +88,6 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(0.407843, 0.996078, 0.713726, 1)]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Control/ColorRect:color")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Control/ColorRect/RichTextLabel:theme:RichTextLabel/colors/default_color")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.0901961, 0.568627, 0.372549, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_h68a2"]
 resource_name = "r"
@@ -164,30 +139,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(0.0901961, 0.568627, 0.372549, 1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Control/ColorRect:color")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 3, 4.9, 6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(1, 1, 1, 1)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Control/ColorRect/RichTextLabel:theme:RichTextLabel/colors/default_color")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(3, 6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.0901961, 0.568627, 0.372549, 0), Color(0.0901961, 0.568627, 0.372549, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w3pwx"]
@@ -247,15 +198,6 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_add8f")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0un6d"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="Theme" id="Theme_3hesf"]
-default_font = ExtResource("6_ajv5b")
-default_font_size = 25
-RichTextLabel/colors/default_color = Color(0.0901961, 0.568627, 0.372549, 1)
-RichTextLabel/styles/normal = SubResource("StyleBoxFlat_0un6d")
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_qmlb4")
@@ -320,39 +262,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.89727, -1.53871, 0)
 mesh = SubResource("ArrayMesh_tuo62")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("1_aqygr")
-
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0)
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Control/ColorRect"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 691.0
-offset_top = 442.0
-offset_right = 893.0
-offset_bottom = 495.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = SubResource("Theme_3hesf")
-text = "Presents"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

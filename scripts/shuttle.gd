@@ -140,12 +140,12 @@ func start_wave_type_attack():
     $HitBox/Exhaust.visible = true
     $AudioStreamPlayer.play()
 
-    var shoot_tween = create_tween().set_loops()
-    shoot_tween.tween_callback(shoot.bind(Globals.level_num + 2)).set_delay(2 if Globals.level_num >= 2 else 1)
+    # var shoot_tween = get_tree().create_tween().set_loops()
+    # shoot_tween.tween_callback(shoot.bind(Globals.level_num + 2)).set_delay(1)
     
     var attack_tween = create_tween()
-    # tween.tween_property(self, "position:x", -10, 2.5).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN)
-    # tween.tween_callback(shoot.bind(Globals.level_num + 2))
+    attack_tween.tween_property(self, "position:x", -10, 2.5).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN)
+    attack_tween.tween_callback(shoot.bind(Globals.level_num + 2))
     attack_tween.tween_property(self, "position:x", -150, 3.5).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN).as_relative()
     # tween.parallel().tween_property(self, "rotation_degrees:z", randi_range(-5, 5), 1.0).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)
     attack_tween.parallel().tween_property(self, "rotation_degrees:x", randi_range(180, 360), 7.5).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)

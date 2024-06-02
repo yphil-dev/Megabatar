@@ -55,8 +55,9 @@ func sub_life():
         Globals.explode(Vector3(last_node.global_transform.origin), 2, 2)
         $RemLifeSound.play()
         await get_tree().create_timer(0.2).timeout
-        lives_container.remove_child(last_node)
-
+        # lives_container.remove_child(last_node)
+        last_node.queue_free()
+        
 func _process(_delta):
     if previous_lives < Globals.lives:
         add_life("new")

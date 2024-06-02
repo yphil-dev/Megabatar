@@ -38,7 +38,7 @@ movie_writer/movie_file="/home/px/tmp/demo_3d_01.avi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/zylann.atmosphere/tools/plugin.cfg")
+enabled=PackedStringArray()
 
 [filesystem]
 

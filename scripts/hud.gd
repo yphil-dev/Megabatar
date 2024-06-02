@@ -44,7 +44,6 @@ func on_blast_activated():
     flash_weapons(BlastWave)
     
 func on_missiles_activated():
-    print("Missiles activated")
     Globals.say("Missiles activated")
     flash_weapons(Missiles)
     
