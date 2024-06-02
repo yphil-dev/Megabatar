@@ -55,6 +55,7 @@ func _ready():
     spawn_point = $SpawnPoint if name != "Mother" else $armature/SpawnPoint
     
     $EntranceHorn.play()
+    $EntranceHorn.finished.connect($Music.play)
     
     # play_snd("MothershipMusicLoop")
 
