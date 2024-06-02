@@ -46,6 +46,11 @@ func play_motor_stop():
     # $MotorStart.stop()
     # $MotorStop.play()
 
+func play_music_loop():
+    if $EntranceHorn.finished.is_connected($Music.play):
+        $EntranceHorn.finished.disconnect($Music.play)
+    $Music.play()
+   
 var spawn_point
 
 func _ready():
@@ -56,8 +61,6 @@ func _ready():
     
     $EntranceHorn.play()
     $EntranceHorn.finished.connect($Music.play)
-    
-    # play_snd("MothershipMusicLoop")
 
     Globals.say("This mothership's name is {name} and its health level is {health} Level + 1 is {h}".format({"name":name, "health":health, "h":Globals.level_num + 1 * 6}))
 

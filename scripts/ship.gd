@@ -209,6 +209,15 @@ func _update_movement_2d(delta):
         velocity.y = direction.y * SPEED
         var target_rotation = initial_rotation.x + ROTATION_ANGLE * -direction.y
         rotation_degrees.x = lerp(rotation_degrees.x, target_rotation, ROTATION_SPEED * delta)
+        if global_position.x > 38:
+            global_position.x = 38
+        if global_position.x < -40:
+            global_position.x = -40
+        if global_position.y > 25:
+            global_position.y = 25
+        if global_position.y < -20:
+            global_position.y = -20
+
     else:
         rotation_degrees.x = lerp(rotation_degrees.x, initial_rotation.x, ROTATION_SPEED * delta)
         velocity.x = move_toward(velocity.x, 0, SPEED)
@@ -226,6 +235,16 @@ func _update_movement_3d(delta):
         velocity.y = direction.y * SPEED
         var target_rotation = initial_rotation.x + ROTATION_ANGLE * direction.x
         rotation_degrees.x = lerp(rotation_degrees.x, target_rotation, ROTATION_SPEED * delta)
+
+        if global_position.z > 25:
+            global_position.z = 25
+        if global_position.z < -25:
+            global_position.z = -25
+        if global_position.y > 15:
+            global_position.y = 15
+        if global_position.y < -14:
+            global_position.y = -14
+
     else:
         rotation_degrees.x = lerp(rotation_degrees.x, initial_rotation.x, ROTATION_SPEED * delta)
         velocity.z = 0
