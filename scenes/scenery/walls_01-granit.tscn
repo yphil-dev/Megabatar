@@ -207,7 +207,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 203.89, -4.33492, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 113.471, -2.37881, 0)
 
 [node name="LaserTower1" parent="Scroller/Down" instance=ExtResource("6_dc38y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.0739, -12.857, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.049, -14.0869, 0)
 
 [node name="LaserTower3" parent="Scroller/Down" instance=ExtResource("6_dc38y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 161.333, -3.14652, 0)
