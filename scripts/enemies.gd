@@ -29,11 +29,10 @@ var Shuttles = [
 ]
 
 var Motherships = [
+    preload("res://scenes/enemies/motherships/platform.tscn"),  #1
     preload("res://scenes/enemies/motherships/hammer.tscn"),    #2
     preload("res://scenes/enemies/motherships/retractor.tscn"), #3
     preload("res://scenes/enemies/motherships/pince.tscn"),     #4
-    preload("res://scenes/enemies/motherships/platform.tscn"),  #1
-    # preload("res://scenes/enemies/motherships/retractor.tscn"), #5
     preload("res://scenes/enemies/motherships/mother.tscn"),    #5
 ]
 
@@ -124,6 +123,6 @@ func spawn_shuttle(y_offset):
     var initial_offset = -20
     shuttle.is_parked = false
     add_child(shuttle)
-    shuttle.global_transform.origin = Vector3(45, initial_offset + 4 * y_offset, 0)
+    shuttle.global_transform.origin = Vector3(40, initial_offset + 4 * y_offset, 0)
     # shuttle.global_transform.origin = Vector3(45, 2 * y_offset, 0)
     shuttle.start_wave_type_attack()

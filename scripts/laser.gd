@@ -15,8 +15,9 @@ var away = true
 var shoot_type
 var is_mothership
 var length = 30.0
-
+var laser_scale
 var color:Color
+var is_mother = false
 
 func _ready():
     $VisibleOnScreenNotifier3D.connect("screen_exited", func(): queue_free())
@@ -38,13 +39,16 @@ func _ready():
         # $Collision.collision_mask = 4
 
     if is_mothership:
-        # $LaserSound2.play()
         $LaserSound3.play()
-        $Mesh.scale = Vector3(260.0, 10.0, 25.0)
+        $Mesh.scale = Vector3(260.0, (laser_scale.y * 10) * 2, (laser_scale.z * 20) * 2)
         color = Color.RED
-        # damage += 50
-        # mass = 50.0
 
+    if is_mother:
+        $LaserSound4.play()
+        $Fire.visible = true
+        $Mesh.visible = false
+        color = Color.RED
+        
     $Mesh.set_surface_override_material(0, $Mesh.get_surface_override_material(0).duplicate())
     $Mesh.get_surface_override_material(0).albedo_color = color
     $Mesh.get_surface_override_material(0).emission = color

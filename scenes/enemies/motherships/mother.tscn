@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bjj6xksek40sg"]
+[gd_scene load_steps=31 format=3 uid="uid://bjj6xksek40sg"]
 
 [ext_resource type="Script" path="res://scripts/mothership.gd" id="1_ldhv2"]
 [ext_resource type="Texture2D" uid="uid://divkqwoum6p5p" path="res://assets/textures/steack/others_0003_color_1k.jpg" id="2_jynqg"]
@@ -1186,6 +1186,11 @@ roughness = 0.0
 emission_enabled = true
 emission = Color(0.917647, 0.686275, 0.360784, 1)
 
+[sub_resource type="SphereMesh" id="SphereMesh_1ry0l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xwdy2"]
+albedo_color = Color(0.67451, 0.145098, 0.345098, 1)
+
 [node name="Mother" type="Node3D" groups=["Enemies"]]
 transform = Transform3D(-1.89812e-07, 0, -4.3424, 0, 4.3424, 0, 4.3424, 0, -1.89812e-07, 8.17701, 0, 0)
 script = ExtResource("1_ldhv2")
@@ -1442,7 +1447,13 @@ bus = &"SFX"
 
 [node name="Guns" type="Node3D" parent="."]
 
-[node name="Muzzle" type="MeshInstance3D" parent="Guns"]
-transform = Transform3D(-2.54299e-09, 4.07094e-17, 1.09232, -5.82077e-11, 0.620924, 0, -0.0581767, 9.31323e-10, -4.77469e-08, 0.0422399, -0.0950409, 0.0120211)
+[node name="MuzzleSquare" type="MeshInstance3D" parent="Guns"]
+transform = Transform3D(-2.62268e-09, -5.42312e-17, 1.24, -6.0032e-11, 1.24, 2.32114e-22, -0.06, -1.24066e-09, -5.42021e-08, 0.308953, -0.0950409, 1.94518)
+visible = false
 mesh = SubResource("BoxMesh_mn7o8")
 surface_material_override/0 = SubResource("StandardMaterial3D_1i2mg")
+
+[node name="Muzzle" type="MeshInstance3D" parent="Guns"]
+transform = Transform3D(0.232619, 0, 3.55271e-15, 0, 0.232619, 0, -3.55271e-15, 0, 0.232619, 0.166062, 0, 0.316336)
+mesh = SubResource("SphereMesh_1ry0l")
+surface_material_override/0 = SubResource("StandardMaterial3D_xwdy2")

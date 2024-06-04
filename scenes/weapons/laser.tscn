@@ -1,9 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://c7yj6aqayuiku"]
+[gd_scene load_steps=20 format=3 uid="uid://c7yj6aqayuiku"]
 
 [ext_resource type="Script" path="res://scripts/laser.gd" id="1_dian7"]
 [ext_resource type="AudioStream" uid="uid://bova0iff2epot" path="res://assets/audio/sfx/laser_01.ogg" id="2_ladfr"]
 [ext_resource type="AudioStream" uid="uid://ce47sv52im2qj" path="res://assets/audio/sfx/laser_02.ogg" id="3_gkywn"]
 [ext_resource type="AudioStream" uid="uid://hiaa2pcr4q4q" path="res://assets/audio/sfx/MOTHERSHIP/laser_shot_01.ogg" id="4_yc3le"]
+[ext_resource type="Shader" uid="uid://758nlgjvjkyt" path="res://materials/shaders/fire.tres" id="5_1rwke"]
+[ext_resource type="AudioStream" uid="uid://uuwboje2caaf" path="res://assets/audio/sfx/MOTHERSHIP/MOTHER/mother_fire.ogg" id="5_8jtfj"]
+[ext_resource type="Texture2D" uid="uid://knbu6dcax8de" path="res://assets/textures/fire/Voronoi01.png" id="6_aw6f6"]
+[ext_resource type="Texture2D" uid="uid://b04op1fgrg54u" path="res://assets/textures/fire/Flame02.png" id="7_k4f0d"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_emsjh"]
 albedo_color = Color(0.533333, 0.85098, 0.878431, 1)
@@ -23,6 +27,50 @@ disable_receive_shadows = true
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7iq71"]
 radius = 0.269098
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0r20g"]
+render_priority = 0
+shader = ExtResource("5_1rwke")
+shader_parameter/DissolveTiling = Vector2(1, 1)
+shader_parameter/DissolveSpeed = Vector2(2, 2)
+shader_parameter/DissolveAmount = 0.453
+shader_parameter/MainTexture = ExtResource("7_k4f0d")
+shader_parameter/DissolveTexture = ExtResource("6_aw6f6")
+
+[sub_resource type="Curve" id="Curve_5kmx7"]
+min_value = -2.0
+max_value = 2.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hog2x"]
+curve = SubResource("Curve_5kmx7")
+
+[sub_resource type="Curve" id="Curve_5b5hb"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.324675, 1), -0.0261698, -0.0261698, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_l1txm"]
+curve = SubResource("Curve_5b5hb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_in6e4"]
+lifetime_randomness = 0.44
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 0.2
+angle_min = -360.0
+angle_max = 360.0
+orbit_velocity_min = 0.33
+orbit_velocity_max = 0.99
+orbit_velocity_curve = SubResource("CurveTexture_hog2x")
+gravity = Vector3(0, 0, 0)
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_l1txm")
+color = Color(2.367, 0.592, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_u0ywx"]
 
 [node name="Laser" type="RigidBody3D"]
 collision_layer = 4
@@ -66,6 +114,20 @@ bus = &"SFX"
 [node name="LaserSound3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_yc3le")
 bus = &"SFX"
+
+[node name="LaserSound4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_8jtfj")
+bus = &"SFX"
+
+[node name="Fire" type="GPUParticles3D" parent="."]
+transform = Transform3D(3.796, 0, 0, 0, 3.796, 0, 0, 0, 3.796, 0.0201416, 0.0828447, -0.0377197)
+visible = false
+material_override = SubResource("ShaderMaterial_0r20g")
+amount = 5
+lifetime = 1.4
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_in6e4")
+draw_pass_1 = SubResource("QuadMesh_u0ywx")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Collision" to="." method="_on_area_3d_body_entered"]

@@ -20,7 +20,7 @@ shader_parameter/DissolveTexture = ExtResource("2_u0yrv")
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.324675, 1), -0.0261698, -0.0261698, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_l1txm"]
+[sub_resource type="CurveTexture" id="CurveTexture_cx7rh"]
 curve = SubResource("Curve_1ru05")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_enp5w"]
@@ -33,7 +33,7 @@ angle_min = -360.0
 angle_max = 360.0
 gravity = Vector3(0, 0, 0)
 scale_max = 1.5
-scale_curve = SubResource("CurveTexture_l1txm")
+scale_curve = SubResource("CurveTexture_cx7rh")
 color = Color(2.367, 0.592, 0, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_qeuaf"]

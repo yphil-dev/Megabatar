@@ -85,8 +85,12 @@ func _fire():
     for muzzle in $Guns.get_children():
         var laser = BULLET.instantiate()
         laser.is_mothership = true
+        if name == "Mother":
+            print("Yo, Mother")
+            laser.is_mother = true
         laser.away = true
         laser.speed = 80.0
+        laser.laser_scale = muzzle.scale
         laser.shoot_direction = "home"
         laser.set_shoot_type("hostile")
         get_parent().add_child(laser)
