@@ -53,7 +53,7 @@ func sub_life():
         var last_node = lives_container.get_child(lives_container.get_child_count() - 1)
         last_node.get_node("Rotate").play("r")
         Globals.explode(Vector3(last_node.global_transform.origin), 2, 2)
-        $RemLifeSound.play()
+        # $RemLifeSound.play()
         await get_tree().create_timer(0.2).timeout
         # lives_container.remove_child(last_node)
         last_node.queue_free()
@@ -63,8 +63,6 @@ func _process(_delta):
         add_life("new")
     elif previous_lives > Globals.lives:
         sub_life()
+        
     previous_lives = Globals.lives
-
-    if previous_health < Globals.health:
-        $Heal.play()
     previous_health = Globals.health

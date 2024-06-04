@@ -124,7 +124,7 @@ func _physics_process(delta):
     _update_charge(fire_timer)
 
     if Globals.health <= 0:
-        Globals.explode(Vector3(global_transform.origin), 3, 10)
+        Globals.explode(Vector3(global_transform.origin), 8, 10)
         queue_free()
 
     damage_smoke.visible = Globals.health <= 50

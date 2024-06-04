@@ -183,8 +183,12 @@ func debug_camera():
     $Cameras/CameraMain.current = false
     $Cameras/CameraRear.current = true
 
+var isDead = false
+    
 func _process(_delta):
 
+    say_something("Healh " + str(Globals.health))
+    
     if Input.is_action_just_pressed("pause"):
         if $ControlsOverlay.visible:
             $ControlsOverlay.visible = false
@@ -198,9 +202,14 @@ func _process(_delta):
         Globals.lives -= 1
         spawn(false)
         
-    if Globals.lives == 0 or Input.is_action_just_pressed("quit"):
-        get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+    if Globals.lives == 0:
+        if !isDead:
+            fade_to_black()
+            isDead = true
 
+    if Input.is_action_just_pressed("quit"):
+        get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+        
     if Input.is_action_just_pressed("back"):
         $ControlsOverlay.visible = false
 
@@ -211,6 +220,13 @@ func _process(_delta):
         if Globals.has_blast:
             blast()
 
+func fade_to_black():
+    $FaderAnim.play("fade_to_black")
+    $FaderAnim.animation_finished.connect(game_over.unbind(1))
+            
+func game_over():
+    get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+            
 func get_all_children(in_node,arr:=[]):
     arr.push_back(in_node)
     for child in in_node.get_children():

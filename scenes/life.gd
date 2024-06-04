@@ -44,6 +44,7 @@ func pop():
         Globals.say("New ship, good luck!")
         Globals.lives += 1
     elif life_type == "health":
+        Globals.explode(Vector3(0,0,0), 9, 10)
         Globals.say("Ship repaired, good luck!")
         Globals.health += 10
     elif life_type == "missiles":

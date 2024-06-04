@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://mkbx82hmuo1p"]
+[gd_scene load_steps=55 format=3 uid="uid://mkbx82hmuo1p"]
 
 [ext_resource type="Script" path="res://scenes/explosions/explosion.gd" id="1_j6xi8"]
 [ext_resource type="Texture2D" uid="uid://badeqvidbpgjt" path="res://assets/textures/Flare00.PNG" id="2_ca4ap"]
@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://cvkos7p57gmr" path="res://assets/audio/sfx/MOTHERSHIP/MOTHER/IMPACTS/07.ogg" id="17_0g0n0"]
 [ext_resource type="AudioStream" uid="uid://c6yyk37ih65ux" path="res://assets/audio/sfx/MOTHERSHIP/MOTHER/IMPACTS/08.ogg" id="18_d2efh"]
 [ext_resource type="AudioStream" uid="uid://bu32jf0aryol2" path="res://assets/audio/sfx/MOTHERSHIP/MOTHER/IMPACTS/09.ogg" id="19_b3hfm"]
+[ext_resource type="AudioStream" uid="uid://bc5aowniemnmq" path="res://assets/audio/sfx/heal.ogg" id="20_r0v0j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_40ehg"]
 transparency = 1
@@ -379,6 +380,12 @@ bus = &"SFX"
 
 [node name="Impact09" type="AudioStreamPlayer" parent="MotherImpacts"]
 stream = ExtResource("19_b3hfm")
+bus = &"SFX"
+
+[node name="Heal" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_r0v0j")
+volume_db = -10.0
+pitch_scale = 1.37
 bus = &"SFX"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

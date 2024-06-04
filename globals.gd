@@ -13,7 +13,17 @@ signal second_wave_over
 signal third_wave_over
 
 @onready var lives = 3
-var health = 100
+
+var health : int = 100:
+    set(n):
+        if n > health:
+            print("health:", health)
+            print("n:", n)
+            # explode(Vector3(0,0,0), 9, 10)
+        health = n
+    get:
+        return health
+
 
 var spos
 
@@ -177,6 +187,18 @@ func explode(coords, force, damage):
         fire_material.gravity = Vector3(0, -6, 0)
         # sparks_material.scale_min = 1
         # sparks_material.scale_max = damage
+    elif force == 8: # Ship destruction
+        flash.emitting = true
+        fire.emitting = true
+        sparks.emitting = true
+        # smoke.emitting = true
+        explosion_sound = explosion.get_node("ExplosionSound1")
+        flash_material.scale_min = 2
+        flash_material.scale_max = damage * 5
+        fire_material.scale_max = damage * 5
+        fire.lifetime = 6.0 
+    elif force == 9: # Ship healing
+        explosion_sound = explosion.get_node("Heal")
 
         
     if force != 5:
