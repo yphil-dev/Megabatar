@@ -12,7 +12,7 @@ signal first_wave_over
 signal second_wave_over
 signal third_wave_over
 
-@onready var lives = 6
+@onready var lives = 3
 var health = 100
 
 var spos

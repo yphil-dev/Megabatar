@@ -571,7 +571,7 @@ skeleton = NodePath("")
 surface_material_override/0 = ExtResource("3_1a1r0")
 
 [node name="Flux" type="MeshInstance3D" parent="Armature" groups=["Enemies"]]
-transform = Transform3D(0.591629, -3.04361e-08, 0.80621, 1.39152e-07, 1, -6.43631e-08, -0.80621, 1.50265e-07, 0.591629, 0.0232084, 125.14, 0.00337394)
+transform = Transform3D(0.591629, -3.04361e-08, 0.80621, 1.39152e-07, 1, -6.43633e-08, -0.80621, 1.50265e-07, 0.591629, 0.0232084, 125.14, 0.00337394)
 transparency = 1.0
 mesh = SubResource("ArrayMesh_ds1q4")
 skeleton = NodePath("")

@@ -158,8 +158,8 @@ func fire_and_maybe_spawn():
 func reset_mouth_color():
 
     var tween = get_tree().create_tween()
-    tween.tween_property(mouth_material, "albedo_color", Color.MIDNIGHT_BLUE, 0.7)
-    tween.parallel().tween_property(mouth_material, "emission", Color.MIDNIGHT_BLUE, 0.7)
+    tween.tween_property(mouth_material, "albedo_color", Color.BLACK, 0.7)
+    tween.parallel().tween_property(mouth_material, "emission", Color.BLACK, 0.7)
 
 func spawn_spawner():
     var spawner = Spawner.instantiate()
