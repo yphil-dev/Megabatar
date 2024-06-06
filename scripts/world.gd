@@ -88,30 +88,35 @@ func phase_one():
     enemies.spawn_bits((Globals.level_num + 1) * 10 if !is_debug else 2)
 
     enemies.wave_loop_start()
-    enemies.wave_is_over.connect(phase_half)
+    enemies.wave_is_over.connect(phase_two)
     
-func phase_half():
+func phase_two():
     ship.crosshair("hide")
     say_something("Phase Half, Level " + str(Globals.level_num + 1))
-    enemies.wave_is_over.disconnect(phase_half)
+    enemies.wave_is_over.disconnect(phase_two)
     enemies.is_wave_over = true
     enemies.shuttle_entered = false
-    enemies.spawn_shuttles(10)
-    enemies.wave_is_over.connect(phase_two)
 
-func phase_two():
+    for i in Globals.level_num + 1:
+        enemies.spawn_shuttles(10)
+        await get_tree().create_timer(4.0).timeout
+
+    # enemies.spawn_shuttles(10)
+    enemies.wave_is_over.connect(phase_three)
+
+func phase_three():
     # $TextBox.visible = true
     ship.crosshair("hide")
     say_something("Phase Two, Level " + str(Globals.level_num + 1))
     enemies.wave_loop_stop()
-    enemies.wave_is_over.disconnect(phase_two)
+    enemies.wave_is_over.disconnect(phase_three)
     enemies.is_wave_over = true
     enemies.shuttle_entered = false
     wall = Walls[Globals.level_num].instantiate()
     $Wall.add_child(wall)
-    wall.scroll_finished.connect(phase_three)
+    wall.scroll_finished.connect(phase_four)
 
-func phase_three():
+func phase_four():
     lives.visible = false
     Globals.is_2d = false
 
