@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cohbxu111y7m5"]
+
+[resource]
+cull_mode = 2
+emission_enabled = true
+emission = Color(0, 0.917647, 0.811765, 1)
+emission_energy_multiplier = 4.05
+rim_enabled = true
+rim = 0.02
+rim_tint = 0.28
+uv1_world_triplanar = true

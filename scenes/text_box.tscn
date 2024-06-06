@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://lohq388huwjh"]
+[gd_scene load_steps=26 format=3 uid="uid://lohq388huwjh"]
 
 [ext_resource type="FontFile" uid="uid://cpfcewpxrsg2o" path="res://assets/fonts/Big Pixel demo.otf" id="1_h4tyb"]
 [ext_resource type="Script" path="res://scripts/text_box.gd" id="1_hd1lj"]
@@ -15,7 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://co8xxj20ws7wp" path="res://scenes/enemies/motherships/pince.tscn" id="8_ssyk4"]
 [ext_resource type="PackedScene" uid="uid://bt3uxph1qx73g" path="res://scenes/enemies/motherships/dummy.tscn" id="9_567vf"]
 [ext_resource type="AudioStream" uid="uid://b0brxe0ohkbg1" path="res://assets/audio/sfx/VOICES/new_intel.ogg" id="15_277p6"]
+[ext_resource type="AudioStream" uid="uid://bxbre8hlmcakw" path="res://assets/audio/music/briefing_loop.ogg" id="16_6f5ud"]
 [ext_resource type="AudioStream" uid="uid://bafpyoyaox041" path="res://assets/audio/sfx/VOICES/briefing_01.ogg" id="16_femsb"]
+[ext_resource type="AudioStream" uid="uid://dxd72u3u1xea0" path="res://assets/audio/sfx/VOICES/briefing_00.ogg" id="17_m41hy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8gyil"]
 bg_color = Color(0.152941, 0.152941, 0.152941, 1)
@@ -292,7 +294,7 @@ size_flags_vertical = 0
 
 [node name="ShuttleClassVal" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/Specs/Class/ShuttlesVal"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.760784, 0.941176, 1, 1)
 theme_override_fonts/font = ExtResource("1_h4tyb")
@@ -327,7 +329,7 @@ size_flags_vertical = 0
 
 [node name="ShuttleWeaponsVal" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/Specs/Weapons/Val"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.760784, 0.941176, 1, 1)
 theme_override_fonts/font = ExtResource("1_h4tyb")
@@ -362,7 +364,7 @@ size_flags_vertical = 0
 
 [node name="ShuttleArmorVal" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/Specs/Armor/Val"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.760784, 0.941176, 1, 1)
 theme_override_fonts/font = ExtResource("1_h4tyb")
@@ -598,14 +600,23 @@ libraries = {
 }
 autoplay = "reveal"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="NewIntel" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_277p6")
-autoplay = true
 bus = &"SFX"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_6f5ud")
+autoplay = true
+bus = &"Music"
 
 [node name="Briefings" type="Node3D" parent="."]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Briefings"]
+[node name="Briefing0" type="AudioStreamPlayer" parent="Briefings"]
+stream = ExtResource("17_m41hy")
+pitch_scale = 0.91
+bus = &"SFX"
+
+[node name="Briefing1" type="AudioStreamPlayer" parent="Briefings"]
 stream = ExtResource("16_femsb")
-autoplay = true
+pitch_scale = 0.91
 bus = &"SFX"

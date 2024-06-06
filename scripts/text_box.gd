@@ -1,0 +1,106 @@
+extends CanvasLayer
+
+@onready var shuttle_svp = %ShuttleSVP
+@onready var mother_svp = %MotherSVP
+@onready var briefing_text = %BriefingText
+@onready var shuttles_dead_val = %ShuttlesDeadVal
+@onready var rank_val = %RankVal
+@onready var health_val = %HealthVal
+
+@onready var shuttle_class = %ShuttleClassVal
+@onready var shuttle_weapons = %ShuttleWeaponsVal
+@onready var shuttle_armor = %ShuttleArmorVal
+
+@onready var mothership_class = %MotherShipClassVal
+@onready var mothership_weapons = %MotherShipWeaponsVal
+@onready var mothership_armor = %MotherShipArmorVal
+
+const READ_RATE = 0.05
+
+var shuttle_tween
+
+var shuttle_specs = [
+    {"name": "Minos", "weapons": "Laser", "armor": "Titanium 1"},
+    {"name": "Golgot", "weapons": "Laser", "armor": "Titanium 2"},
+    {"name": "Flatter", "weapons": "Pulse", "armor": "Titanium 3"},
+    {"name": "Razer", "weapons": "Plasma", "armor": "G3"},
+    {"name": "Global", "weapons": "Pulse", "armor": "G3"}
+]
+
+var mothership_specs = [
+    {"name": "Platform", "weapons": "Laser", "armor": "Titanium 1"},
+    {"name": "Hammer", "weapons": "Laser x 2", "armor": "G2"},
+    {"name": "Retractor", "weapons": "Pulse x 3", "armor": "G3"},
+    {"name": "Embracer", "weapons": "Plasma x 5", "armor": "G4"},
+    {"name": "Mother", "weapons": "Pulse", "armor": "G4+"}
+]
+
+const briefings = [
+    "This is what we know of the enemy machines ahead, apparently some kind of mothership is spawning them out ; Those deadly shuttles are hard to beat and relentless, but your ship is brand new, good luck!",
+    "The IA is churning out new lines of combat ships ; Get to the gatekeeper of the second datacenter, if you defeat it we'll have a fighting chance against the mother, lurking at the end of the line...",
+    
+    ]
+
+func _process(_delta):
+
+    # get_tree().paused = true
+
+    if Input.is_action_just_pressed("shoot_lasers"):
+        get_parent().phase_one()
+        queue_free()
+
+func play_briefing():
+    $Briefings.get_child(Globals.level_num).play()
+        
+func _ready():
+
+    $NewIntel.play()
+    $NewIntel.finished.connect(play_briefing)
+
+    add_text(briefings[Globals.level_num])
+
+    shuttles_dead_val.text = str(Globals.shuttles_dead)
+    rank_val.text = str(Globals.score)
+    health_val.text = "{h}%".format({"h":Globals.health})
+
+    var shuttles = shuttle_svp.get_children()
+
+    for i in range(len(shuttles)):
+        var shuttle = shuttles[i]
+        shuttle.visible = false
+        
+        if i == Globals.level_num:
+            shuttle.visible = true
+            shuttle_class.text = shuttle.name
+
+            var specs = shuttle_specs[i]
+            shuttle_class.text = specs["name"]
+            shuttle_weapons.text = specs["weapons"]
+            shuttle_armor.text = specs["armor"]
+
+            var tween = create_tween().set_loops()
+            tween.tween_property(shuttle, "rotation_degrees:y", -15, 3)
+            tween.tween_property(shuttle, "rotation_degrees:y", 30, 3)
+
+    var motherships = mother_svp.get_children()
+
+    for i in range(len(motherships)):
+        var mothership = motherships[i]
+        mothership.visible = false
+        
+        if i == Globals.level_num:
+            mothership.visible = true
+
+            var specs = mothership_specs[i]
+            mothership_class.text = specs["name"]
+            mothership_weapons.text = specs["weapons"]
+            mothership_armor.text = specs["armor"]
+
+            var tween = create_tween().set_loops()
+            tween.tween_property(mothership, "rotation_degrees:y", -3, 4)
+            tween.tween_property(mothership, "rotation_degrees:y", 10, 4)
+            
+func add_text(next_text):
+    briefing_text.text = next_text
+    var tween = create_tween()
+    tween.tween_property(briefing_text, "visible_characters", len(next_text), len(next_text) * READ_RATE)
