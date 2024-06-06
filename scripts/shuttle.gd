@@ -18,6 +18,7 @@ func _process(_delta):
     if health <= 0:
         Globals.explode(Vector3(global_transform.origin), 2, 2)
         Globals.score += PRICE
+        Globals.shuttles_dead += 1
         if is_in_group("RewardHealth"):
             spawn_life("health")
         elif is_in_group("RewardMissiles"):
@@ -29,8 +30,6 @@ func _process(_delta):
 
 func _ready():
     if pos: global_transform.origin = pos
-    if $ViewportCamera:
-        $ViewportCamera.visible = false
 
 var tween
     
@@ -133,6 +132,8 @@ func _fire():
 func _on_visible_on_screen_notifier_3d_screen_entered():
     if is_parked and !is_in_group("Grounded"):
         guard()
+    if is_in_group("Grounded"):
+        $HitBox/Exhaust.visible = false
 
 func _on_visible_on_screen_notifier_3d_screen_exited():
     queue_free()

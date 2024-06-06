@@ -50,6 +50,7 @@ var sfx_volume
 var config
 var has_missiles = false
 var has_blast = false
+var shuttles_dead = 0
 
 func _ready():
     # save_high_score(1)

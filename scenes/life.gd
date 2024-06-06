@@ -29,7 +29,7 @@ func _ready():
     tween = get_tree().create_tween()
     tween.set_trans(Tween.TRANS_BACK)
     tween.set_ease(Tween.EASE_IN)
-    tween.tween_property(self, "position:x", - 25, 6.0).as_relative()
+    tween.tween_property(self, "position:x", -25, 2.0).as_relative()
     tween.parallel().tween_property(self, "position:y", global_transform.origin.y + 30, 6.0)
 
 func pop():

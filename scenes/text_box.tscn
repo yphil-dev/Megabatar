@@ -1,12 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://lohq388huwjh"]
+[gd_scene load_steps=21 format=3 uid="uid://lohq388huwjh"]
 
 [ext_resource type="FontFile" uid="uid://cpfcewpxrsg2o" path="res://assets/fonts/Big Pixel demo.otf" id="1_h4tyb"]
 [ext_resource type="Script" path="res://scripts/text_box.gd" id="1_hd1lj"]
 [ext_resource type="PackedScene" uid="uid://bednx5ef1g2ok" path="res://scenes/enemies/shuttles/minos.tscn" id="2_fh1fx"]
 [ext_resource type="PackedScene" uid="uid://jbtovxerx2jp" path="res://scenes/enemies/motherships/platform.tscn" id="4_je2fw"]
 [ext_resource type="PackedScene" uid="uid://ceyj6on632fgc" path="res://scenes/enemies/shuttles/golgot.tscn" id="4_m6uc3"]
+[ext_resource type="PackedScene" uid="uid://du0tum0q2xcm8" path="res://scenes/enemies/shuttles/ball_drone.tscn" id="5_1qvl5"]
+[ext_resource type="PackedScene" uid="uid://b2kowryoxfe5o" path="res://scenes/enemies/shuttles/flatter.tscn" id="5_jsxvj"]
 [ext_resource type="PackedScene" uid="uid://0cjmd8lmep0m" path="res://scenes/enemies/motherships/retractor.tscn" id="5_lmb7v"]
 [ext_resource type="PackedScene" uid="uid://cpfx3v5mq8w40" path="res://scenes/enemies/motherships/hammer.tscn" id="6_mtlmj"]
+[ext_resource type="PackedScene" uid="uid://deniymikv3qtd" path="res://scenes/enemies/shuttles/dummy_shuttle.tscn" id="7_ncpl4"]
+[ext_resource type="Texture2D" uid="uid://bl52cmj3oj1l7" path="res://assets/img/human_fighters_logo.png" id="8_2obsl"]
 [ext_resource type="PackedScene" uid="uid://co8xxj20ws7wp" path="res://scenes/enemies/motherships/pince.tscn" id="8_ssyk4"]
 [ext_resource type="PackedScene" uid="uid://bt3uxph1qx73g" path="res://scenes/enemies/motherships/dummy.tscn" id="9_567vf"]
 
@@ -33,13 +37,52 @@ ambient_light_energy = 6.75
 [sub_resource type="World3D" id="World3D_sq4eh"]
 environment = SubResource("Environment_87ev1")
 
+[sub_resource type="Animation" id="Animation_mi3nm"]
+resource_name = "reveal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 17.1484),
+"update": 0,
+"values": [Vector2(0, -1169), Vector2(0, -110)]
+}
+
+[sub_resource type="Animation" id="Animation_0ods3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -48)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m8c37"]
+_data = {
+"RESET": SubResource("Animation_0ods3"),
+"reveal": SubResource("Animation_mi3nm")
+}
+
 [node name="TextBox" type="CanvasLayer"]
 script = ExtResource("1_hd1lj")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+z_index = 5
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -48.0
+offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 8
@@ -64,7 +107,9 @@ theme_override_constants/margin_bottom = 50
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer"]
+z_index = 1
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="Start" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -75,10 +120,11 @@ text = "*"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_constants/separation = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="Title" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(1024, 100)
@@ -115,10 +161,11 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Debrief" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Stats/ShuttlesVal"]
-custom_minimum_size = Vector2(1024, 100)
+[node name="ShuttlesDeadVal" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Stats/ShuttlesVal"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.917647, 0, 1)
+theme_override_colors/font_color = Color(0.760784, 0.941176, 1, 1)
 theme_override_fonts/font = ExtResource("1_h4tyb")
 theme_override_font_sizes/font_size = 32
 text = "1"
@@ -133,23 +180,26 @@ custom_minimum_size = Vector2(500, 200)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-theme_override_colors/font_color = Color(0, 0.917647, 0, 1)
+theme_override_colors/font_color = Color(0.760784, 0.941176, 1, 1)
 theme_override_fonts/font = ExtResource("1_h4tyb")
 theme_override_font_sizes/font_size = 24
 text = "Good job, Freedom Fighter, Placeholder text and this is a long one yeah what if it becomes longer"
 autowrap_mode = 3
 clip_text = true
+visible_characters = 0
+visible_ratio = 0.0
 
 [node name="Main" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
+theme_override_constants/separation = 0
 
 [node name="Shuttles" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main"]
 clip_contents = true
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 0
 
 [node name="Class" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles"]
 layout_mode = 2
@@ -176,10 +226,11 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Debrief" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/Class/ShuttlesVal"]
+[node name="ShuttleClassVal" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/Class/ShuttlesVal"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.917647, 0, 1)
+theme_override_colors/font_color = Color(0.760784, 0.941176, 1, 1)
 theme_override_fonts/font = ExtResource("1_h4tyb")
 theme_override_font_sizes/font_size = 32
 text = "Golgot"
@@ -187,6 +238,7 @@ autowrap_mode = 3
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles"]
 layout_mode = 2
+size_flags_vertical = 0
 
 [node name="ShuttleSVP" type="SubViewport" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/SubViewportContainer"]
 unique_name_in_owner = true
@@ -201,29 +253,43 @@ visible = false
 script = null
 
 [node name="Golgot" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/SubViewportContainer/ShuttleSVP" instance=ExtResource("4_m6uc3")]
+visible = false
 script = null
+
+[node name="Flatter" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/SubViewportContainer/ShuttleSVP" instance=ExtResource("5_jsxvj")]
+visible = false
+script = null
+
+[node name="Razer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/SubViewportContainer/ShuttleSVP" instance=ExtResource("5_jsxvj")]
+visible = false
+script = null
+
+[node name="Drone" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/SubViewportContainer/ShuttleSVP" instance=ExtResource("5_1qvl5")]
+script = null
+
+[node name="DummyShuttle" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/SubViewportContainer/ShuttleSVP" instance=ExtResource("7_ncpl4")]
+script = null
+
+[node name="Camera3D" type="Camera3D" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/SubViewportContainer/ShuttleSVP/DummyShuttle"]
+transform = Transform3D(-1, -2.25947e-08, 8.11302e-08, 2.25947e-08, 0.856042, 0.516907, -8.11302e-08, 0.516907, -0.856042, -0.0293491, 12.9978, -23.4082)
+fov = 36.9
 
 [node name="Text" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main"]
 layout_mode = 2
 
-[node name="Text2" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Text"]
-custom_minimum_size = Vector2(500, 200)
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Text"]
+z_index = 1
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_colors/font_color = Color(0, 0.917647, 0, 1)
-theme_override_fonts/font = ExtResource("1_h4tyb")
-theme_override_font_sizes/font_size = 24
-text = "Good job, Freedom Fighter, Placeholder text and this is a long one yeah what if it becomes longer"
-autowrap_mode = 3
-clip_text = true
+texture = ExtResource("8_2obsl")
 
 [node name="MotherShips" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main"]
 layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 0
 
 [node name="Class" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 8
 
 [node name="ShuttlesKey" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/Class"]
 layout_mode = 2
@@ -246,10 +312,11 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Debrief" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/Class/ShuttlesVal"]
+[node name="MothershipClassVal" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/Class/ShuttlesVal"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.917647, 0, 1)
+theme_override_colors/font_color = Color(0.760784, 0.941176, 1, 1)
 theme_override_fonts/font = ExtResource("1_h4tyb")
 theme_override_font_sizes/font_size = 32
 text = "Golgot"
@@ -267,21 +334,54 @@ handle_input_locally = false
 render_target_update_mode = 4
 
 [node name="Platform" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/SubViewportContainer/MotherSVP" instance=ExtResource("4_je2fw")]
-transform = Transform3D(3.53987, 0.0308919, 0, -0.0308919, 3.53987, 0, 0, 0, 3.54, 0, 6.70578, 0)
+transform = Transform3D(3.54, 0, 0, 0, 3.54, 0, 0, 0, 3.54, 0, 6.70578, 0)
 script = null
+
+[node name="OmniLight3D" type="OmniLight3D" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/SubViewportContainer/MotherSVP/Platform"]
+transform = Transform3D(0.999962, -0.00872651, 0, 0.00872651, 0.999962, 0, 0, 0, 1, -2.518, 1.433, 0.46)
+light_energy = 9.444
+omni_range = 136.349
 
 [node name="Hammer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/SubViewportContainer/MotherSVP" instance=ExtResource("6_mtlmj")]
 visible = false
 script = null
 
+[node name="OmniLight3D" type="OmniLight3D" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/SubViewportContainer/MotherSVP/Hammer"]
+transform = Transform3D(0.999962, -0.00872651, 0, 0.00872651, 0.999962, 0, 0, 0, 1, -2.518, 1.433, 0.46)
+light_energy = 9.444
+omni_range = 136.349
+
 [node name="Retractor" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/SubViewportContainer/MotherSVP" instance=ExtResource("5_lmb7v")]
 visible = false
 script = null
+
+[node name="OmniLight3D" type="OmniLight3D" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/SubViewportContainer/MotherSVP/Retractor"]
+transform = Transform3D(0.999962, -0.00872651, 0, 0.00872651, 0.999962, 0, 0, 0, 1, -2.518, 1.433, 0.46)
+light_energy = 9.444
+omni_range = 136.349
 
 [node name="Pince" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/SubViewportContainer/MotherSVP" instance=ExtResource("8_ssyk4")]
 visible = false
 script = null
 
+[node name="OmniLight3D" type="OmniLight3D" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/SubViewportContainer/MotherSVP/Pince"]
+transform = Transform3D(0.999962, -0.00872651, 0, 0.00872651, 0.999962, 0, 0, 0, 1, -2.518, 1.433, 0.46)
+light_energy = 9.444
+omni_range = 136.349
+
 [node name="Dummy" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/SubViewportContainer/MotherSVP" instance=ExtResource("9_567vf")]
-visible = false
 script = null
+
+[node name="Camera3D2" type="Camera3D" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/SubViewportContainer/MotherSVP/Dummy"]
+transform = Transform3D(-1.0898e-08, 0.221252, -0.249316, 9.67125e-09, 0.249316, 0.221252, 0.333333, -3.55271e-15, -1.45705e-08, -13.4218, 7.28515, 0.457374)
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+modulate = Color(0, 1, 0, 0.0588235)
+layout_mode = 2
+texture = ExtResource("8_2obsl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_m8c37")
+}
+autoplay = "reveal"

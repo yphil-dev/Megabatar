@@ -4,6 +4,7 @@ extends Node3D
 @onready var GameOn = preload("res://scenes/game_on.tscn")
 @onready var Spawner = preload("res://scenes/spawner_ship.tscn")
 @onready var Enemies = preload("res://scenes/enemies.tscn")
+@onready var TextBox = preload("res://scenes/text_box.tscn")
 
 var Walls = [
     preload("res://scenes/scenery/walls_02-tech.tscn"),        #1
@@ -50,8 +51,6 @@ func _ready():
 
     $Cameras/CameraMain.current = true
     $Cameras/CameraRear.current = false
-
-    $TextBox.visible = false
     
 func before():
     fade_music_out()
@@ -97,7 +96,7 @@ func phase_half():
     enemies.wave_is_over.connect(phase_two)
 
 func phase_two():
-    $TextBox.visible = true
+    # $TextBox.visible = true
     ship.crosshair("hide")
     say_something("Phase Two, Level " + str(Globals.level_num + 1))
     enemies.wave_loop_stop()
@@ -133,9 +132,12 @@ func level_up():
     enemies.mothership_destroyed.disconnect(level_up)
     Globals.level_num += 1
 
+    var text_box = TextBox.instantiate()
+    add_child(text_box)
+
     # await get_tree().create_timer(2.5).timeout
 
-    fade_to_black(phase_one)
+    # fade_to_black(phase_one)
 
 
     # phase_one()
@@ -254,6 +256,7 @@ func blast():
     
     for child in all_children:
         if child.is_in_group("Enemies"):
+            Globals.explode(child.global_transform.origin, 2, 3)
             var notifier = child.get_node_or_null("VisibleOnScreenNotifier3D")
             if notifier:
                 if notifier.is_on_screen():
