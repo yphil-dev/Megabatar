@@ -1,0 +1,102 @@
+[gd_scene load_steps=7 format=3 uid="uid://lohq388huwjh"]
+
+[ext_resource type="FontFile" uid="uid://cpfcewpxrsg2o" path="res://assets/fonts/Big Pixel demo.otf" id="1_h4tyb"]
+[ext_resource type="PackedScene" uid="uid://bednx5ef1g2ok" path="res://scenes/enemies/shuttles/minos.tscn" id="2_fh1fx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8gyil"]
+bg_color = Color(0.152941, 0.152941, 0.152941, 1)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.760784, 0.941176, 1, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="Theme" id="Theme_fblfi"]
+
+[sub_resource type="Environment" id="Environment_87ev1"]
+background_mode = 1
+background_energy_multiplier = 0.0
+ambient_light_color = Color(0.87451, 0.87451, 0.87451, 1)
+ambient_light_energy = 6.75
+
+[sub_resource type="World3D" id="World3D_sq4eh"]
+environment = SubResource("Environment_87ev1")
+
+[node name="TextBox" type="CanvasLayer"]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 150
+theme_override_constants/margin_bottom = 150
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8gyil")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme = SubResource("Theme_fblfi")
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel" type="Panel" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Start" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_h4tyb")
+theme_override_font_sizes/font_size = 81
+text = "*"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Text" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1024, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0.917647, 0, 1)
+theme_override_fonts/font = ExtResource("1_h4tyb")
+theme_override_font_sizes/font_size = 48
+text = "Placeholder text and this is a long one yeah what if it becomes longer"
+autowrap_mode = 3
+clip_text = true
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/SubViewportContainer"]
+own_world_3d = true
+world_3d = SubResource("World3D_sq4eh")
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Minos" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_fh1fx")]
+script = null
+
+[node name="End" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("1_h4tyb")
+theme_override_font_sizes/font_size = 81
+text = "v"

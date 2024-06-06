@@ -45,10 +45,13 @@ func _ready():
 
     $AnimShipParade.play("parade")
     $EnterSpace.play()
-    $AnimShipParade.animation_finished.connect($EnterSpace.stop.unbind(1))
+    if !$AnimShipParade.animation_finished.is_connected($EnterSpace.stop.unbind(1)):
+        $AnimShipParade.animation_finished.connect($EnterSpace.stop.unbind(1))
 
     $Cameras/CameraMain.current = true
     $Cameras/CameraRear.current = false
+
+    $TextBox.visible = false
     
 func before():
     fade_music_out()
@@ -58,6 +61,10 @@ func before():
     
 func phase_one():
 
+    # $FaderAnim.play("fade_from_black")
+
+    $ColorRect.color = Color(0,0,0,0)
+    
     ui_on()
     say_something("MegaBatar " + Globals.VERSION)
 
@@ -90,6 +97,7 @@ func phase_half():
     enemies.wave_is_over.connect(phase_two)
 
 func phase_two():
+    $TextBox.visible = true
     ship.crosshair("hide")
     say_something("Phase Two, Level " + str(Globals.level_num + 1))
     enemies.wave_loop_stop()
@@ -105,7 +113,8 @@ func phase_three():
     Globals.is_2d = false
 
     switch_cams($Cameras/CameraMain, $Cameras/CameraRear)
-    switched_cams.connect(ship.crosshair.bind("show"))
+    if !switched_cams.is_connected(ship.crosshair.bind("show")):
+        switched_cams.connect(ship.crosshair.bind("show"))
     # ship.crosshair("show")
         
     say_something("Phase Three, Level " + str(Globals.level_num + 1))
@@ -124,9 +133,12 @@ func level_up():
     enemies.mothership_destroyed.disconnect(level_up)
     Globals.level_num += 1
 
-    await get_tree().create_timer(2.5).timeout
+    # await get_tree().create_timer(2.5).timeout
 
-    phase_one()
+    fade_to_black(phase_one)
+
+
+    # phase_one()
 
 func switch_cams(from, to):
     var from_gt = from.global_transform
@@ -146,7 +158,8 @@ func reset_cam(from, to, gt, fov):
 
 func _play_music_intro():
     $MusicIntro.play()
-    $MusicIntro.finished.connect($MusicLoop.play)
+    if !$MusicIntro.finished.is_connected($MusicLoop.play):
+        $MusicIntro.finished.connect($MusicLoop.play)
 
 func show_controls_overlay():
     $ControlsOverlay.visible = true
@@ -204,7 +217,7 @@ func _process(_delta):
         
     if Globals.lives == 0:
         if !isDead:
-            fade_to_black()
+            fade_to_black(game_over)
             isDead = true
 
     if Input.is_action_just_pressed("quit"):
@@ -220,10 +233,11 @@ func _process(_delta):
         if Globals.has_blast:
             blast()
 
-func fade_to_black():
+func fade_to_black(callable):
     $FaderAnim.play("fade_to_black")
-    $FaderAnim.animation_finished.connect(game_over.unbind(1))
-            
+    if !$FaderAnim.animation_finished.is_connected(callable.unbind(1)):
+        $FaderAnim.animation_finished.connect(callable.unbind(1))
+
 func game_over():
     get_tree().change_scene_to_file("res://scenes/game_over.tscn")
             

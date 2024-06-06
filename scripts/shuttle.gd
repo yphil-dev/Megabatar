@@ -29,6 +29,7 @@ func _process(_delta):
 
 func _ready():
     if pos: global_transform.origin = pos
+    $ViewportCamera.visible = false
 
 var tween
     

@@ -176,13 +176,12 @@ collision_mask = 5
 
 [node name="Exhaust" type="Node3D" parent="HitBox"]
 transform = Transform3D(0.156039, 0, 0, 0, 0.156039, 0, 0, 0, 0.156039, -0.287029, 0.454482, 0)
-visible = false
 
 [node name="Fire" parent="HitBox/Exhaust" instance=ExtResource("5_ijy2h")]
-transform = Transform3D(-2.70478, -2.36459e-07, 0, 2.34595e-07, -2.68345, -0.338999, 2.96362e-08, -0.338999, 2.68345, 4.36842, -10.4945, 9.78634)
+transform = Transform3D(-1.85855, -1.6248e-07, 0, 1.61199e-07, -1.8439, -0.232939, 2.03641e-08, -0.232939, 1.8439, 4.36842, -7.13593, 10.7799)
 
 [node name="Fire2" parent="HitBox/Exhaust" instance=ExtResource("5_ijy2h")]
-transform = Transform3D(-2.70478, -2.36459e-07, 0, 2.34595e-07, -2.68345, 0.338999, -2.96362e-08, 0.338999, 2.68345, 4.36842, -10.4945, -9.29953)
+transform = Transform3D(-1.85855, -1.6248e-07, 0, 1.61199e-07, -1.8439, 0.232939, -2.03641e-08, 0.232939, 1.8439, 4.36842, -7.13593, -10.6896)
 
 [node name="Fire3" parent="HitBox/Exhaust" instance=ExtResource("5_ijy2h")]
 transform = Transform3D(-1.16365e-07, 2.68345, -0.338999, -2.70478, -1.19162e-07, -1.48181e-08, -2.96362e-08, 0.338999, 2.68345, 13.0942, -4.45358, 0.0974644)
@@ -217,9 +216,21 @@ bus = &"SFX"
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(-3.44643e-08, -0.615097, -0.788451, -2.68868e-08, 0.788451, -0.615097, 1, 0, -4.37114e-08, -2.90265, -0.920354, 0)
-light_color = Color(0, 0.752941, 0.823529, 1)
+[node name="ViewportCamera" type="Camera3D" parent="."]
+transform = Transform3D(-0.312756, 0.146739, -0.93843, 0.0463958, 0.989175, 0.139211, 0.9487, -3.53418e-09, -0.316179, -5.17152, 1.26845, -1.25237)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="ViewportCamera"]
+transform = Transform3D(0.9487, 0.228956, 0.218055, -9.49829e-08, 0.689658, -0.724136, -0.316178, 0.686987, 0.654278, 0.376969, -1.83218, -2.82985)
+light_color = Color(0.72549, 0.968627, 1, 1)
+light_energy = 3.235
+
+[node name="OmniLight3D" type="OmniLight3D" parent="ViewportCamera"]
+transform = Transform3D(0.9487, 0.228956, 0.218055, -8.91247e-08, 0.689658, -0.724136, -0.316178, 0.686987, 0.654278, 0.478265, 0.327483, -2.52591)
+light_energy = 10.059
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="ViewportCamera"]
+transform = Transform3D(0.988688, -0.146098, -0.0339429, 0.146098, 0.886842, 0.438369, -0.0339428, -0.438369, 0.898154, -0.473812, 1.03975, -1.42168)
+light_energy = 11.141
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]

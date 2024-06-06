@@ -153,6 +153,7 @@ func fire_and_maybe_spawn():
         tween.tween_property(mouth_material, "albedo_color", Color.FIREBRICK, 1.7)
         tween.parallel().tween_property(mouth_material, "emission", Color.FIREBRICK, 1.7)
         tween.tween_callback(reset_mouth_color)
+
         
     $Charge.finished.connect(_fire)
     # _fire()
@@ -171,7 +172,7 @@ func spawn_spawner():
     spawner.global_transform.origin = spawn_point.global_transform.origin
     
 func spawn_shuttle():
-    # play_snd("SpawnShuttle")
+    $SpawnShuttle.play()
     spawn_spawner()
     var shuttle = Shuttles[Globals.level_num].instantiate()
     # var shuttle = ball_drone.instantiate()

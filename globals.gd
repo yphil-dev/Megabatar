@@ -14,16 +14,9 @@ signal third_wave_over
 
 @onready var lives = 3
 
-var health : int = 100:
-    set(n):
-        if n > health:
-            print("health:", health)
-            print("n:", n)
-            # explode(Vector3(0,0,0), 9, 10)
-        health = n
-    get:
-        return health
+var health = 100
 
+var bits_dead = 100
 
 var spos
 

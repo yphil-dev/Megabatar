@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://brfqjknn55yfb"]
+[gd_scene load_steps=4 format=3 uid="uid://brfqjknn55yfb"]
 
 [ext_resource type="Script" path="res://scenes/lives.gd" id="1_stmee"]
 [ext_resource type="AudioStream" uid="uid://5vcg6682b81c" path="res://assets/audio/sfx/plane_service_beep.ogg" id="2_m4hh8"]
 [ext_resource type="AudioStream" uid="uid://c7v18ciswfd4b" path="res://assets/audio/sfx/VOICES/new_ship.ogg" id="4_h4few"]
-[ext_resource type="AudioStream" uid="uid://bc5aowniemnmq" path="res://assets/audio/sfx/heal.ogg" id="5_fx6ld"]
 
 [node name="Lives" type="Node3D"]
 script = ExtResource("1_stmee")
@@ -24,12 +23,6 @@ stream = ExtResource("4_h4few")
 volume_db = -10.0
 pitch_scale = 0.85
 bus = &"SFX_Right"
-
-[node name="Heal" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_fx6ld")
-volume_db = -10.0
-pitch_scale = 1.37
-bus = &"SFX"
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.35486, -2.68738, 14.234)
