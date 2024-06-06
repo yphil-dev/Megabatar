@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://lohq388huwjh"]
+[gd_scene load_steps=8 format=3 uid="uid://lohq388huwjh"]
 
 [ext_resource type="FontFile" uid="uid://cpfcewpxrsg2o" path="res://assets/fonts/Big Pixel demo.otf" id="1_h4tyb"]
+[ext_resource type="Script" path="res://scripts/text_box.gd" id="1_hd1lj"]
 [ext_resource type="PackedScene" uid="uid://bednx5ef1g2ok" path="res://scenes/enemies/shuttles/minos.tscn" id="2_fh1fx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8gyil"]
@@ -27,6 +28,7 @@ ambient_light_energy = 6.75
 environment = SubResource("Environment_87ev1")
 
 [node name="TextBox" type="CanvasLayer"]
+script = ExtResource("1_hd1lj")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -85,6 +87,7 @@ clip_text = true
 layout_mode = 2
 
 [node name="SubViewport" type="SubViewport" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/SubViewportContainer"]
+unique_name_in_owner = true
 own_world_3d = true
 world_3d = SubResource("World3D_sq4eh")
 transparent_bg = true
