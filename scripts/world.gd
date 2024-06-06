@@ -54,9 +54,13 @@ func _ready():
     
 func before():
     fade_music_out()
-    $AnimShipGo.animation_finished.connect(phase_one.unbind(1))
+    $AnimShipGo.animation_finished.connect(after.unbind(1))
     $AnimShipGo.play("go")
     $EnterSpace.play()
+
+func after():
+    var text_box = TextBox.instantiate()
+    add_child(text_box)
     
 func phase_one():
 
@@ -132,13 +136,14 @@ func level_up():
     enemies.mothership_destroyed.disconnect(level_up)
     Globals.level_num += 1
 
-    var text_box = TextBox.instantiate()
-    add_child(text_box)
+    # var text_box = TextBox.instantiate()
+    # add_child(text_box)
 
     # await get_tree().create_timer(2.5).timeout
 
     # fade_to_black(phase_one)
 
+    after()
 
     # phase_one()
 

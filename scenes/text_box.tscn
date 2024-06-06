@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://lohq388huwjh"]
+[gd_scene load_steps=22 format=3 uid="uid://lohq388huwjh"]
 
 [ext_resource type="FontFile" uid="uid://cpfcewpxrsg2o" path="res://assets/fonts/Big Pixel demo.otf" id="1_h4tyb"]
 [ext_resource type="Script" path="res://scripts/text_box.gd" id="1_hd1lj"]
 [ext_resource type="PackedScene" uid="uid://bednx5ef1g2ok" path="res://scenes/enemies/shuttles/minos.tscn" id="2_fh1fx"]
+[ext_resource type="FontFile" uid="uid://bewdwbtv8d6hp" path="res://assets/fonts/pixelart.ttf" id="3_ou0sf"]
 [ext_resource type="PackedScene" uid="uid://jbtovxerx2jp" path="res://scenes/enemies/motherships/platform.tscn" id="4_je2fw"]
 [ext_resource type="PackedScene" uid="uid://ceyj6on632fgc" path="res://scenes/enemies/shuttles/golgot.tscn" id="4_m6uc3"]
 [ext_resource type="PackedScene" uid="uid://du0tum0q2xcm8" path="res://scenes/enemies/shuttles/ball_drone.tscn" id="5_1qvl5"]
@@ -21,6 +22,7 @@ border_width_top = 20
 border_width_right = 20
 border_width_bottom = 20
 border_color = Color(0.760784, 0.941176, 1, 1)
+border_blend = true
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
@@ -43,13 +45,13 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("MarginContainer:position")
-tracks/0/interp = 2
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 17.1484),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, -1169), Vector2(0, -110)]
+"values": [Vector2(233.75, -1168.75), Vector2(233.75, 44.9999)]
 }
 
 [sub_resource type="Animation" id="Animation_0ods3"]
@@ -74,18 +76,25 @@ _data = {
 }
 
 [node name="TextBox" type="CanvasLayer"]
+scale = Vector2(0.8, 0.8)
+transform = Transform2D(0.8, 0, 0, 0.8, 0, 0)
 script = ExtResource("1_hd1lj")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 z_index = 5
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -48.0
-offset_bottom = 48.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -648.0
+offset_right = 972.0
+offset_bottom = 682.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_vertical = 8
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/margin_left = 150
 theme_override_constants/margin_top = 150
 theme_override_constants/margin_right = 150
@@ -111,22 +120,15 @@ z_index = 1
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Start" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("1_h4tyb")
-theme_override_font_sizes/font_size = 81
-text = "*"
-
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 0
 
-[node name="Title" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(1024, 100)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -134,18 +136,18 @@ size_flags_vertical = 0
 theme_override_colors/font_color = Color(0, 0.917647, 0, 1)
 theme_override_fonts/font = ExtResource("1_h4tyb")
 theme_override_font_sizes/font_size = 64
-text = "Mission debrief"
+text = "Mission briefing"
 autowrap_mode = 3
 
-[node name="Stats" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="Stats" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="ShuttlesKey" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Stats"]
+[node name="ShuttlesDead" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Stats"]
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="Debrief" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Stats/ShuttlesKey"]
+[node name="Debrief" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Stats/ShuttlesDead"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -156,12 +158,7 @@ theme_override_font_sizes/font_size = 32
 text = "Shuttles destroyed:"
 autowrap_mode = 3
 
-[node name="ShuttlesVal" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Stats"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="ShuttlesDeadVal" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Stats/ShuttlesVal"]
+[node name="ShuttlesDeadVal" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Stats/ShuttlesDead"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
@@ -171,17 +168,71 @@ theme_override_font_sizes/font_size = 32
 text = "1"
 autowrap_mode = 3
 
+[node name="Rank" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Stats"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Rank" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Stats/Rank"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0.917647, 0, 1)
+theme_override_fonts/font = ExtResource("1_h4tyb")
+theme_override_font_sizes/font_size = 32
+text = "Rank"
+autowrap_mode = 3
+
+[node name="RankVal" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Stats/Rank"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.760784, 0.941176, 1, 1)
+theme_override_fonts/font = ExtResource("1_h4tyb")
+theme_override_font_sizes/font_size = 32
+text = "***"
+autowrap_mode = 3
+
+[node name="Health" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Stats"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Health" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Stats/Health"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0.917647, 0, 1)
+theme_override_fonts/font = ExtResource("1_h4tyb")
+theme_override_font_sizes/font_size = 32
+text = "Health"
+autowrap_mode = 3
+
+[node name="HealthVal" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Stats/Health"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.760784, 0.941176, 1, 1)
+theme_override_fonts/font = ExtResource("1_h4tyb")
+theme_override_font_sizes/font_size = 32
+text = "***"
+autowrap_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
 [node name="Text" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="BriefingText" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Text"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(500, 200)
+custom_minimum_size = Vector2(500, 150)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.760784, 0.941176, 1, 1)
-theme_override_fonts/font = ExtResource("1_h4tyb")
+theme_override_fonts/font = ExtResource("3_ou0sf")
 theme_override_font_sizes/font_size = 24
 text = "Good job, Freedom Fighter, Placeholder text and this is a long one yeah what if it becomes longer"
 autowrap_mode = 3
@@ -201,16 +252,19 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/separation = 0
 
-[node name="Class" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles"]
+[node name="Specs" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles"]
+layout_mode = 2
+
+[node name="Class" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/Specs"]
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="ShuttlesKey" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/Class"]
+[node name="ShuttlesKey" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/Specs/Class"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Debrief" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/Class/ShuttlesKey"]
+[node name="Debrief" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/Specs/Class/ShuttlesKey"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -218,15 +272,85 @@ size_flags_vertical = 0
 theme_override_colors/font_color = Color(0, 0.917647, 0, 1)
 theme_override_fonts/font = ExtResource("1_h4tyb")
 theme_override_font_sizes/font_size = 32
-text = "Class:"
+text = "Class"
 autowrap_mode = 3
 
-[node name="ShuttlesVal" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/Class"]
+[node name="ShuttlesVal" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/Specs/Class"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="ShuttleClassVal" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/Class/ShuttlesVal"]
+[node name="ShuttleClassVal" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/Specs/Class/ShuttlesVal"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.760784, 0.941176, 1, 1)
+theme_override_fonts/font = ExtResource("1_h4tyb")
+theme_override_font_sizes/font_size = 32
+text = "Golgot"
+autowrap_mode = 3
+
+[node name="Weapons" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/Specs"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Key" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/Specs/Weapons"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Debrief" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/Specs/Weapons/Key"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0.917647, 0, 1)
+theme_override_fonts/font = ExtResource("1_h4tyb")
+theme_override_font_sizes/font_size = 32
+text = "Weapons"
+autowrap_mode = 3
+
+[node name="Val" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/Specs/Weapons"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="ShuttleWeaponsVal" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/Specs/Weapons/Val"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.760784, 0.941176, 1, 1)
+theme_override_fonts/font = ExtResource("1_h4tyb")
+theme_override_font_sizes/font_size = 32
+text = "Golgot"
+autowrap_mode = 3
+
+[node name="Armor" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/Specs"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Key" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/Specs/Armor"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Debrief" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/Specs/Armor/Key"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0.917647, 0, 1)
+theme_override_fonts/font = ExtResource("1_h4tyb")
+theme_override_font_sizes/font_size = 32
+text = "Armor"
+autowrap_mode = 3
+
+[node name="Val" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/Specs/Armor"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="ShuttleArmorVal" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/Specs/Armor/Val"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
@@ -238,7 +362,7 @@ autowrap_mode = 3
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles"]
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_vertical = 4
 
 [node name="ShuttleSVP" type="SubViewport" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/SubViewportContainer"]
 unique_name_in_owner = true
@@ -261,18 +385,20 @@ visible = false
 script = null
 
 [node name="Razer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/SubViewportContainer/ShuttleSVP" instance=ExtResource("5_jsxvj")]
-visible = false
 script = null
 
 [node name="Drone" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/SubViewportContainer/ShuttleSVP" instance=ExtResource("5_1qvl5")]
+visible = false
 script = null
 
 [node name="DummyShuttle" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/SubViewportContainer/ShuttleSVP" instance=ExtResource("7_ncpl4")]
+visible = false
 script = null
 
 [node name="Camera3D" type="Camera3D" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/SubViewportContainer/ShuttleSVP/DummyShuttle"]
-transform = Transform3D(-1, -2.25947e-08, 8.11302e-08, 2.25947e-08, 0.856042, 0.516907, -8.11302e-08, 0.516907, -0.856042, -0.0293491, 12.9978, -23.4082)
-fov = 36.9
+transform = Transform3D(-1, -2.25947e-08, 8.11302e-08, 2.25947e-08, 0.856042, 0.516907, -8.11302e-08, 0.516907, -0.856042, 0.0452206, 1.43487, -2.05674)
+fov = 77.7
+far = 45.48
 
 [node name="Text" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main"]
 layout_mode = 2
@@ -287,16 +413,20 @@ layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/separation = 0
 
-[node name="Class" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips"]
+[node name="Specs" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips"]
+layout_direction = 3
 layout_mode = 2
-size_flags_horizontal = 8
 
-[node name="ShuttlesKey" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/Class"]
+[node name="Class" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/Specs"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="ShuttlesKey" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/Specs/Class"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Debrief" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/Class/ShuttlesKey"]
+[node name="Debrief" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/Specs/Class/ShuttlesKey"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -304,15 +434,85 @@ size_flags_vertical = 0
 theme_override_colors/font_color = Color(0, 0.917647, 0, 1)
 theme_override_fonts/font = ExtResource("1_h4tyb")
 theme_override_font_sizes/font_size = 32
-text = "Class:"
+text = "Class"
 autowrap_mode = 3
 
-[node name="ShuttlesVal" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/Class"]
+[node name="ShuttlesVal" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/Specs/Class"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="MothershipClassVal" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/Class/ShuttlesVal"]
+[node name="MotherShipClassVal" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/Specs/Class/ShuttlesVal"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.760784, 0.941176, 1, 1)
+theme_override_fonts/font = ExtResource("1_h4tyb")
+theme_override_font_sizes/font_size = 32
+text = "Golgot"
+autowrap_mode = 3
+
+[node name="Weapons" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/Specs"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Key" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/Specs/Weapons"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Debrief" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/Specs/Weapons/Key"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0.917647, 0, 1)
+theme_override_fonts/font = ExtResource("1_h4tyb")
+theme_override_font_sizes/font_size = 32
+text = "Weapons"
+autowrap_mode = 3
+
+[node name="Val" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/Specs/Weapons"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="MotherShipWeaponsVal" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/Specs/Weapons/Val"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.760784, 0.941176, 1, 1)
+theme_override_fonts/font = ExtResource("1_h4tyb")
+theme_override_font_sizes/font_size = 32
+text = "Golgot"
+autowrap_mode = 3
+
+[node name="Armor" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/Specs"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Key" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/Specs/Armor"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Debrief" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/Specs/Armor/Key"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0.917647, 0, 1)
+theme_override_fonts/font = ExtResource("1_h4tyb")
+theme_override_font_sizes/font_size = 32
+text = "Armor"
+autowrap_mode = 3
+
+[node name="Val" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/Specs/Armor"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="MotherShipArmorVal" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/Specs/Armor/Val"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
@@ -335,10 +535,12 @@ render_target_update_mode = 4
 
 [node name="Platform" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/SubViewportContainer/MotherSVP" instance=ExtResource("4_je2fw")]
 transform = Transform3D(3.54, 0, 0, 0, 3.54, 0, 0, 0, 3.54, 0, 6.70578, 0)
+visible = false
 script = null
 
 [node name="OmniLight3D" type="OmniLight3D" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/SubViewportContainer/MotherSVP/Platform"]
 transform = Transform3D(0.999962, -0.00872651, 0, 0.00872651, 0.999962, 0, 0, 0, 1, -2.518, 1.433, 0.46)
+visible = false
 light_energy = 9.444
 omni_range = 136.349
 
@@ -352,7 +554,6 @@ light_energy = 9.444
 omni_range = 136.349
 
 [node name="Retractor" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/SubViewportContainer/MotherSVP" instance=ExtResource("5_lmb7v")]
-visible = false
 script = null
 
 [node name="OmniLight3D" type="OmniLight3D" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/SubViewportContainer/MotherSVP/Retractor"]
@@ -370,6 +571,7 @@ light_energy = 9.444
 omni_range = 136.349
 
 [node name="Dummy" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/SubViewportContainer/MotherSVP" instance=ExtResource("9_567vf")]
+visible = false
 script = null
 
 [node name="Camera3D2" type="Camera3D" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/SubViewportContainer/MotherSVP/Dummy"]
