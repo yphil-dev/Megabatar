@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://cpfx3v5mq8w40"]
+[gd_scene load_steps=23 format=3 uid="uid://cpfx3v5mq8w40"]
 
 [ext_resource type="Texture2D" uid="uid://bqlkfqtbc7437" path="res://assets/3dobjects/exported/hammer_Metal046B_1K-JPG_Color.jpg" id="1_5tfrt"]
 [ext_resource type="Script" path="res://scripts/mothership.gd" id="1_7onkh"]
 [ext_resource type="Texture2D" uid="uid://cfotjprw6d7ju" path="res://assets/3dobjects/exported/hammer_Metal025_1K-JPG_Color.jpg" id="2_qlhpq"]
+[ext_resource type="Material" uid="uid://cohbxu111y7m5" path="res://materials/mothership_lights.tres" id="4_5jmnv"]
 [ext_resource type="AudioStream" uid="uid://dk3x1p2p7e214" path="res://assets/audio/sfx/MOTHERSHIP/mothership_laser_charging_01.ogg" id="5_80mk5"]
 [ext_resource type="PackedScene" uid="uid://buattkc22mcgh" path="res://scenes/fire.tscn" id="6_w4eig"]
 [ext_resource type="AudioStream" uid="uid://cbqdh85mah35g" path="res://assets/audio/music/mothership_1.ogg" id="7_m6ml6"]
@@ -198,6 +199,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_8m8d5")
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 mesh = SubResource("ArrayMesh_nl16n")
 skeleton = NodePath("")
+surface_material_override/2 = ExtResource("4_5jmnv")
+surface_material_override/4 = ExtResource("4_5jmnv")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Mesh" groups=["Enemies"]]
 collision_layer = 2
@@ -242,10 +245,17 @@ pitch_scale = 1.1
 bus = &"SFX"
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(-3.94039e-08, -0.432873, -0.901455, -1.89215e-08, 0.901455, -0.432873, 1, -5.32907e-15, -4.37114e-08, -30.2216, -18.0715, 6.18724)
+transform = Transform3D(-3.96286e-08, 0.422001, -0.906595, 1.84463e-08, 0.906595, 0.422001, 1, -1.77636e-15, -4.37114e-08, -43.1268, 18.887, 6.18724)
 light_color = Color(0, 0.752941, 0.823529, 1)
 light_energy = 16.0
-spot_range = 45.2622
+spot_range = 61.453
+spot_angle = 40.4703
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(-3.79971e-08, -0.494337, -0.869271, -2.16082e-08, 0.869271, -0.494337, 1, 0, -4.37114e-08, -37.183, -27.7424, 6.18724)
+light_color = Color(0, 0.752941, 0.823529, 1)
+light_energy = 16.0
+spot_range = 102.774
 spot_angle = 40.4703
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]

@@ -209,7 +209,6 @@ collision_layer = 2
 collision_mask = 5
 
 [node name="Exhaust" type="Node3D" parent="HitBox"]
-visible = false
 
 [node name="Fire" parent="HitBox/Exhaust" instance=ExtResource("2_224vw")]
 transform = Transform3D(0.210833, 0, 0, 0, -0.21003, -0.0183753, 0, 0.0183753, -0.21003, 1.20756, -0.582564, -1.00084)
