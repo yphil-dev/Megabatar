@@ -24,15 +24,15 @@ var shuttle_specs = [
     {"name": "Golgot", "weapons": "Laser", "armor": "Titanium 2"},
     {"name": "Flatter", "weapons": "Pulse", "armor": "Titanium 3"},
     {"name": "Razer", "weapons": "Plasma", "armor": "G3"},
-    {"name": "Global", "weapons": "Pulse", "armor": "G3"}
+    {"name": "Unknown", "weapons": "Unknown", "armor": "Unknown"}
 ]
 
 var mothership_specs = [
     {"name": "Platform", "weapons": "Laser", "armor": "Titanium 1"},
     {"name": "Hammer", "weapons": "Laser x 2", "armor": "G2"},
     {"name": "Retractor", "weapons": "Pulse x 3", "armor": "G3"},
-    {"name": "Embracer", "weapons": "Plasma x 5", "armor": "G4"},
-    {"name": "Mother", "weapons": "Pulse", "armor": "G4+"}
+    {"name": "Embracer", "weapons": "Plasma x 5", "armor": "G4+"},
+    {"name": "Unknown", "weapons": "Unknown", "armor": "Unknown"}
 ]
 
 const briefings = [

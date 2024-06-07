@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://c1y4humn3cfrj"]
+[gd_scene load_steps=41 format=3 uid="uid://c1y4humn3cfrj"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_5frqm"]
 [ext_resource type="PackedScene" uid="uid://dneumird5vcjw" path="res://addons/naejimer_3d_planet_generator/scenes/planet_lava.tscn" id="2_4elxh"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://c1lxtdgeggnej" path="res://addons/naejimer_3d_planet_generator/scenes/star.tscn" id="15_lvied"]
 [ext_resource type="PackedScene" uid="uid://gc43k6rgav7" path="res://scenes/pause_menu.tscn" id="20_0hmbq"]
 [ext_resource type="AudioStream" uid="uid://bpq5pqlkq8u82" path="res://assets/audio/music/megabatar_intro.ogg" id="20_a7jei"]
+[ext_resource type="AudioStream" uid="uid://df5lokdduf81x" path="res://assets/audio/sfx/VOICES/wow_perfect.ogg" id="20_ie2ui"]
 [ext_resource type="AudioStream" uid="uid://j12tfgxsr6o1" path="res://assets/audio/music/megabatar_loop.ogg" id="21_7uxtl"]
 [ext_resource type="PackedScene" uid="uid://cfi3qgyxjfgjh" path="res://scenes/controls_overlay.tscn" id="21_tbumh"]
 [ext_resource type="AudioStream" uid="uid://bqr0tgovk3kg" path="res://assets/audio/sfx/windy-chord-rise-29583.ogg" id="22_pewvh"]
@@ -253,16 +254,16 @@ z_as_relative = false
 [node name="Planets" type="Node3D" parent="."]
 
 [node name="Mars" parent="Planets" instance=ExtResource("2_4elxh")]
-transform = Transform3D(378.455, 0, 34.2524, 0, 380, 0, -34.2524, 0, 378.455, 758.394, 505.123, -5002.64)
+transform = Transform3D(346.928, 0, -155.057, 0, 380, 0, 155.057, 0, 346.928, 758.394, 505.123, -5002.64)
 
 [node name="PlanetAthmosphere" parent="Planets" instance=ExtResource("14_klseg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -523.522, 0, -3807.12)
 
 [node name="Earth" parent="Planets" instance=ExtResource("3_2q3uj")]
-transform = Transform3D(231.149, 0, 20.9203, 0, 232.091, 0, -20.9203, 0, 231.149, -730.514, 0, -6770.69)
+transform = Transform3D(211.893, 0, -94.704, 0, 232.091, 0, 94.704, 0, 211.893, -730.514, 0, -6770.69)
 
 [node name="Star" parent="Planets" instance=ExtResource("15_lvied")]
-transform = Transform3D(290.295, 0, 233.289, 0, 372.415, 0, -233.289, 0, 290.295, 140.594, -1547.52, -7556.37)
+transform = Transform3D(372.396, 0, -4.00221, 0, 372.415, 0, 4.00221, 0, 372.396, 140.594, -1547.52, -7556.37)
 visible = false
 skeleton = NodePath("../..")
 
@@ -462,3 +463,8 @@ bus = &"Music"
 libraries = {
 "": SubResource("AnimationLibrary_hunej")
 }
+
+[node name="WowPerfect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_ie2ui")
+pitch_scale = 0.91
+bus = &"SFX"

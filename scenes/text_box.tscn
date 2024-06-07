@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://lohq388huwjh"]
+[gd_scene load_steps=29 format=3 uid="uid://lohq388huwjh"]
 
 [ext_resource type="FontFile" uid="uid://cpfcewpxrsg2o" path="res://assets/fonts/Big Pixel demo.otf" id="1_h4tyb"]
 [ext_resource type="Script" path="res://scripts/text_box.gd" id="1_hd1lj"]
@@ -6,7 +6,6 @@
 [ext_resource type="FontFile" uid="uid://bewdwbtv8d6hp" path="res://assets/fonts/pixelart.ttf" id="3_ou0sf"]
 [ext_resource type="PackedScene" uid="uid://jbtovxerx2jp" path="res://scenes/enemies/motherships/platform.tscn" id="4_je2fw"]
 [ext_resource type="PackedScene" uid="uid://ceyj6on632fgc" path="res://scenes/enemies/shuttles/golgot.tscn" id="4_m6uc3"]
-[ext_resource type="PackedScene" uid="uid://du0tum0q2xcm8" path="res://scenes/enemies/shuttles/ball_drone.tscn" id="5_1qvl5"]
 [ext_resource type="PackedScene" uid="uid://b2kowryoxfe5o" path="res://scenes/enemies/shuttles/flatter.tscn" id="5_jsxvj"]
 [ext_resource type="PackedScene" uid="uid://0cjmd8lmep0m" path="res://scenes/enemies/motherships/retractor.tscn" id="5_lmb7v"]
 [ext_resource type="PackedScene" uid="uid://cpfx3v5mq8w40" path="res://scenes/enemies/motherships/hammer.tscn" id="6_mtlmj"]
@@ -402,9 +401,8 @@ script = null
 [node name="Razer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/SubViewportContainer/ShuttleSVP" instance=ExtResource("5_jsxvj")]
 script = null
 
-[node name="Drone" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/SubViewportContainer/ShuttleSVP" instance=ExtResource("5_1qvl5")]
-visible = false
-script = null
+[node name="question_mark" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/SubViewportContainer/ShuttleSVP" instance=ExtResource("14_ugdi7")]
+transform = Transform3D(-2.18557e-07, -5, 2.18557e-07, 0, -2.18557e-07, -5, 5, -2.18557e-07, 9.55343e-15, 0, 0, 0)
 
 [node name="DummyShuttle" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/SubViewportContainer/ShuttleSVP" instance=ExtResource("7_ncpl4")]
 visible = false
@@ -594,6 +592,8 @@ script = null
 
 [node name="Camera3D2" type="Camera3D" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/SubViewportContainer/MotherSVP/Dummy"]
 transform = Transform3D(0.153126, 0.196525, -0.221453, 3.76526e-08, 0.249316, 0.221252, 0.29608, -0.101639, 0.11453, -12.5667, 7.28515, 3.51466)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/SubViewportContainer/MotherSVP/Dummy/Camera3D2"]
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer"]
 modulate = Color(0, 1, 0, 0.0588235)

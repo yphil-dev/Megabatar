@@ -33,8 +33,8 @@ signal switched_cams
 func _ready():
     _play_music_intro()
 
-    Globals.level_num = 0
-    is_debug = true
+    # Globals.level_num = 0
+    # is_debug = true
     
     var game_on = GameOn.instantiate()
     add_child(game_on)
@@ -111,11 +111,10 @@ func phase_two():
     enemies.wave_is_over.connect(phase_three)
 
 func phase_three():
-    print("enemies_launched:", enemies_launched)
-    print("enemies_dead:", Globals.dead_wave_enemies)
 
     if Globals.dead_wave_enemies == enemies_launched:
-        print("PERFECT!!")
+        $WowPerfect.play()
+        Globals.lives += 1
 
     Globals.dead_wave_enemies = 0
     enemies_launched = 0
