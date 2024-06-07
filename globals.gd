@@ -14,6 +14,9 @@ signal third_wave_over
 
 @onready var lives = 3
 
+var dead_wave_enemies = 0
+var launched_wave_enemies = 0
+
 var health = 100
 
 var bits_dead = 100

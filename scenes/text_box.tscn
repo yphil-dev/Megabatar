@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://lohq388huwjh"]
+[gd_scene load_steps=30 format=3 uid="uid://lohq388huwjh"]
 
 [ext_resource type="FontFile" uid="uid://cpfcewpxrsg2o" path="res://assets/fonts/Big Pixel demo.otf" id="1_h4tyb"]
 [ext_resource type="Script" path="res://scripts/text_box.gd" id="1_hd1lj"]
@@ -14,10 +14,14 @@
 [ext_resource type="Texture2D" uid="uid://bl52cmj3oj1l7" path="res://assets/img/human_fighters_logo.png" id="8_2obsl"]
 [ext_resource type="PackedScene" uid="uid://co8xxj20ws7wp" path="res://scenes/enemies/motherships/pince.tscn" id="8_ssyk4"]
 [ext_resource type="PackedScene" uid="uid://bt3uxph1qx73g" path="res://scenes/enemies/motherships/dummy.tscn" id="9_567vf"]
+[ext_resource type="PackedScene" uid="uid://bkv8q16vdlf8q" path="res://scenes/enemies/motherships/question_mark.tscn" id="14_ugdi7"]
 [ext_resource type="AudioStream" uid="uid://b0brxe0ohkbg1" path="res://assets/audio/sfx/VOICES/new_intel.ogg" id="15_277p6"]
 [ext_resource type="AudioStream" uid="uid://bxbre8hlmcakw" path="res://assets/audio/music/briefing_loop.ogg" id="16_6f5ud"]
-[ext_resource type="AudioStream" uid="uid://bafpyoyaox041" path="res://assets/audio/sfx/VOICES/briefing_01.ogg" id="16_femsb"]
+[ext_resource type="AudioStream" uid="uid://dgt67pxv61a4f" path="res://assets/audio/sfx/VOICES/briefing_01.ogg" id="16_femsb"]
 [ext_resource type="AudioStream" uid="uid://dxd72u3u1xea0" path="res://assets/audio/sfx/VOICES/briefing_00.ogg" id="17_m41hy"]
+[ext_resource type="AudioStream" uid="uid://coiihbvv5wly0" path="res://assets/audio/sfx/VOICES/briefing_02.ogg" id="20_5o435"]
+[ext_resource type="AudioStream" uid="uid://8qbg76vjl02e" path="res://assets/audio/sfx/VOICES/briefing_03.ogg" id="21_52dsc"]
+[ext_resource type="AudioStream" uid="uid://dbyoi70qncmi2" path="res://assets/audio/sfx/VOICES/briefing_04.ogg" id="22_lb6a7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8gyil"]
 bg_color = Color(0.152941, 0.152941, 0.152941, 1)
@@ -43,21 +47,6 @@ ambient_light_energy = 6.75
 [sub_resource type="World3D" id="World3D_sq4eh"]
 environment = SubResource("Environment_87ev1")
 
-[sub_resource type="Animation" id="Animation_mi3nm"]
-resource_name = "reveal"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MarginContainer:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(233.75, -1168.75), Vector2(233.75, 44.9999)]
-}
-
 [sub_resource type="Animation" id="Animation_0ods3"]
 length = 0.001
 tracks/0/type = "value"
@@ -71,6 +60,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, -48)]
+}
+
+[sub_resource type="Animation" id="Animation_mi3nm"]
+resource_name = "reveal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(233.75, -1168.75), Vector2(233.75, 44.9999)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m8c37"]
@@ -91,10 +95,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -960.0
-offset_top = -648.0
-offset_right = 980.0
-offset_bottom = 690.0
+offset_top = -48.0
+offset_right = 1940.0
+offset_bottom = 1340.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -239,7 +242,7 @@ layout_mode = 2
 
 [node name="BriefingText" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Text"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(500, 150)
+custom_minimum_size = Vector2(500, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -566,6 +569,7 @@ light_energy = 9.444
 omni_range = 136.349
 
 [node name="Retractor" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/SubViewportContainer/MotherSVP" instance=ExtResource("5_lmb7v")]
+visible = false
 script = null
 
 [node name="OmniLight3D" type="OmniLight3D" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/SubViewportContainer/MotherSVP/Retractor"]
@@ -582,12 +586,14 @@ transform = Transform3D(0.999962, -0.00872651, 0, 0.00872651, 0.999962, 0, 0, 0,
 light_energy = 9.444
 omni_range = 136.349
 
+[node name="question_mark" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/SubViewportContainer/MotherSVP" instance=ExtResource("14_ugdi7")]
+
 [node name="Dummy" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/SubViewportContainer/MotherSVP" instance=ExtResource("9_567vf")]
 visible = false
 script = null
 
 [node name="Camera3D2" type="Camera3D" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/SubViewportContainer/MotherSVP/Dummy"]
-transform = Transform3D(-1.0898e-08, 0.221252, -0.249316, 9.67125e-09, 0.249316, 0.221252, 0.333333, -3.55271e-15, -1.45705e-08, -13.4218, 7.28515, 0.457374)
+transform = Transform3D(0.153126, 0.196525, -0.221453, 3.76526e-08, 0.249316, 0.221252, 0.29608, -0.101639, 0.11453, -12.5667, 7.28515, 3.51466)
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer"]
 modulate = Color(0, 1, 0, 0.0588235)
@@ -618,5 +624,20 @@ bus = &"SFX"
 
 [node name="Briefing1" type="AudioStreamPlayer" parent="Briefings"]
 stream = ExtResource("16_femsb")
+pitch_scale = 0.91
+bus = &"SFX"
+
+[node name="Briefing2" type="AudioStreamPlayer" parent="Briefings"]
+stream = ExtResource("20_5o435")
+pitch_scale = 0.91
+bus = &"SFX"
+
+[node name="Briefing3" type="AudioStreamPlayer" parent="Briefings"]
+stream = ExtResource("21_52dsc")
+pitch_scale = 0.91
+bus = &"SFX"
+
+[node name="Briefing4" type="AudioStreamPlayer" parent="Briefings"]
+stream = ExtResource("22_lb6a7")
 pitch_scale = 0.91
 bus = &"SFX"

@@ -53,12 +53,14 @@ func _process(_delta):
         shuttle_entered = false
         wave_is_over.emit()
         
+    Globals.say("{d} dead".format({"d":Globals.dead_wave_enemies}))
 # func fade_out_music():
 #   var tween = create_tween()
 #   tween.tween_property($Wave01, "volume_db", -80, 2)
 #   $Wave01.stop()
         
 func wave_loop_start():
+    Globals.dead_wave_enemies = 0
     $MusicLoops.get_child(Globals.level_num).play()
     
 func wave_loop_stop():

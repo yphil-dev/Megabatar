@@ -33,8 +33,8 @@ signal switched_cams
 func _ready():
     _play_music_intro()
 
-    # Globals.level_num = 1
-    # is_debug = true
+    Globals.level_num = 0
+    is_debug = true
     
     var game_on = GameOn.instantiate()
     add_child(game_on)
@@ -59,8 +59,11 @@ func before():
     $EnterSpace.play()
 
 func after():
+    $OpeningScreenShip.visible = false
     var text_box = TextBox.instantiate()
     add_child(text_box)
+
+var enemies_launched = 0
     
 func phase_one():
 
@@ -87,6 +90,8 @@ func phase_one():
     say_something("Phase One, Level " + str(Globals.level_num + 1))
     enemies.spawn_bits((Globals.level_num + 1) * 10 if !is_debug else 2)
 
+    enemies_launched += (Globals.level_num + 1) * 10 if !is_debug else 2
+    
     enemies.wave_loop_start()
     enemies.wave_is_over.connect(phase_two)
     
@@ -99,12 +104,22 @@ func phase_two():
 
     for i in Globals.level_num + 1:
         enemies.spawn_shuttles(10)
+        enemies_launched += 10
         await get_tree().create_timer(4.0).timeout
 
     # enemies.spawn_shuttles(10)
     enemies.wave_is_over.connect(phase_three)
 
 func phase_three():
+    print("enemies_launched:", enemies_launched)
+    print("enemies_dead:", Globals.dead_wave_enemies)
+
+    if Globals.dead_wave_enemies == enemies_launched:
+        print("PERFECT!!")
+
+    Globals.dead_wave_enemies = 0
+    enemies_launched = 0
+    
     # $TextBox.visible = true
     ship.crosshair("hide")
     say_something("Phase Two, Level " + str(Globals.level_num + 1))

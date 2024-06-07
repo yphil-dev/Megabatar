@@ -6,11 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://gw8ymxcy8g72" path="res://assets/textures/steack/others_0003_subsurface_1k.jpg" id="4_fm7pb"]
 [ext_resource type="Material" uid="uid://cjom0sp05psdb" path="res://materials/flesh_01.tres" id="5_l2rmq"]
 [ext_resource type="Material" uid="uid://cj44rwx0s6eb2" path="res://materials/enemy_lights.tres" id="6_goiyw"]
-[ext_resource type="AudioStream" uid="uid://cbqdh85mah35g" path="res://assets/audio/music/mothership_1.ogg" id="7_esusv"]
 [ext_resource type="AudioStream" uid="uid://cppiainih81j1" path="res://assets/audio/sfx/MOTHERSHIP/motor_start.ogg" id="7_v8ayb"]
 [ext_resource type="AudioStream" uid="uid://dsm0s52rbh18g" path="res://assets/audio/sfx/MOTHERSHIP/MOTHER/charge.ogg" id="7_yba0k"]
 [ext_resource type="AudioStream" uid="uid://b8axbuwugdk67" path="res://assets/audio/sfx/MOTHERSHIP/motor_stop.ogg" id="8_o853a"]
 [ext_resource type="AudioStream" uid="uid://cpj7qmm61wgv2" path="res://assets/audio/sfx/MOTHERSHIP/MOTHER/motor_loop_05.ogg" id="10_achhk"]
+[ext_resource type="AudioStream" uid="uid://j12tfgxsr6o1" path="res://assets/audio/music/megabatar_loop.ogg" id="11_la8oi"]
 [ext_resource type="AudioStream" uid="uid://kiup2u5anrl4" path="res://assets/audio/sfx/MOTHERSHIP/MOTHER/entrance_horn_01.ogg" id="12_cy4s0"]
 [ext_resource type="AudioStream" uid="uid://bcq4pa1xvabhw" path="res://assets/audio/sfx/MOTHERSHIP/shuttle_spawn.ogg" id="13_gpeus"]
 
@@ -1432,9 +1432,7 @@ stream = ExtResource("10_achhk")
 bus = &"SFX"
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_esusv")
-autoplay = true
-bus = &"Music"
+stream = ExtResource("11_la8oi")
 
 [node name="EntranceHorn" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_cy4s0")

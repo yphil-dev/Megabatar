@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkv8q16vdlf8q"]
+
+[ext_resource type="PackedScene" uid="uid://cxu6fsygkpaq5" path="res://assets/3dobjects/question_mark.glb" id="1_alqi7"]
+
+[node name="question_mark" instance=ExtResource("1_alqi7")]
+transform = Transform3D(-3.54909e-06, -81.1936, 3.54909e-06, 0, -3.54909e-06, -81.1936, 81.1936, -3.54909e-06, 1.55135e-13, 0, 0, 0)
+
+[node name="Text" parent="." index="0"]
+transform = Transform3D(0.0320211, -0.999488, 4.3689e-08, 0.999488, 0.0320211, 4.23117e-08, -4.3689e-08, 4.23118e-08, 1, 0.003797, 0.0106561, -4.65792e-10)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="1"]
+transform = Transform3D(0.0123162, -2.77556e-16, -1.15805e-23, 2.77556e-16, 0.0123162, -2.22045e-16, 1.65436e-23, 2.22045e-16, 0.0123162, 0.409884, 0.462255, -0.356708)
+light_color = Color(0, 0.917647, 0.811765, 1)
+light_energy = 8.724
+omni_range = 80.882

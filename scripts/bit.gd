@@ -37,6 +37,8 @@ func _process(_delta):
         if is_rewarded:
             spawn_life("health")
 
+        Globals.dead_wave_enemies += 1
+
         queue_free()
 
 func spawn_life(life_type):

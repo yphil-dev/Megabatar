@@ -25,7 +25,7 @@ func _process(_delta):
             spawn_life("missiles")
         elif is_in_group("RewardBlast"):
             spawn_life("blast")
-
+        Globals.dead_wave_enemies += 1
         queue_free()
 
 func _ready():
