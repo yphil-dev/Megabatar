@@ -2,8 +2,9 @@ extends CanvasLayer
 
 @onready var shuttle_svp = %ShuttleSVP
 @onready var mother_svp = %MotherSVP
-@onready var briefing_text = %BriefingText
+@onready var shuttles_dead = %ShuttlesDead
 @onready var shuttles_dead_val = %ShuttlesDeadVal
+@onready var briefing_text = %BriefingText
 @onready var rank_val = %RankVal
 @onready var health_val = %HealthVal
 
@@ -15,21 +16,23 @@ extends CanvasLayer
 @onready var mothership_weapons = %MotherShipWeaponsVal
 @onready var mothership_armor = %MotherShipArmorVal
 
+
+
 const READ_RATE = 0.05
 
 var shuttle_tween
 
 var shuttle_specs = [
-    {"name": "Minos", "weapons": "Laser", "armor": "Titanium 1"},
-    {"name": "Golgot", "weapons": "Laser", "armor": "Titanium 2"},
+    {"name": "Minos", "weapons": "Laser x 2", "armor": "Titanium 1"},
+    {"name": "Golgot", "weapons": "Laser 4G", "armor": "Titanium 2"},
     {"name": "Flatter", "weapons": "Pulse", "armor": "Titanium 3"},
     {"name": "Razer", "weapons": "Plasma", "armor": "G3"},
     {"name": "Unknown", "weapons": "Unknown", "armor": "Unknown"}
 ]
 
 var mothership_specs = [
-    {"name": "Platform", "weapons": "Laser", "armor": "Titanium 1"},
-    {"name": "Hammer", "weapons": "Laser x 2", "armor": "G2"},
+    {"name": "Platform", "weapons": "Laser Cannon", "armor": "Titanium 1"},
+    {"name": "Hammer", "weapons": "Laser Cannon x 2", "armor": "G2"},
     {"name": "Retractor", "weapons": "Pulse x 3", "armor": "G3"},
     {"name": "Embracer", "weapons": "Plasma x 5", "armor": "G4+"},
     {"name": "Unknown", "weapons": "Unknown", "armor": "Unknown"}
@@ -58,8 +61,12 @@ func _ready():
 
     # Globals.level_num = 4
 
+    if Globals.level_num > 0:
+        shuttles_dead.visible = true
+    
     $NewIntel.play()
-    $NewIntel.finished.connect(play_briefing)
+    if !$NewIntel.finished.is_connected(play_briefing):
+        $NewIntel.finished.connect(play_briefing)
 
     add_text(briefings[Globals.level_num])
 

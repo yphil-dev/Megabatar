@@ -53,7 +53,7 @@ func _process(_delta):
         shuttle_entered = false
         wave_is_over.emit()
         
-    Globals.say("{d} dead".format({"d":Globals.dead_wave_enemies}))
+    # Globals.say("{d} dead".format({"d":Globals.dead_wave_enemies}))
 # func fade_out_music():
 #   var tween = create_tween()
 #   tween.tween_property($Wave01, "volume_db", -80, 2)
@@ -121,7 +121,7 @@ func spawn_shuttles(number_of_shuttles):
         await get_tree().create_timer(0.2).timeout
 
 func spawn_shuttle(y_offset):
-    shuttle = Shuttles[Globals.level_num].instantiate()
+    shuttle = Shuttles[randi_range(0, Globals.level_num)].instantiate()
     var initial_offset = -20
     shuttle.is_parked = false
     add_child(shuttle)

@@ -26,20 +26,35 @@ var enemies
 var alive = false
 var wall
 var spawner
-var is_debug = false
 
 signal switched_cams
     
 func _ready():
     _play_music_intro()
 
-    # Globals.level_num = 0
-    # is_debug = true
+    # Laser tower is not affected by missile
+    # random bit explosion pitch
+    # random mothership (hit) explosion pitch
+    # Hide shuttle destroyed on 1st briefing
+    
+    # Fade music out after wave
+    # Fade sfx out after death
+    # Not enough rewards (life)
+    
+    # Mothership health bar
+    # wave attacks are ridiculous
+    
+    # Globals.level_num = 3
+    # Globals.has_missiles = true
+    # Globals.is_debug = true
     
     var game_on = GameOn.instantiate()
     add_child(game_on)
-    game_on.controls_pressed.connect(show_controls_overlay)
-    game_on.play_pressed.connect(before)
+    if !game_on.controls_pressed.is_connected(show_controls_overlay):
+        game_on.controls_pressed.connect(show_controls_overlay)
+
+    if !game_on.play_pressed.is_connected(before):
+        game_on.play_pressed.connect(before)
 
     enemies = Enemies.instantiate()
     add_child(enemies)
@@ -54,11 +69,13 @@ func _ready():
     
 func before():
     fade_music_out()
-    $AnimShipGo.animation_finished.connect(after.unbind(1))
+    if !$AnimShipGo.animation_finished.is_connected(after.unbind(1)):
+        $AnimShipGo.animation_finished.connect(after.unbind(1))
     $AnimShipGo.play("go")
     $EnterSpace.play()
 
 func after():
+    $FaderAnim.play("fade_from_black")
     $OpeningScreenShip.visible = false
     var text_box = TextBox.instantiate()
     add_child(text_box)
@@ -88,9 +105,9 @@ func phase_one():
     
     $SpeedingStars.visible = true
     say_something("Phase One, Level " + str(Globals.level_num + 1))
-    enemies.spawn_bits((Globals.level_num + 1) * 10 if !is_debug else 2)
+    enemies.spawn_bits((Globals.level_num + 1) * 10 if !Globals.is_debug else 2)
 
-    enemies_launched += (Globals.level_num + 1) * 10 if !is_debug else 2
+    enemies_launched += (Globals.level_num + 1) * 10 if !Globals.is_debug else 2
     
     enemies.wave_loop_start()
     enemies.wave_is_over.connect(phase_two)
@@ -128,7 +145,9 @@ func phase_three():
     enemies.shuttle_entered = false
     wall = Walls[Globals.level_num].instantiate()
     $Wall.add_child(wall)
-    wall.scroll_finished.connect(phase_four)
+
+    if !wall.scroll_finished.is_connected(phase_four):
+        wall.scroll_finished.connect(phase_four)
 
 func phase_four():
     lives.visible = false
@@ -142,6 +161,7 @@ func phase_four():
     say_something("Phase Three, Level " + str(Globals.level_num + 1))
     # wall.scroll_finished.disconnect(phase_three)
     enemies.spawn_mothership(Globals.level_num)
+    $Hud.init_mothership_health()
     enemies.mothership_destroyed.connect(level_up)
     ship.reset_position()
     
@@ -160,7 +180,7 @@ func level_up():
 
     # await get_tree().create_timer(2.5).timeout
 
-    # fade_to_black(phase_one)
+    # fade_to_black(after)
 
     after()
 
@@ -226,8 +246,6 @@ var isDead = false
     
 func _process(_delta):
 
-    say_something("Healh " + str(Globals.health))
-    
     if Input.is_action_just_pressed("pause"):
         if $ControlsOverlay.visible:
             $ControlsOverlay.visible = false
@@ -332,4 +350,4 @@ func hide_shader_rect():
 
 func say_something(t):
     $Hud/BottomText/HBoxContainer2/BottomTextLabel.text = t
-    
+    print(t)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://cvw5pk20m8ct4"]
+[gd_scene load_steps=24 format=3 uid="uid://cvw5pk20m8ct4"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_lnqbu"]
 [ext_resource type="Script" path="res://scripts/health_bar.gd" id="2_7hp3g"]
+[ext_resource type="Script" path="res://scripts/boss_bar.gd" id="3_sboe8"]
 [ext_resource type="FontFile" uid="uid://cpfcewpxrsg2o" path="res://assets/fonts/Big Pixel demo.otf" id="4_3vbtr"]
 [ext_resource type="FontFile" uid="uid://cqjrherqggcm3" path="res://assets/fonts/supercomputer/supercomputer.ttf" id="4_vej44"]
 [ext_resource type="Texture2D" uid="uid://dhbujatkhc7wu" path="res://assets/img/weapon_laser.png" id="5_o7c5v"]
@@ -121,6 +122,40 @@ value = 80.0
 show_percentage = false
 
 [node name="HitTimer" type="Timer" parent="HealthBar"]
+one_shot = true
+
+[node name="BossBar" type="ProgressBar" parent="."]
+visible = false
+z_index = 1
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 1604.0
+offset_top = 15.0
+offset_right = -19.0
+offset_bottom = 51.0
+grow_horizontal = 2
+theme = SubResource("Theme_kcpkc")
+theme_override_styles/background = SubResource("StyleBoxEmpty_epg5n")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4gmtg")
+value = 50.0
+show_percentage = false
+script = ExtResource("3_sboe8")
+
+[node name="DamageBar" type="ProgressBar" parent="BossBar"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_y2iff")
+theme_override_styles/fill = SubResource("StyleBoxFlat_f56cp")
+value = 80.0
+show_percentage = false
+
+[node name="HitTimer" type="Timer" parent="BossBar"]
 one_shot = true
 
 [node name="ScoreLabel" type="Label" parent="."]
@@ -278,3 +313,4 @@ pitch_scale = 0.85
 bus = &"SFX_Left"
 
 [connection signal="timeout" from="HealthBar/HitTimer" to="HealthBar" method="_on_timer_timeout"]
+[connection signal="timeout" from="BossBar/HitTimer" to="BossBar" method="_on_timer_timeout"]

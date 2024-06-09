@@ -55,12 +55,13 @@ var spawn_point
 
 func _ready():
 
-    health = (Globals.level_num + 1) * 100
+    health = 50 if Globals.is_debug else (Globals.level_num + 1) * 250
     
     spawn_point = $SpawnPoint if name != "Mother" else $armature/SpawnPoint
     
     $EntranceHorn.play()
-    $EntranceHorn.finished.connect($Music.play)
+    if !$EntranceHorn.finished.is_connected($Music.play):
+        $EntranceHorn.finished.connect($Music.play)
 
     Globals.say("This mothership's name is {name} and its health level is {health} Level + 1 is {h}".format({"name":name, "health":health, "h":Globals.level_num + 1 * 6}))
 
@@ -75,7 +76,10 @@ func _ready():
     tween.tween_callback(move)
     
 func _process(_delta):
+    # Globals.say("This mothership's name is {name} and its health level is {health}".format({"name":name, "health":health}))
+    Globals.boss_health = health
     if health <= 0:
+        Globals.boss_health = 0
         Globals.explode(Vector3(global_transform.origin.x, global_transform.origin.y, global_transform.origin.z - 5), 4, 10)
         exploded.emit()
         queue_free()
@@ -154,9 +158,9 @@ func fire_and_maybe_spawn():
         tween.parallel().tween_property(mouth_material, "emission", Color.FIREBRICK, 1.7)
         tween.tween_callback(reset_mouth_color)
 
-        
-    $Charge.finished.connect(_fire)
-    # _fire()
+    if !$Charge.finished.is_connected(_fire):
+        $Charge.finished.connect(_fire)
+
     if shuttles_spawned.size() < (Globals.level_num + 1) * 2:
         spawn_shuttle()
 

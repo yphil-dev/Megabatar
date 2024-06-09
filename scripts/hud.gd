@@ -49,7 +49,8 @@ func on_missiles_activated():
     
 func flash_weapons(weapon):
     $NewWeapon.play()
-    $NewWeapon.finished.connect(weapon.play)
+    if !$NewWeapon.finished.is_connected(weapon.play):
+        $NewWeapon.finished.connect(weapon.play)
     var tween = get_tree().create_tween()
     tween.tween_property($WeaponsControls, "modulate:a", 0.1, 0.1)
     tween.tween_property($WeaponsControls, "modulate:a", 1.0, 0.1)
@@ -58,3 +59,6 @@ func flash_weapons(weapon):
     tween.tween_property($WeaponsControls, "modulate:a", 0.1, 0.1)
     tween.tween_property($WeaponsControls, "modulate:a", 1.0, 0.1)
     # $NewWeapon.finished.disconnect(weapon.play)
+
+func init_mothership_health():
+    $BossBar.init_health()

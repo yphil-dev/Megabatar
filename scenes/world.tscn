@@ -254,22 +254,21 @@ z_as_relative = false
 [node name="Planets" type="Node3D" parent="."]
 
 [node name="Mars" parent="Planets" instance=ExtResource("2_4elxh")]
-transform = Transform3D(346.928, 0, -155.057, 0, 380, 0, 155.057, 0, 346.928, 758.394, 505.123, -5002.64)
+transform = Transform3D(302.18, 0, 230.411, 0, 380, 0, -230.411, 0, 302.18, 758.394, 505.123, -5002.64)
 
 [node name="PlanetAthmosphere" parent="Planets" instance=ExtResource("14_klseg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -523.522, 0, -3807.12)
 
 [node name="Earth" parent="Planets" instance=ExtResource("3_2q3uj")]
-transform = Transform3D(211.893, 0, -94.704, 0, 232.091, 0, 94.704, 0, 211.893, -730.514, 0, -6770.69)
+transform = Transform3D(184.562, 0, 140.728, 0, 232.091, 0, -140.728, 0, 184.562, -730.514, 0, -6770.69)
 
 [node name="Star" parent="Planets" instance=ExtResource("15_lvied")]
-transform = Transform3D(372.396, 0, -4.00221, 0, 372.415, 0, 4.00221, 0, 372.396, 140.594, -1547.52, -7556.37)
+transform = Transform3D(64.2894, 0, -366.827, 0, 372.415, 0, 366.827, 0, 64.2894, 140.594, -1547.52, -7556.37)
 visible = false
 skeleton = NodePath("../..")
 
 [node name="Sun" type="MeshInstance3D" parent="Planets"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 598.677)
-visible = false
 cast_shadow = 0
 mesh = SubResource("SphereMesh_4dv0u")
 skeleton = NodePath("DirectionalLight")

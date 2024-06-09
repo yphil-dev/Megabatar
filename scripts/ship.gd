@@ -133,7 +133,7 @@ func _physics_process(delta):
     _update_movement(delta)
 
 func crosshair(action):
-    Globals.say("crosshair: {x}".format({"x":action}))
+    # Globals.say("crosshair: {x}".format({"x":action}))
     match action:
         "show":
             $Crosshair.visible = true

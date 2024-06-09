@@ -14,10 +14,13 @@ signal third_wave_over
 
 @onready var lives = 3
 
+var is_debug = false
+
 var dead_wave_enemies = 0
 var launched_wave_enemies = 0
 
 var health = 100
+var boss_health = 0
 
 var bits_dead = 100
 
@@ -141,6 +144,7 @@ func explode(coords, force, damage):
         fire.emitting = true
         sparks.emitting = true
         explosion_sound = explosion.get_node("ExplosionSound1")
+        explosion_sound.pitch_scale = randf_range(0.5, 2.0)
         flash_material.scale_min = 1
         flash_material.scale_max = damage * 4
         fire_material.scale_max = damage * 4
@@ -164,6 +168,7 @@ func explode(coords, force, damage):
         flash.emitting = true
         sparks.emitting = true
         explosion_sound = explosion.get_node("ExplosionSound3")
+        explosion_sound.pitch_scale = randf_range(0.5, 2.0)
     elif force == 7: # Mother impact
         flash.emitting = true
         flash_material.scale_min = 2

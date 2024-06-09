@@ -206,7 +206,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 301.302, -3.13531, 0)
 [node name="Cannon10" parent="Scroller/Down" groups=["Down", "RewardHealth"] instance=ExtResource("3_ptlmw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 226.573, -10.2332, 0)
 
-[node name="Cannon11" parent="Scroller/Down" groups=["Down", "RewardHealth"] instance=ExtResource("3_ptlmw")]
+[node name="Cannon11" parent="Scroller/Down" groups=["Down", "RewardLife"] instance=ExtResource("3_ptlmw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 179.738, -1.17318, 0)
 
 [node name="Cannon12" parent="Scroller/Down" groups=["Down", "RewardHealth", "RewardMissiles"] instance=ExtResource("3_ptlmw")]
