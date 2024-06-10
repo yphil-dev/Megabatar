@@ -16,9 +16,6 @@ func init_nodes(count):
         await get_tree().create_timer(0.5).timeout
         add_life("init")
 
-func hello():
-    print("oh hi!")
-
 func glow_last_life():
     var last_node = lives_container.get_child(lives_container.get_child_count() - 1)
     var mesh = last_node.get_child(0)
@@ -34,8 +31,6 @@ func glow_last_life():
 func add_life(type):
     var new_life = Starship.instantiate()
     lives_container.add_child(new_life)
-
-    # new_life.get_node("LifeLight").visible = true
     
     var marker_position = $LivesContainer/Marker3D.global_transform.origin
     var new_position = Vector3(marker_position.x - (0.08 * marker_position.x * lives_container.get_child_count()), marker_position.y, marker_position.z - 5.0)

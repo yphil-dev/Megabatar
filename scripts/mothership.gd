@@ -90,7 +90,6 @@ func _fire():
         var laser = BULLET.instantiate()
         laser.is_mothership = true
         if name == "Mother":
-            print("Yo, Mother")
             laser.is_mother = true
         laser.away = true
         laser.speed = 80.0

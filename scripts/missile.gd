@@ -13,7 +13,6 @@ func _on_timer_timeout():
     
 func _on_area_3d_body_entered(body):
 
-    print("body: ", body)
     Globals.say("body: {x}".format({"x":body}))
 
     if body.owner.is_in_group("Walls"):

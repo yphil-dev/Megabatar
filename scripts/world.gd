@@ -115,7 +115,7 @@ func phase_two():
     ship.crosshair("hide")
     say_something("Phase Half, Level " + str(Globals.level_num + 1))
     enemies.wave_is_over.disconnect(phase_two)
-    enemies.is_wave_over = true
+    enemies.is_wave_over = false
     enemies.shuttle_entered = false
 
     for i in Globals.level_num + 1:
