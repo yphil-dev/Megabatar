@@ -43,9 +43,9 @@ func _ready():
     # Mothership health bar
     # wave attacks are ridiculous
     
-    # Globals.level_num = 2
+    # Globals.level_num = 3
     # Globals.has_missiles = true
-    Globals.is_debug = true
+    # Globals.is_debug = true
     
     var game_on = GameOn.instantiate()
     add_child(game_on)
@@ -118,12 +118,13 @@ func phase_two():
     enemies.is_wave_over = true
     enemies.shuttle_entered = false
 
-    # for i in Globals.level_num + 1:
-    #     enemies.spawn_shuttles(10)
-    #     enemies_launched += 10
-    #     await get_tree().create_timer(4.0).timeout
+    for i in Globals.level_num + 1:
+        enemies.spawn_shuttles(10)
+        enemies_launched += 10
+        await get_tree().create_timer(4.0).timeout
 
-    enemies.spawn_shuttles(10)
+    # enemies_launched += (Globals.level_num + 1) * 10 if !Globals.is_debug else 10
+    # enemies.spawn_shuttles((Globals.level_num + 1) * 10 if !Globals.is_debug else 10)
     enemies.wave_is_over.connect(phase_three)
 
 func phase_three():

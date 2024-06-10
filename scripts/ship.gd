@@ -100,8 +100,9 @@ func _fire_left_rocket():
 func _fire_rocket(rocket, muzzle_transform):
     if rocket and muzzle_transform and world:
         rocket.reparent(world)
-        rocket.global_transform = muzzle_transform
-        rocket.fire()
+        if rocket:
+            rocket.global_transform = muzzle_transform
+            rocket.fire()
 
 func _fire_rockets():
     if Globals.has_missiles:
@@ -166,10 +167,10 @@ func _handle_input():
     if Input.is_action_pressed("shoot_lasers") and fire_timer.time_left == 0:
         _fire_lasers()
 
-    if Input.is_action_just_released("shoot_rockets"):
+    if Input.is_action_just_pressed("shoot_rockets"):
         _fire_rockets()
 
-    # if Input.is_action_just_released("debug"):
+    # if Input.is_action_just_pressed(("debug"):
     #     camera.current = !camera.current
     #     $CamRotator.play("r")
         

@@ -94,9 +94,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -48.0
-offset_right = 1940.0
-offset_bottom = 1340.0
+offset_left = -960.0
+offset_top = -648.0
+offset_right = 990.0
+offset_bottom = 740.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -298,7 +299,7 @@ size_flags_vertical = 0
 
 [node name="ShuttleClassVal" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/Specs/Class/ShuttlesVal"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 0)
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.760784, 0.941176, 1, 1)
 theme_override_fonts/font = ExtResource("1_h4tyb")
@@ -333,7 +334,7 @@ size_flags_vertical = 0
 
 [node name="ShuttleWeaponsVal" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/Specs/Weapons/Val"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 0)
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.760784, 0.941176, 1, 1)
 theme_override_fonts/font = ExtResource("1_h4tyb")
@@ -368,7 +369,7 @@ size_flags_vertical = 0
 
 [node name="ShuttleArmorVal" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles/Specs/Armor/Val"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 0)
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.760784, 0.941176, 1, 1)
 theme_override_fonts/font = ExtResource("1_h4tyb")
@@ -459,7 +460,7 @@ size_flags_vertical = 0
 
 [node name="MotherShipClassVal" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/Specs/Class/ShuttlesVal"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.760784, 0.941176, 1, 1)
 theme_override_fonts/font = ExtResource("1_h4tyb")
@@ -494,7 +495,7 @@ size_flags_vertical = 0
 
 [node name="MotherShipWeaponsVal" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/Specs/Weapons/Val"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.760784, 0.941176, 1, 1)
 theme_override_fonts/font = ExtResource("1_h4tyb")
@@ -529,7 +530,7 @@ size_flags_vertical = 0
 
 [node name="MotherShipArmorVal" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/Specs/Armor/Val"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.760784, 0.941176, 1, 1)
 theme_override_fonts/font = ExtResource("1_h4tyb")
