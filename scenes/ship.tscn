@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cyn7vs84ebgcq"]
+[gd_scene load_steps=18 format=3 uid="uid://cyn7vs84ebgcq"]
 
 [ext_resource type="Script" path="res://scripts/ship.gd" id="1_lmpvk"]
 [ext_resource type="Texture2D" uid="uid://c43l388cpxnes" path="res://assets/textures/fire/fire_01.png" id="4_mboij"]
@@ -44,6 +44,92 @@ radius = 0.344147
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lgva4"]
 size = Vector3(0.838867, 1.15027, 1)
+
+[sub_resource type="Animation" id="Animation_xq1r6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CamGimbal:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Camera:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-23.0312, 2.82692, -9.53674e-07)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%Camera:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.118682, -1.5708, -0.179769)]
+}
+
+[sub_resource type="Animation" id="Animation_ms4bg"]
+resource_name = "r"
+length = 14.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CamGimbal:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Camera:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 4, 10, 12, 14),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-23.0312, 2.82692, -9.53674e-07), Vector3(-23.0312, 2.82692, -9.53674e-07), Vector3(-9.02251, 0.996663, 3.03303e-05), Vector3(-9.02251, -2.20628, 3.03303e-05), Vector3(-5.61126, 1.06775, 1.52381e-05), Vector3(-5.61126, 1.06775, 1.52381e-05)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%Camera:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3, 5, 10, 12, 14),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.118682, -1.5708, 0), Vector3(-0.118682, -1.5708, -0.179769), Vector3(-0.118682, -1.5708, 0), Vector3(0.268781, -1.5708, 0.179769), Vector3(-0.136904, -1.5708, -6.09291e-07), Vector3(-0.136904, -1.5708, -6.09291e-07)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2ptk7"]
+_data = {
+"RESET": SubResource("Animation_xq1r6"),
+"r": SubResource("Animation_ms4bg")
+}
 
 [sub_resource type="Animation" id="Animation_y0vww"]
 length = 0.001
@@ -153,17 +239,26 @@ spot_angle = 31.15
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.731537, 0.198364, 0)
 omni_range = 3.264
 
-[node name="CameraRear" type="Camera3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -30.4909, 0, 0)
-fov = 24.0
-
 [node name="Crosshair" parent="." instance=ExtResource("5_d1qi8")]
 transform = Transform3D(-4.19221e-09, 0, 0.0959065, 0, 0.0959065, 0, -0.0959065, 0, -4.19221e-09, 44.3135, 0, -0.175008)
+
+[node name="CamRotator" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Anim")
+libraries = {
+"": SubResource("AnimationLibrary_2ptk7")
+}
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_g3drv")
 }
+
+[node name="CamGimbal" type="Node3D" parent="."]
+
+[node name="Camera" type="Camera3D" parent="CamGimbal"]
+unique_name_in_owner = true
+transform = Transform3D(-0.0211744, 0.116495, -0.992966, -0.177545, 0.976964, 0.118404, 0.983885, 0.178803, -3.59453e-06, -23.0312, 2.82692, -9.53674e-07)
+fov = 24.0
 
 [connection signal="timeout" from="RightRocketTimer" to="." method="_on_right_rocket_timer_timeout"]
 [connection signal="timeout" from="LeftRocketTimer" to="." method="_on_left_rocket_timer_timeout"]

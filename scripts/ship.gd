@@ -11,6 +11,8 @@ const EXPLOSION = preload("res://scenes/explosions/explosion.tscn")
 @onready var damage_smoke = $ShipHitBox/Starship/DamageSmoke
 @onready var coll_box = $ShipHitBox/CollisionBox
 
+@onready var camera = %Camera
+
 var rocket_right
 var rocket_left
 
@@ -167,6 +169,10 @@ func _handle_input():
     if Input.is_action_just_released("shoot_rockets"):
         _fire_rockets()
 
+    # if Input.is_action_just_released("debug"):
+    #     camera.current = !camera.current
+    #     $CamRotator.play("r")
+        
 func _handle_enemy_selection():
     var enemies = get_tree().get_nodes_in_group("Shuttles")
     if enemies.size() > 0:

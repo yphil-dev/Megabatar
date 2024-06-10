@@ -40,13 +40,12 @@ func _ready():
     # Fade music out after wave
     # Fade sfx out after death
     # Not enough rewards (life)
-    
     # Mothership health bar
     # wave attacks are ridiculous
     
-    # Globals.level_num = 3
+    # Globals.level_num = 2
     # Globals.has_missiles = true
-    # Globals.is_debug = true
+    Globals.is_debug = true
     
     var game_on = GameOn.instantiate()
     add_child(game_on)
@@ -119,12 +118,12 @@ func phase_two():
     enemies.is_wave_over = true
     enemies.shuttle_entered = false
 
-    for i in Globals.level_num + 1:
-        enemies.spawn_shuttles(10)
-        enemies_launched += 10
-        await get_tree().create_timer(4.0).timeout
+    # for i in Globals.level_num + 1:
+    #     enemies.spawn_shuttles(10)
+    #     enemies_launched += 10
+    #     await get_tree().create_timer(4.0).timeout
 
-    # enemies.spawn_shuttles(10)
+    enemies.spawn_shuttles(10)
     enemies.wave_is_over.connect(phase_three)
 
 func phase_three():
@@ -246,6 +245,11 @@ var isDead = false
     
 func _process(_delta):
 
+    
+    # if Input.is_action_just_pressed("debug"):
+    #     $Cameras/CameraDolly.current = true
+    #     $Cameras/CameraDolly.start_camera_rotation()
+    
     if Input.is_action_just_pressed("pause"):
         if $ControlsOverlay.visible:
             $ControlsOverlay.visible = false
@@ -270,8 +274,8 @@ func _process(_delta):
     if Input.is_action_just_pressed("back"):
         $ControlsOverlay.visible = false
 
-    if Input.is_action_just_pressed("debug"):
-        debug_camera()
+    # if Input.is_action_just_pressed("debug"):
+    #     debug_camera()
 
     if Input.is_action_just_pressed("blast"):
         if Globals.has_blast:

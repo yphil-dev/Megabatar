@@ -51,6 +51,7 @@ func _process(_delta):
     if shuttle_count == 0 and !is_wave_over and shuttle_entered:
         is_wave_over = true
         shuttle_entered = false
+        Globals.say("wave_is_over")
         wave_is_over.emit()
         
     # Globals.say("{d} dead".format({"d":Globals.dead_wave_enemies}))

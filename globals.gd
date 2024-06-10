@@ -201,7 +201,22 @@ func explode(coords, force, damage):
         fire.lifetime = 6.0 
     elif force == 9: # Ship healing
         explosion_sound = explosion.get_node("Heal")
+    elif force == 10: # Title screen explosion
+        flash.emitting = true
+        fire.emitting = true
+        sparks.emitting = true
+        explosion_sound = explosion.get_node("ExplosionSound1")
+        explosion_sound.pitch_scale = randf_range(0.5, 2.0)
+        flash_material.scale_min = 1
+        flash_material.scale_max = damage * 3
 
+        fire_material.scale_min = 4
+        fire_material.scale_max = damage * 3
+
+        fire_material.color = Color(5.00,2.00,1.00,1.00)
+        fire.lifetime = 1.0
+        fire.amount = 26
+        fire_material.gravity = Vector3(0, 1, 0)
         
     if force != 5:
         explosion_sound.play()

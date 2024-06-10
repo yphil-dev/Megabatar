@@ -51,7 +51,9 @@ func add_life(type):
 func sub_life():
     if lives_container.get_child_count() > 0:
         var last_node = lives_container.get_child(lives_container.get_child_count() - 1)
-        last_node.get_node("Rotate").play("r")
+        var this_last_node = last_node.get_node_or_null("Rotate")
+        if this_last_node:
+            this_last_node.play("r")
         Globals.explode(Vector3(last_node.global_transform.origin), 2, 2)
         # $RemLifeSound.play()
         await get_tree().create_timer(0.2).timeout

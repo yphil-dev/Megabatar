@@ -39,7 +39,7 @@ func _set_health(new_health):
 #     value = health
 
 func _process(_delta):
-    Globals.say("Globals.boss_health {health}".format({"health":Globals.boss_health}))
+    # Globals.say("Globals.boss_health {health}".format({"health":Globals.boss_health}))
     if Globals.boss_health > 0:
         visible = true
     else:

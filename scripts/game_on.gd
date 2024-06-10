@@ -2,6 +2,7 @@ extends Node3D
 
 @onready var music_slider = $Control/VBoxContainer/MusicSlider
 @onready var sfx_slider = $Control/VBoxContainer/SFXSlider
+@onready var explosion_marker = %ExplosionMarker
 
 var music_bus = AudioServer.get_bus_index("Music")
 var sfx_bus = AudioServer.get_bus_index("SFX")
@@ -44,5 +45,5 @@ func _on_sfx_slider_value_changed(value):
     AudioServer.set_bus_volume_db(sfx_bus, value)
 
 func play_clang_sound():
-    $Clang.play()
-    
+    Globals.explode(Vector3(explosion_marker.global_transform.origin), 10, 3)
+

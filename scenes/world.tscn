@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://c1y4humn3cfrj"]
+[gd_scene load_steps=42 format=3 uid="uid://c1y4humn3cfrj"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_5frqm"]
 [ext_resource type="PackedScene" uid="uid://dneumird5vcjw" path="res://addons/naejimer_3d_planet_generator/scenes/planet_lava.tscn" id="2_4elxh"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c5xq11mp6uk61" path="res://assets/img/SpacePanoramas/panorama1.jpg" id="5_v7rk4"]
 [ext_resource type="PackedScene" uid="uid://2kcmjrxy6ju0" path="res://scenes/speeding_stars.tscn" id="7_m3dwx"]
 [ext_resource type="Environment" uid="uid://cb3w0m807nfnp" path="res://resources/world.tres" id="8_eqhqk"]
+[ext_resource type="Script" path="res://scripts/camera_dolly.gd" id="8_fawcv"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="9_i8g6p"]
 [ext_resource type="PackedScene" uid="uid://0f1cas5c8x1l" path="res://scenes/star_field.tscn" id="11_4cb81"]
 [ext_resource type="PackedScene" uid="uid://dwbrk0u0aulgj" path="res://scenes/starship.tscn" id="11_jlpn2"]
@@ -254,16 +255,16 @@ z_as_relative = false
 [node name="Planets" type="Node3D" parent="."]
 
 [node name="Mars" parent="Planets" instance=ExtResource("2_4elxh")]
-transform = Transform3D(302.18, 0, 230.411, 0, 380, 0, -230.411, 0, 302.18, 758.394, 505.123, -5002.64)
+transform = Transform3D(379.038, 0, 27.0603, 0, 380, 0, -27.0603, 0, 379.038, 758.394, 505.123, -5002.64)
 
 [node name="PlanetAthmosphere" parent="Planets" instance=ExtResource("14_klseg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -523.522, 0, -3807.12)
 
 [node name="Earth" parent="Planets" instance=ExtResource("3_2q3uj")]
-transform = Transform3D(184.562, 0, 140.728, 0, 232.091, 0, -140.728, 0, 184.562, -730.514, 0, -6770.69)
+transform = Transform3D(231.505, 0, 16.5275, 0, 232.091, 0, -16.5275, 0, 231.505, -730.514, 0, -6770.69)
 
 [node name="Star" parent="Planets" instance=ExtResource("15_lvied")]
-transform = Transform3D(64.2894, 0, -366.827, 0, 372.415, 0, 366.827, 0, 64.2894, 140.594, -1547.52, -7556.37)
+transform = Transform3D(320.469, 0, 189.724, 0, 372.415, 0, -189.724, 0, 320.469, 140.594, -1547.52, -7556.37)
 visible = false
 skeleton = NodePath("../..")
 
@@ -329,6 +330,12 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -65.71
 current = true
 fov = 60.0
 script = ExtResource("9_i8g6p")
+
+[node name="CameraDolly" type="Camera3D" parent="Cameras"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -65.7194, 0, 0)
+current = true
+fov = 60.0
+script = ExtResource("8_fawcv")
 
 [node name="Lights" type="Node" parent="."]
 

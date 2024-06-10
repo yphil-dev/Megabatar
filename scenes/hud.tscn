@@ -153,6 +153,7 @@ grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_y2iff")
 theme_override_styles/fill = SubResource("StyleBoxFlat_f56cp")
 value = 80.0
+fill_mode = 1
 show_percentage = false
 
 [node name="HitTimer" type="Timer" parent="BossBar"]
