@@ -131,6 +131,7 @@ func phase_three():
 
     if Globals.dead_wave_enemies == enemies_launched:
         $WowPerfect.play()
+        await get_tree().create_timer(1.2).timeout
         Globals.lives += 1
 
     Globals.dead_wave_enemies = 0

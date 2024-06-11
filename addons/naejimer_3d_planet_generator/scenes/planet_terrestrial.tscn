@@ -88,7 +88,7 @@ nodes/TimeScale/position = Vector2(140, 140)
 node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
 
 [node name="PlanetTerrestrial" type="MeshInstance3D"]
-transform = Transform3D(398.764, 0, 31.4246, 0, 400, 0, -31.4246, 0, 398.764, 0, 0, 0)
+transform = Transform3D(399.811, 0, 12.3048, 0, 400, 0, -12.3048, 0, 399.811, 0, 0, 0)
 mesh = SubResource("SphereMesh_h4ifb")
 skeleton = NodePath(".")
 
@@ -104,6 +104,7 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+active = false
 libraries = {
 "": SubResource("AnimationLibrary_37sus")
 }

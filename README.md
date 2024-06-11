@@ -19,6 +19,19 @@ An old school space shooter
 - Bitmap graphics: [GIMP](https://www.gimp.org/) 2.10.30
 - Music: [Sunvox](https://warmplace.ru/soft/sunvox/) 2.1.1c
 
+## New things
+
+Welcome to the Beta3 of MegaBatar!
+
+- Boss cannons
+- Boss health bar
+- Briefing screen
+- Force feedback / Vibration
+- New shuttle wave attack patterns
+- Perfect wave reward
+- Tons of squashed bug
+- And more
+
 ## TODO
 
 - Still one shuttle short

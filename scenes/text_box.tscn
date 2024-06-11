@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://lohq388huwjh"]
+[gd_scene load_steps=30 format=3 uid="uid://lohq388huwjh"]
 
 [ext_resource type="FontFile" uid="uid://cpfcewpxrsg2o" path="res://assets/fonts/Big Pixel demo.otf" id="1_h4tyb"]
 [ext_resource type="Script" path="res://scripts/text_box.gd" id="1_hd1lj"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bt3uxph1qx73g" path="res://scenes/enemies/motherships/dummy.tscn" id="9_567vf"]
 [ext_resource type="PackedScene" uid="uid://bkv8q16vdlf8q" path="res://scenes/enemies/motherships/question_mark.tscn" id="14_ugdi7"]
 [ext_resource type="AudioStream" uid="uid://b0brxe0ohkbg1" path="res://assets/audio/sfx/VOICES/new_intel.ogg" id="15_277p6"]
+[ext_resource type="Texture2D" uid="uid://b1dkdclqd6n5t" path="res://assets/img/briefing_green_grid.png" id="15_pv18a"]
 [ext_resource type="AudioStream" uid="uid://bxbre8hlmcakw" path="res://assets/audio/music/briefing_loop.ogg" id="16_6f5ud"]
 [ext_resource type="AudioStream" uid="uid://dgt67pxv61a4f" path="res://assets/audio/sfx/VOICES/briefing_01.ogg" id="16_femsb"]
 [ext_resource type="AudioStream" uid="uid://dxd72u3u1xea0" path="res://assets/audio/sfx/VOICES/briefing_00.ogg" id="17_m41hy"]
@@ -23,13 +24,12 @@
 [ext_resource type="AudioStream" uid="uid://dbyoi70qncmi2" path="res://assets/audio/sfx/VOICES/briefing_04.ogg" id="22_lb6a7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8gyil"]
-bg_color = Color(0.152941, 0.152941, 0.152941, 1)
+bg_color = Color(0.164706, 0.164706, 0.164706, 1)
 border_width_left = 20
 border_width_top = 20
 border_width_right = 20
 border_width_bottom = 20
-border_color = Color(0.760784, 0.941176, 1, 1)
-border_blend = true
+border_color = Color(0, 0.337255, 0.411765, 1)
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
@@ -96,7 +96,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -960.0
 offset_top = -648.0
-offset_right = 990.0
+offset_right = 998.0
 offset_bottom = 740.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -233,7 +233,6 @@ autowrap_mode = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -259,7 +258,6 @@ visible_ratio = 0.0
 
 [node name="Main" type="HBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 0
 
 [node name="Shuttles" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main"]
 clip_contents = true
@@ -267,7 +265,6 @@ custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_constants/separation = 0
 
 [node name="Specs" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Shuttles"]
 layout_mode = 2
@@ -419,15 +416,19 @@ far = 45.48
 [node name="Logo" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main"]
 layout_mode = 2
 
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Logo"]
+layout_mode = 2
+theme_override_constants/margin_top = 190
+
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/Logo"]
 z_index = 1
 layout_mode = 2
+size_flags_stretch_ratio = 0.0
 texture = ExtResource("8_2obsl")
 
 [node name="MotherShips" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main"]
 layout_mode = 2
 size_flags_horizontal = 8
-theme_override_constants/separation = 0
 
 [node name="Specs" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips"]
 layout_direction = 3
@@ -538,6 +539,10 @@ theme_override_font_sizes/font_size = 32
 text = "Golgot"
 autowrap_mode = 3
 
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips"]
+layout_mode = 2
+theme_override_constants/margin_top = 50
+
 [node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips"]
 layout_mode = 2
 
@@ -598,10 +603,15 @@ transform = Transform3D(0.153126, 0.196525, -0.221453, 3.76526e-08, 0.249316, 0.
 
 [node name="SpotLight3D" type="SpotLight3D" parent="MarginContainer/MarginContainer/HBoxContainer/VBoxContainer/Main/MotherShips/SubViewportContainer/MotherSVP/Dummy/Camera3D2"]
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+[node name="BgLogo" type="TextureRect" parent="MarginContainer/MarginContainer"]
 modulate = Color(0, 1, 0, 0.0588235)
 layout_mode = 2
 texture = ExtResource("8_2obsl")
+
+[node name="Grid" type="TextureRect" parent="MarginContainer/MarginContainer"]
+modulate = Color(0, 1, 0, 0.0588235)
+layout_mode = 2
+texture = ExtResource("15_pv18a")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

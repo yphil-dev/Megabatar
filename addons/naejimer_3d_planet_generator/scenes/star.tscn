@@ -1,12 +1,94 @@
 [gd_scene load_steps=13 format=3 uid="uid://c1lxtdgeggnej"]
 
-[ext_resource type="Shader" path="res://addons/naejimer_3d_planet_generator/shaders/body.gdshader" id="1_b0k00"]
 [ext_resource type="Texture2D" uid="uid://dxjapfacsp3fk" path="res://addons/naejimer_3d_planet_generator/noises/star.tres" id="2_8dsqn"]
 [ext_resource type="Shader" path="res://addons/naejimer_3d_planet_generator/shaders/atmosphere.gdshader" id="3_0hp1p"]
 
+[sub_resource type="Shader" id="Shader_gkbpk"]
+code = "// Based on: https://www.reddit.com/r/godot/comments/gqhy3g/procedural_planet_generator_based_on_planetarium/
+shader_type spatial;
+
+uniform float emit : hint_range(0, 16) = 0.0;
+uniform vec4 color_1 : source_color = vec4(0.17, 0.55, 1.0, 1.0);
+uniform float color_1_treshold : hint_range(0, 1) = 0.54;
+uniform float color_1_roughness : hint_range(0, 1) = 0.1;
+uniform bool color_1_emit = false;
+uniform vec4 color_2 : source_color = vec4(1.0, 0.94, 0.76, 1.0);
+uniform float color_2_treshold : hint_range(0, 1) = 0.56;
+uniform vec4 color_3 : source_color = vec4(0.34, 0.74, 0.5, 1.0);
+uniform float color_3_treshold : hint_range(0, 1) = 0.6;
+uniform vec4 color_4 : source_color = vec4(0.27, 0.62, 0.42, 1.0);
+uniform float color_4_treshold : hint_range(0, 1) = 0.7;
+uniform vec4 color_5 : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float color_5_treshold : hint_range(0, 1) = 1.0;
+uniform bool noise_gaseous = false;
+uniform float noise_gaseous_speed : hint_range(0, 0.1) = 0.0025;
+uniform float noise_scale : hint_range(1, 10) = 1.0;
+uniform sampler2D noise : hint_default_black;
+
+varying vec3 triplanar_power_normal;
+varying vec3 triplanar_pos;
+
+const float triplanar_sharpness = 0.5;
+
+vec2 rotate_position(vec2 position) {
+	if (noise_gaseous) {
+		position = mod(position + TIME * 2.5 * noise_gaseous_speed / 10.0, 0.0);
+	}
+	return position;
+}
+
+vec4 triplanar_texture(sampler2D p_sampler, vec3 p_weights, vec3 p_triplanar_pos) {
+	vec4 samp = vec4(0.0);
+	samp += texture(p_sampler, rotate_position(p_triplanar_pos.xy)) * p_weights.z;
+	samp += texture(p_sampler, rotate_position(p_triplanar_pos.xz)) * p_weights.y;
+	samp += texture(p_sampler, rotate_position(p_triplanar_pos.zy * vec2(-1.0, 1.0))) * p_weights.x;
+	return samp;
+}
+
+void vertex() {
+	triplanar_power_normal = pow(abs(NORMAL), vec3(triplanar_sharpness));
+	triplanar_power_normal /= dot(triplanar_power_normal, vec3(1.0));
+	triplanar_pos = VERTEX * vec3(noise_scale, noise_scale, noise_scale);
+	triplanar_pos *= vec3(1.0, -1.0, 1.0);
+}
+
+void fragment() {
+	vec3 triplanar_pos_clone = triplanar_pos;
+	if (noise_gaseous) {
+		triplanar_pos_clone = vec3(triplanar_pos.x * sin(0.1), triplanar_pos.y, triplanar_pos.z * sin(0.1));
+	}
+	vec4 color = triplanar_texture(noise, triplanar_power_normal, triplanar_pos_clone);
+	float roughness = 0.0;
+	float d = max(max(color.r, color.g), color.b);
+	if (d < color_1_treshold) {
+		color = color_1;
+		roughness = color_1_roughness;
+		if (color_1_emit) {
+			EMISSION = color_1.rgb;
+		}
+	}
+	else if (d < color_2_treshold) {
+		color = color_2;
+	}
+	else if (d < color_3_treshold) {
+		color = color_3;
+	}
+	else if (d < color_4_treshold) {
+		color = color_4;
+	}
+	else if (d < color_5_treshold) {
+		color = color_5;
+	}
+	if (bool(emit)) {
+		EMISSION = color.rgb * emit;
+	}
+	ALBEDO = color.rgb;
+	ROUGHNESS = roughness;
+}"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6b4el"]
 render_priority = 0
-shader = ExtResource("1_b0k00")
+shader = SubResource("Shader_gkbpk")
 shader_parameter/emit = 3.0
 shader_parameter/color_1 = Color(0.435294, 0.129412, 0, 1)
 shader_parameter/color_1_treshold = 0.4
@@ -21,7 +103,7 @@ shader_parameter/color_4_treshold = 0.7
 shader_parameter/color_5 = Color(1, 0.639216, 0.25098, 1)
 shader_parameter/color_5_treshold = 1.0
 shader_parameter/noise_gaseous = true
-shader_parameter/noise_gaseous_speed = 0.05
+shader_parameter/noise_gaseous_speed = 0.008
 shader_parameter/noise_scale = 3.0
 shader_parameter/noise = ExtResource("2_8dsqn")
 
@@ -33,9 +115,9 @@ render_priority = 0
 shader = ExtResource("3_0hp1p")
 shader_parameter/color_1 = Color(0.435294, 0.129412, 0, 1)
 shader_parameter/color_2 = Color(1, 0.639216, 0.25098, 1)
-shader_parameter/alpha = 0.55
-shader_parameter/amount = 4.5
-shader_parameter/intensity = 10.0
+shader_parameter/alpha = 0.281
+shader_parameter/amount = 6.435
+shader_parameter/intensity = 1.29
 shader_parameter/emit = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_6bher"]
@@ -43,8 +125,9 @@ material = SubResource("ShaderMaterial_fag0l")
 
 [sub_resource type="Animation" id="Animation_eqom4"]
 resource_name = "Rotation"
-length = 60.0
+length = 1200.0
 loop_mode = 1
+step = 60.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -52,7 +135,7 @@ tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 60),
+"times": PackedFloat32Array(0, 1200),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
@@ -77,7 +160,7 @@ nodes/TimeScale/position = Vector2(140, 140)
 node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
 
 [node name="Star" type="MeshInstance3D"]
-transform = Transform3D(-1021.6, 0, -629.555, 0, 1200, 0, 629.555, 0, -1021.6, 0, 0, 0)
+transform = Transform3D(969.05, 0, 707.777, 0, 1200, 0, -707.777, 0, 969.05, 0, 0, 0)
 cast_shadow = 0
 mesh = SubResource("SphereMesh_rrqai")
 
