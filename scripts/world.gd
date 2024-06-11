@@ -59,7 +59,7 @@ func _ready():
     add_child(enemies)
 
     $AnimShipParade.play("parade")
-    $EnterSpace.play()
+    $Parade.play()
     if !$AnimShipParade.animation_finished.is_connected($EnterSpace.stop.unbind(1)):
         $AnimShipParade.animation_finished.connect($EnterSpace.stop.unbind(1))
 
@@ -162,7 +162,7 @@ func phase_four():
     say_something("Phase Three, Level " + str(Globals.level_num + 1))
     # wall.scroll_finished.disconnect(phase_three)
     enemies.spawn_mothership(Globals.level_num)
-    $Hud.init_mothership_health()
+    # $Hud.init_mothership_health()
     enemies.mothership_destroyed.connect(level_up)
     ship.reset_position()
     

@@ -244,7 +244,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1744, 0, 0)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_bsdgv")
-volume_db = -28.984
+volume_db = -15.0
+pitch_scale = 1.43
 bus = &"SFX"
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]

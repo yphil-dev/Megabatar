@@ -60,5 +60,5 @@ func flash_weapons(weapon):
     tween.tween_property($WeaponsControls, "modulate:a", 1.0, 0.1)
     # $NewWeapon.finished.disconnect(weapon.play)
 
-func init_mothership_health():
-    $BossBar.init_health()
+# func init_mothership_health():
+#     $BossBar.init_health()

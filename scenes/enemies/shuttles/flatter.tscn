@@ -211,7 +211,8 @@ light_energy = 16.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_wop6m")
-volume_db = -28.984
+volume_db = -15.0
+pitch_scale = 1.74
 bus = &"SFX"
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]

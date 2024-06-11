@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://c1y4humn3cfrj"]
+[gd_scene load_steps=47 format=3 uid="uid://c1y4humn3cfrj"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_5frqm"]
 [ext_resource type="PackedScene" uid="uid://dneumird5vcjw" path="res://addons/naejimer_3d_planet_generator/scenes/planet_lava.tscn" id="2_4elxh"]
@@ -22,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://df5lokdduf81x" path="res://assets/audio/sfx/VOICES/wow_perfect.ogg" id="20_ie2ui"]
 [ext_resource type="AudioStream" uid="uid://j12tfgxsr6o1" path="res://assets/audio/music/megabatar_loop.ogg" id="21_7uxtl"]
 [ext_resource type="PackedScene" uid="uid://cfi3qgyxjfgjh" path="res://scenes/controls_overlay.tscn" id="21_tbumh"]
+[ext_resource type="AudioStream" uid="uid://bu6t3taowl5vf" path="res://assets/audio/sfx/enter_space_01.ogg" id="22_b2chq"]
 [ext_resource type="AudioStream" uid="uid://bqr0tgovk3kg" path="res://assets/audio/sfx/windy-chord-rise-29583.ogg" id="22_pewvh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jc6bi"]
@@ -290,10 +291,10 @@ z_as_relative = false
 [node name="Planets" type="Node3D" parent="."]
 
 [node name="Mars" parent="Planets" instance=ExtResource("2_4elxh")]
-transform = Transform3D(356.703, 0, 131.015, 0, 380, 0, -131.015, 0, 356.703, 758.394, 505.123, -5002.64)
+transform = Transform3D(351.655, 0, 144.015, 0, 380, 0, -144.015, 0, 351.655, 758.394, 505.123, -5002.64)
 
 [node name="Earth" parent="Planets" instance=ExtResource("3_2q3uj")]
-transform = Transform3D(217.864, 0, 80.0202, 0, 232.091, 0, -80.0202, 0, 217.864, -730.514, 0, -6770.69)
+transform = Transform3D(214.781, 0, 87.9605, 0, 232.091, 0, -87.9605, 0, 214.781, -730.514, 0, -6770.69)
 visible = false
 
 [node name="Sun" type="MeshInstance3D" parent="Planets"]
@@ -315,11 +316,11 @@ transform = Transform3D(-37.8622, 0, -82.392, 0, 90.6751, 0, 82.392, 0, -37.8622
 visible = false
 
 [node name="PlanetIce" parent="Planets" instance=ExtResource("3_2q3uj")]
-transform = Transform3D(209.843, 0, 77.0744, 0, 223.551, 0, -77.0744, 0, 209.843, -106.626, 0, -859.471)
+transform = Transform3D(206.874, 0, 84.7221, 0, 223.551, 0, -84.7221, 0, 206.874, -106.626, 0, -859.471)
 visible = false
 
 [node name="Venus" parent="Planets" instance=ExtResource("15_lvied")]
-transform = Transform3D(1227.87, 0, 163.027, 0, 1238.65, 0, -163.027, 0, 1227.87, -1274.36, 0, -7973.29)
+transform = Transform3D(-993.783, 0, 739.35, 0, 1238.65, 0, -739.35, 0, -993.783, -1274.36, 0, -7973.29)
 
 [node name="Euphor" type="MeshInstance3D" parent="Planets"]
 transform = Transform3D(885.832, 0, 0, 0, 885.832, 0, 0, 0, 885.832, -1033.83, 0, -5680.52)
@@ -514,8 +515,12 @@ stream = ExtResource("20_a7jei")
 stream = ExtResource("21_7uxtl")
 
 [node name="EnterSpace" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_b2chq")
+bus = &"SFX"
+
+[node name="Parade" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("22_pewvh")
-bus = &"Music"
+bus = &"SFX"
 
 [node name="Center" type="Marker3D" parent="."]
 

@@ -56,6 +56,7 @@ var spawn_point
 func _ready():
 
     health = 50 if Globals.is_debug else (Globals.level_num + 1) * 250
+    Globals.boss_health = health
     
     spawn_point = $SpawnPoint if name != "Mother" else $armature/SpawnPoint
     
@@ -63,7 +64,7 @@ func _ready():
     if !$EntranceHorn.finished.is_connected($Music.play):
         $EntranceHorn.finished.connect($Music.play)
 
-    Globals.say("This mothership's name is {name} and its health level is {health} Level + 1 is {h}".format({"name":name, "health":health, "h":Globals.level_num + 1 * 6}))
+    Globals.say("Name is {name} and health is {health}".format({"name":name, "health":health}))
 
     play_motor_loop()
     global_transform.origin = Vector3(70,0,0)

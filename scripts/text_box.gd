@@ -16,6 +16,7 @@ extends CanvasLayer
 @onready var mothership_weapons = %MotherShipWeaponsVal
 @onready var mothership_armor = %MotherShipArmorVal
 
+var myTimer = Timer
 
 
 const READ_RATE = 0.05

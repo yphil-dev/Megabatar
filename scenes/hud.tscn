@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cvw5pk20m8ct4"]
+[gd_scene load_steps=26 format=3 uid="uid://cvw5pk20m8ct4"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_lnqbu"]
 [ext_resource type="Script" path="res://scripts/health_bar.gd" id="2_7hp3g"]
@@ -30,6 +30,16 @@ shadow_offset = Vector2(0, 4)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f56cp"]
 bg_color = Color(0.956863, 0.407843, 0.0745098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqb5f"]
+bg_color = Color(0.611765, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l0d22"]
+bg_color = Color(1, 0.439216, 0, 1)
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.611765, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_xufe0"]
 font = ExtResource("4_vej44")
@@ -129,31 +139,21 @@ z_index = 1
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 1604.0
+offset_left = 1602.0
 offset_top = 15.0
-offset_right = -19.0
+offset_right = -21.0
 offset_bottom = 51.0
 grow_horizontal = 2
 theme = SubResource("Theme_kcpkc")
-theme_override_styles/background = SubResource("StyleBoxEmpty_epg5n")
-theme_override_styles/fill = SubResource("StyleBoxFlat_4gmtg")
+theme_override_styles/background = SubResource("StyleBoxFlat_uqb5f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_l0d22")
+max_value = 1000.0
+step = 1.0
 value = 50.0
-show_percentage = false
-script = ExtResource("3_sboe8")
-
-[node name="DamageBar" type="ProgressBar" parent="BossBar"]
-z_index = -1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_y2iff")
-theme_override_styles/fill = SubResource("StyleBoxFlat_f56cp")
-value = 80.0
+allow_greater = true
 fill_mode = 1
 show_percentage = false
+script = ExtResource("3_sboe8")
 
 [node name="HitTimer" type="Timer" parent="BossBar"]
 one_shot = true

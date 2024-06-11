@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/flame_loop_01.ogg-351db80ee2fe9d1947e2ec9b915
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
