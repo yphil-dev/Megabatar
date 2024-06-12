@@ -21,7 +21,9 @@ An old school space shooter
 
 ## New things
 
-Welcome to the Beta3 of MegaBatar!
+# Welcome to the Beta3 of MegaBatar!
+
+## New things
 
 - Boss cannons
 - Boss health bar
@@ -31,6 +33,16 @@ Welcome to the Beta3 of MegaBatar!
 - Perfect wave reward
 - Tons of squashed bug
 - And more
+
+## Things to (please) look for
+
+- Does it even run? (please include architecture + OS)
+- Is it too hard?
+- Is it too easy?
+- Are the colors / exposure right? 
+  - Is it too bright / dark? 
+  - Can you see everything?
+
 
 ## TODO
 
