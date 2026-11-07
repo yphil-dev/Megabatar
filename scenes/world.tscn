@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://c1y4humn3cfrj"]
+[gd_scene load_steps=46 format=3 uid="uid://c1y4humn3cfrj"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_5frqm"]
 [ext_resource type="PackedScene" uid="uid://dneumird5vcjw" path="res://addons/naejimer_3d_planet_generator/scenes/planet_lava.tscn" id="2_4elxh"]
@@ -22,7 +22,6 @@
 [ext_resource type="AudioStream" uid="uid://df5lokdduf81x" path="res://assets/audio/sfx/VOICES/wow_perfect.ogg" id="20_ie2ui"]
 [ext_resource type="AudioStream" uid="uid://j12tfgxsr6o1" path="res://assets/audio/music/megabatar_loop.ogg" id="21_7uxtl"]
 [ext_resource type="PackedScene" uid="uid://cfi3qgyxjfgjh" path="res://scenes/controls_overlay.tscn" id="21_tbumh"]
-[ext_resource type="AudioStream" uid="uid://bu6t3taowl5vf" path="res://assets/audio/sfx/enter_space_01.ogg" id="22_b2chq"]
 [ext_resource type="AudioStream" uid="uid://bqr0tgovk3kg" path="res://assets/audio/sfx/windy-chord-rise-29583.ogg" id="22_pewvh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jc6bi"]
@@ -515,7 +514,6 @@ stream = ExtResource("20_a7jei")
 stream = ExtResource("21_7uxtl")
 
 [node name="EnterSpace" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("22_b2chq")
 bus = &"SFX"
 
 [node name="Parade" type="AudioStreamPlayer" parent="."]

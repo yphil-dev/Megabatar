@@ -6,14 +6,25 @@ extends Node3D
 @onready var smoke = $Smoke
 @onready var timer = $Timer
 
+signal explosion_finished
+
+var has_finished = false
+
 func _ready():
 	sparks.emitting = false
 	flash.emitting = false
 	fire.emitting = false
 	smoke.emitting = false
 
-func _on_timer_timeout():
+func finish():
+	if has_finished:
+		return
+	has_finished = true
+	explosion_finished.emit()
 	queue_free()
 
+func _on_timer_timeout():
+	finish()
+
 func _on_visible_on_screen_notifier_3d_screen_exited():
-	queue_free()
+	finish()

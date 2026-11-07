@@ -35,7 +35,7 @@ func _process(_delta):
         queue_free()
         
 func _on_body_entered(body):
-    if body.name != "ShipHitBox":
+    if body.name == "ShipHitBox":
         Globals.health -= damage
     if body.name != "CannonHitBox":
         queue_free()

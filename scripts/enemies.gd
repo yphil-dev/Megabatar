@@ -103,7 +103,7 @@ func set_reward_flag(bit):
         bit.is_rewarded = true
         was_rewarded = true
     
-func _on_mothership_exploded():
+func _on_mothership_exploded(explosion):
     
     for child in get_children():
         if child.is_in_group("Shuttles"):
@@ -111,6 +111,7 @@ func _on_mothership_exploded():
             
     world.shock_wave(mothership)
 
+    await explosion.explosion_finished
     mothership_destroyed.emit()
     
 func spawn_shuttles(number_of_shuttles):

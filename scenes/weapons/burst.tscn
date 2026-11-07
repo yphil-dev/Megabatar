@@ -7,17 +7,10 @@
 [sub_resource type="GDScript" id="GDScript_vuwu6"]
 script/source = "extends Node3D
 
-const Shatter = preload(\"res://scenes/explosions/shatter.tscn\")
-
 @export var health = 5000
 
 func _process(_delta):
 	if health <= 0:
-		var shatter = Shatter.instantiate()
-		get_parent().add_child(shatter)
-		# Globals.explode(Vector3(global_transform.origin), 2, 2)
-		# shatter.global_transform.origin = global_transform.origin
-		shatter.global_transform.origin = Vector3(global_transform.origin.x - 6.4, global_transform.origin.y + 5.6, global_transform.origin.z)
 		queue_free()
 
 func _on_visible_on_screen_notifier_3d_screen_entered():

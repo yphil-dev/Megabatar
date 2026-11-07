@@ -7,6 +7,7 @@ extends Node3D
 
 const BULLET = preload("res://scenes/weapons/laser.tscn")
 const LIFE = preload("res://scenes/life.tscn")
+const MOTHERSHIP_BREAKUP = preload("res://scripts/mothership_breakup.gd")
 
 # const Blob = preload("res://scenes/enemies/shuttles/blob_rigid.tscn")
 const ball_drone = preload("res://scenes/enemies/shuttles/ball_drone.tscn")
@@ -21,7 +22,7 @@ var Shuttles = [
 
 var health:int = 0
 
-signal exploded
+signal exploded(explosion)
 var has_exploded = false
 
 func play_motor_start():
@@ -79,10 +80,17 @@ func _ready():
 func _process(_delta):
     # Globals.say("This mothership's name is {name} and its health level is {health}".format({"name":name, "health":health}))
     Globals.boss_health = health
-    if health <= 0:
+    if health <= 0 and !has_exploded:
+        has_exploded = true
         Globals.boss_health = 0
-        Globals.explode(Vector3(global_transform.origin.x, global_transform.origin.y, global_transform.origin.z - 5), 4, 10)
-        exploded.emit()
+
+        if name != "Mother":
+            var breakup = MOTHERSHIP_BREAKUP.new()
+            get_node("/root/World").add_child(breakup)
+            breakup.start(self)
+
+        var explosion = Globals.explode(Vector3(global_transform.origin.x, global_transform.origin.y, global_transform.origin.z - 5), 4, 10)
+        exploded.emit(explosion)
         queue_free()
     
 func _fire():

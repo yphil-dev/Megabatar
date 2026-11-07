@@ -220,6 +220,8 @@ func explode(coords, force, damage):
         
     if force != 5:
         explosion_sound.play()
+
+    return explosion
        
 func plus_health(n):
     health = health + n if health <= 100 else 100

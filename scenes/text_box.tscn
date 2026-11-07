@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://lohq388huwjh"]
+[gd_scene load_steps=29 format=3 uid="uid://lohq388huwjh"]
 
 [ext_resource type="FontFile" uid="uid://cpfcewpxrsg2o" path="res://assets/fonts/Big Pixel demo.otf" id="1_h4tyb"]
 [ext_resource type="Script" path="res://scripts/text_box.gd" id="1_hd1lj"]
@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://bt3uxph1qx73g" path="res://scenes/enemies/motherships/dummy.tscn" id="9_567vf"]
 [ext_resource type="PackedScene" uid="uid://bkv8q16vdlf8q" path="res://scenes/enemies/motherships/question_mark.tscn" id="14_ugdi7"]
 [ext_resource type="AudioStream" uid="uid://b0brxe0ohkbg1" path="res://assets/audio/sfx/VOICES/new_intel.ogg" id="15_277p6"]
-[ext_resource type="Texture2D" uid="uid://b1dkdclqd6n5t" path="res://assets/img/briefing_green_grid.png" id="15_pv18a"]
 [ext_resource type="AudioStream" uid="uid://bxbre8hlmcakw" path="res://assets/audio/music/briefing_loop.ogg" id="16_6f5ud"]
 [ext_resource type="AudioStream" uid="uid://dgt67pxv61a4f" path="res://assets/audio/sfx/VOICES/briefing_01.ogg" id="16_femsb"]
 [ext_resource type="AudioStream" uid="uid://dxd72u3u1xea0" path="res://assets/audio/sfx/VOICES/briefing_00.ogg" id="17_m41hy"]
@@ -611,7 +610,6 @@ texture = ExtResource("8_2obsl")
 [node name="Grid" type="TextureRect" parent="MarginContainer/MarginContainer"]
 modulate = Color(0, 1, 0, 0.0588235)
 layout_mode = 2
-texture = ExtResource("15_pv18a")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
