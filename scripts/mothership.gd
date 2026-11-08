@@ -7,6 +7,7 @@ extends Node3D
 
 const BULLET = preload("res://scenes/weapons/laser.tscn")
 const LIFE = preload("res://scenes/life.tscn")
+const MOTHERSHIP_EXPLOSION = preload("res://scenes/explosions/mothership_explosion.tscn")
 const MOTHERSHIP_BREAKUP = preload("res://scripts/mothership_breakup.gd")
 
 # const Blob = preload("res://scenes/enemies/shuttles/blob_rigid.tscn")
@@ -89,10 +90,13 @@ func _process(_delta):
             get_node("/root/World").add_child(breakup)
             breakup.start(self)
 
-        var explosion = Globals.explode(Vector3(global_transform.origin.x, global_transform.origin.y, global_transform.origin.z - 5), 4, 10)
+        var explosion = MOTHERSHIP_EXPLOSION.instantiate()
+        explosion.is_mother = name == "Mother"
+        get_node("/root/World").add_child(explosion)
+        explosion.global_position = global_position
         exploded.emit(explosion)
         queue_free()
-    
+
 func _fire():
     $Charge.finished.disconnect(_fire)
     for muzzle in $Guns.get_children():
