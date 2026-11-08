@@ -7,6 +7,7 @@ extends Node3D
 
 const BULLET = preload("res://scenes/weapons/laser.tscn")
 const LIFE = preload("res://scenes/life.tscn")
+const DEATH_FIRE = preload("res://scenes/fire.tscn")
 const MOTHERSHIP_BREAKUP = preload("res://scripts/mothership_breakup.gd")
 
 # const Blob = preload("res://scenes/enemies/shuttles/blob_rigid.tscn")
@@ -89,10 +90,77 @@ func _process(_delta):
             get_node("/root/World").add_child(breakup)
             breakup.start(self)
 
+        spawn_death_fire(global_position)
         var explosion = Globals.explode(Vector3(global_transform.origin.x, global_transform.origin.y, global_transform.origin.z - 5), 4, 10)
         exploded.emit(explosion)
         queue_free()
     
+func spawn_death_fire(origin: Vector3):
+    var is_mother = name == "Mother"
+    var offsets = [
+        Vector3(0, 0, -24),
+        Vector3(0, 2, -12),
+        Vector3(0, 0, 0),
+        Vector3(0, -2, 12),
+        Vector3(0, 1, 24),
+    ]
+    var target_scales = [
+        Vector3(10, 7, 16),
+        Vector3(12, 8, 20),
+        Vector3(16, 10, 26),
+        Vector3(12, 8, 20),
+        Vector3(10, 7, 16),
+    ]
+
+    if is_mother:
+        offsets = [
+            Vector3(0, 0, -34),
+            Vector3(0, 4, -23),
+            Vector3(0, -3, -12),
+            Vector3(0, 0, 0),
+            Vector3(0, 3, 12),
+            Vector3(0, -4, 23),
+            Vector3(0, 1, 34),
+        ]
+        target_scales = [
+            Vector3.ONE * 32,
+            Vector3.ONE * 38,
+            Vector3.ONE * 46,
+            Vector3.ONE * 58,
+            Vector3.ONE * 46,
+            Vector3.ONE * 38,
+            Vector3.ONE * 32,
+        ]
+
+    for index in range(offsets.size()):
+        var fire = DEATH_FIRE.instantiate()
+        get_node("/root/World").add_child(fire)
+        fire.global_position = origin + offsets[index]
+        fire.scale = Vector3(2, 1.5, 3)
+
+        var particles = fire.get_node("FireParticles")
+        particles.local_coords = false
+        particles.process_material = particles.process_material.duplicate()
+        particles.process_material.gravity = Vector3.ZERO
+        particles.process_material.emission_sphere_radius = 1.5
+
+        particles.process_material.direction = Vector3.RIGHT
+        particles.process_material.spread = 180.0
+        particles.process_material.initial_velocity_min = 5.0
+        particles.process_material.initial_velocity_max = 10.0
+
+        if is_mother:
+            particles.amount = 100
+            particles.process_material.color = Color(3.5, 0.7, 2.4, 1)
+            particles.process_material.initial_velocity_min = 9.0
+            particles.process_material.initial_velocity_max = 18.0
+
+        var tween = fire.create_tween()
+        tween.tween_property(fire, "scale", target_scales[index], 0.35).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+        tween.tween_interval(3.0)
+        tween.tween_property(fire, "scale", Vector3.ZERO, 0.65).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+        tween.tween_callback(fire.queue_free)
+
 func _fire():
     $Charge.finished.disconnect(_fire)
     for muzzle in $Guns.get_children():
