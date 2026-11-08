@@ -30,6 +30,8 @@ func _ready():
     $Sparks.restart()
     $Debris.restart()
     $DeathSound.play()
+    if is_mother:
+        $MotherDeathSound.play()
 
     var light_energy = 32.0 if is_mother else 20.0
     var light_tween = create_tween()
