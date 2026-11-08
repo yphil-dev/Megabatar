@@ -1,0 +1,62 @@
+name: Build and upload to itch.io
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: itch-release-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  GODOT_VERSION: "4.7.2"
+  ITCH_TARGET: yphil/megabatar
+
+jobs:
+  release:
+    name: Export and upload
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+
+    steps:
+      - name: Check out tagged source
+        uses: actions/checkout@v4
+
+      - name: Install Godot and export templates
+        uses: chickensoft-games/setup-godot@v2.4.3
+        with:
+          version: ${{ env.GODOT_VERSION }}
+          use-dotnet: false
+          include-templates: true
+
+      - name: Verify Godot project
+        run: |
+          godot --version
+          godot --headless --editor --quit
+
+      - name: Export release builds
+        run: |
+          rm -rf build
+          mkdir -p build/linux build/windows build/web build/macosx
+          godot --headless --export-release "Linux/X11" build/linux/megabatar.x86_64
+          godot --headless --export-release "Windows Desktop" build/windows/megabatar.exe
+          godot --headless --export-release "Web" build/web/index.html
+          godot --headless --export-release "Mac OSX" build/macosx/megabatar.zip
+
+      - name: Install Butler
+        uses: jdno/setup-butler@v2.0.0
+
+      - name: Upload tagged release to itch.io
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+          RELEASE_VERSION: ${{ github.ref_name }}
+        run: |
+          test -n "$BUTLER_API_KEY"
+          butler push build/linux "$ITCH_TARGET:linux" --userversion "$RELEASE_VERSION"
+          butler push build/windows "$ITCH_TARGET:windows" --userversion "$RELEASE_VERSION"
+          butler push build/web "$ITCH_TARGET:html5" --userversion "$RELEASE_VERSION"
+          butler push build/macosx "$ITCH_TARGET:macos" --userversion "$RELEASE_VERSION"
