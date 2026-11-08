@@ -18,13 +18,20 @@ func start(source: Node3D):
             source_mesh.surface_get_primitive_type(surface_index),
             source_mesh.surface_get_arrays(surface_index)
         )
-        fragment_mesh.surface_set_material(0, hull.get_active_material(surface_index))
+        var surface_material = hull.get_active_material(surface_index)
+        var death_light_material: StandardMaterial3D = null
+        if is_death_light_material(surface_material):
+            death_light_material = surface_material.duplicate()
+            surface_material = death_light_material
+        fragment_mesh.surface_set_material(0, surface_material)
 
         var fragment = MeshInstance3D.new()
         fragment.mesh = fragment_mesh
         add_child(fragment)
         fragment.global_transform = start_transform
         animate_fragment(fragment, surface_index, surface_count)
+        if death_light_material:
+            fade_death_light(death_light_material)
 
     play_internal_explosions(source.global_position)
     get_tree().create_timer(BREAKUP_DURATION).timeout.connect(queue_free)
@@ -53,6 +60,26 @@ func get_all_children(root: Node) -> Array[Node]:
         children.append(child)
         children.append_array(get_all_children(child))
     return children
+
+func is_death_light_material(material: Material) -> bool:
+    return (
+        material is StandardMaterial3D
+        and material.emission_enabled
+        and material.emission_energy_multiplier > 1.0
+    )
+
+func fade_death_light(material: StandardMaterial3D):
+    material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+
+    var transparent_albedo = material.albedo_color
+    transparent_albedo.a = 0.0
+    var transparent_emission = material.emission
+    transparent_emission.a = 0.0
+
+    var tween = create_tween()
+    tween.tween_property(material, "emission_energy_multiplier", 0.0, 0.5)
+    tween.parallel().tween_property(material, "albedo_color", transparent_albedo, 0.5)
+    tween.parallel().tween_property(material, "emission", transparent_emission, 0.5)
 
 func animate_fragment(fragment: MeshInstance3D, index: int, count: int):
     var centered_index = index - (count - 1) / 2.0
